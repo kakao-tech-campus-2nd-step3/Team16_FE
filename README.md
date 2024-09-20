@@ -13,8 +13,8 @@
   - CRA + typescript template
   - ES-lint + prettier 설정. Airbnb lint로 적용하였습니다.
   - craco로 alias를 적용하였습니다.
-  - reset css를 적용하였습니다.
 
 ## 리뷰어에게...
 
 - 이번주는 환경 설정을 주로 하였습니다. 저희가 설정한 환경에서 발생할 수 있는 문제점이나 조언을 해주시면 감사할 것 같습니다!
+- 추가적으로 팀 프로젝트를 시작하는 단계이므로 협업을 위하여 컨밴션 등을 [wiki](https://github.com/kakao-tech-campus-2nd-step3/Team16_FE/wiki)에 문서화 해두었습니다. 이와 관련하여서도 조언하실 부분이 있다면 해주시면 감사할 것 같습니다.
