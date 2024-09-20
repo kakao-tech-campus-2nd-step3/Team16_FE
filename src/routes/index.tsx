@@ -14,37 +14,35 @@ const router = createBrowserRouter([
   {
     path: RouterPath.root,
     element: <HomePage />,
-    children: [
-      {
-        path: RouterPath.home,
-        element: <HomePage />,
-      },
-      {
-        path: RouterPath.create,
-        element: <CreatePage />,
-      },
-      {
-        path: RouterPath.group,
-        element: <GroupPage />,
-      },
-      {
-        path: RouterPath.join,
-        element: <JoinPage />,
-      },
-      {
-        path: RouterPath.leader,
-        element: <LeaderPage />,
-      },
-      {
-        path: RouterPath.login,
-        element: <LoginPage />,
-      },
-      {
-        path: RouterPath.mypage,
-        element: <MyPage />,
-      },
-    ],
   },
+  {
+      path: RouterPath.home,
+      element: <HomePage />,
+    },
+    {
+      path: RouterPath.create,
+      element: <CreatePage />,
+    },
+    {
+      path: RouterPath.group,
+      element: <GroupPage />,
+    },
+    {
+      path: RouterPath.join,
+      element: <JoinPage />,
+    },
+    {
+      path: RouterPath.leader,
+      element: <LeaderPage />,
+    },
+    {
+      path: RouterPath.login,
+      element: <LoginPage />,
+    },
+    {
+      path: RouterPath.mypage,
+      element: <MyPage />,
+    },
 ]);
 
 export const Routes = () => {
