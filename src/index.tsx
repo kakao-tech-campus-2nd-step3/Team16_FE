@@ -1,4 +1,4 @@
-import '@styles/index'
+import "@/styles"
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
