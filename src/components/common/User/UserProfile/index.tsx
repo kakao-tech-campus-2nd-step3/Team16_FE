@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 
-interface UserProfileProps {
+type Props = {
   profileImage?: string;
-}
-const UserProfile = ({ profileImage }: UserProfileProps) => {
+};
+
+export const UserProfile: React.FC<Props> = ({ profileImage }) => {
   return (
     <StyledUserProfile
       style={{
@@ -21,5 +22,3 @@ const StyledUserProfile = styled.div`
   border-radius: 50%;
   background-color: black;
 `;
-
-export default UserProfile;

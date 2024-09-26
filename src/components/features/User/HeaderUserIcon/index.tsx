@@ -1,9 +1,9 @@
 import { useGetUserProfile } from '@/api/hooks/useGetUser';
-import UserProfile from '@/components/common/User/UserProfile';
+import { UserProfile } from '@/components/common/User/UserProfile';
 
 const DEFAULT_PROFILE_IMAGE = '/images/default_profile_image.png';
 
-export default function HeaderUserIcon() {
+export const HeaderUserIcon = () => {
   const { data: profileImage, status } = useGetUserProfile();
 
   const profile =
@@ -12,4 +12,4 @@ export default function HeaderUserIcon() {
       : profileImage.profile_image_url;
 
   return <UserProfile profileImage={profile} />;
-}
+};

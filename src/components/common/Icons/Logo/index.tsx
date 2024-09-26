@@ -5,12 +5,10 @@ type Props = {
   width?: string;
   height?: string;
 } & HTMLAttributes<HTMLImageElement>;
-const Logo = ({ ...rest }: Props) => {
+export const Logo: React.FC<Props> = ({ ...rest }) => {
   return <StyledLogo src="/icons/bobting-logo.svg" alt="Logo" {...rest} />;
 };
 
 const StyledLogo = styled.img`
   width: ${({ width }) => width || '100%'};
 `;
-
-export default Logo;
