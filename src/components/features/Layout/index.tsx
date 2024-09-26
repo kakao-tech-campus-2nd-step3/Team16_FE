@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Outlet } from 'react-router-dom';
 
-import Header from './Header';
+import { Header } from './Header';
 
 export const Layout = () => (
   <Wrapper>

@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
-import Logo from '@/components/common/Icons/Logo';
+import { Logo } from '@/components/common/Icons/Logo';
 
-import HeaderUserIcon from '../../User/HeaderUserIcon';
+import { HeaderUserIcon } from '../../User/HeaderUserIcon';
 
-const Header = () => {
+export const Header = () => {
   const router = useNavigate();
 
   const handleLogoClick = () => {
@@ -28,5 +28,3 @@ export const StyledHeader = styled.header`
   padding-inline: 0.75rem;
   z-index: 100;
 `;
-
-export default Header;
