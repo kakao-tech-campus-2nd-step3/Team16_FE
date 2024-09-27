@@ -13,8 +13,8 @@ interface UserProfile {
 }
 
 export const getUserProfile = async () => {
-  const response = await fetchInstance<UserProfile>(getUserProfilePath()).then((res) => res.data);
-  return response;
+  const response = await fetchInstance<UserProfile>(getUserProfilePath());
+  return response.data;
 };
 
 export const useGetUserProfile = () => {
