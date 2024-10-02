@@ -67,7 +67,7 @@ const OnboardingPage: React.FC = () => {
 const Description = styled.p`
   font-size: 0.9rem;
   color: #888;
-  margin-top: 1rem; /* 버튼과의 간격 */
+  margin-top: 1rem;
   text-align: center;
 `;
 
@@ -116,8 +116,8 @@ const DescriptionContainer = styled.div`
 const TextContent = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center; /* 수평 중앙 정렬 */
-  justify-content: center; /* 수직 중앙 정렬 */
+  align-items: center; 
+  justify-content: center; 
   max-width: 380px;
   margin-bottom: 2rem;
   text-align: center;
@@ -127,7 +127,7 @@ const Title = styled.h2`
   font-size: 2rem;
   color: #333;
   margin-bottom: 1rem;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Pretendard', sans-serif;
   font-weight: 700;
 `;
 
@@ -135,7 +135,7 @@ const Subtitle = styled.p`
   font-size: 1.2rem;
   color: #555;
   margin-bottom: 2rem;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Pretendard', sans-serif;
   line-height: 1.6; 
   word-break: break-word;
 `;
@@ -164,9 +164,9 @@ const KakaoLoginButton = styled.button`
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s ease;
-  width: 300px; /* 버튼의 고정 너비 */
+  width: 300px;
   height: 50px;
-  margin-top: 1.5rem; /* 텍스트와 버튼 간격 */
+  margin-top: 1.5rem;
   position: relative;
 
   &:hover {
