@@ -25,7 +25,7 @@ export const FormSection: React.FC = () => {
 };
 
 const FormSectionContainer = styled.div`
-  max-width: 600px;
+  max-width: 500px;
   margin: 0 auto;
   padding: 20px;
   display: flex;
