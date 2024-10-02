@@ -91,18 +91,31 @@ const ContentWrapper = styled.div`
   width: 100%;
   align-items: center;
   justify-content: space-between;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;  // 화면이 작을 때 수직 정렬
+  }
 `;
 
 const ImageContainer = styled.div`
   flex: 1;
   display: flex;
   justify-content: center;
+  
+  @media (max-width: 768px) {
+    order: -1;  // 화면이 작을 때 이미지가 위로 올라감
+    margin-bottom: 1rem; // 이미지와 텍스트 사이의 간격 추가
+  }
 `;
 
 const OnboardingImage = styled.img`
   max-width: 500px; 
   width: 100%;
   height: auto;
+  
+  @media (max-width: 768px) {
+    max-width: 100%;  // 작은 화면에서 이미지가 화면을 꽉 채우도록함
+  }
 `;
 
 const DescriptionContainer = styled.div`
@@ -111,6 +124,11 @@ const DescriptionContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  
+  @media (max-width: 768px) {
+    justify-content: center;
+    text-align: center;
+  }
 `;
 
 const TextContent = styled.div`
@@ -121,6 +139,10 @@ const TextContent = styled.div`
   max-width: 380px;
   margin-bottom: 2rem;
   text-align: center;
+  
+  @media (max-width: 768px) {
+    max-width: 100%; // 작은 화면에서는 텍스트도 더 넓게 보이도록 조정
+  }
 `;
 
 const Title = styled.h2`
