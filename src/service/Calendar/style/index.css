@@ -1,5 +1,18 @@
-.fc-toolbar-title {
-  display: inline-block;
-  vertical-align: middle;
-  margin-inline: 1rem;
+/* TODO: 변수 사용하기 */
+:root {
+  --fc-border-color: #698474;
+  --fc-button-bg-color: #fcf8f3;
+  --fc-button-hover-bg-color: none;
+  --fc-button-active-bg-color: #5b6e7c;
+  --fc-button-text-color: #698474;
+  --fc-event-bg-color: #698474;
+  --fc-event-border-color: #698474;
+  --fc-today-bg-color: #fcf8f3;
+}
+
+.fc .fc-button-primary:not(:disabled).fc-button-active,
+.fc .fc-button-primary:not(:disabled):active {
+  background-color: #698474;
+  border-color: #698474;
+  --fc-button-text-color: #fcf8f3;
 }
