@@ -24,5 +24,5 @@ export const MyCalendar = () => {
     editable: true,
   }));
 
-  return <DefaultCalendar evnets={events} />;
+  return <DefaultCalendar event={events} />;
 };

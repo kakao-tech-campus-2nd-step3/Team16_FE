@@ -6,10 +6,10 @@ import type { Event } from '@/service/Calendar/types';
 
 type Props = {
   height?: number;
-  evnets?: Event[];
+  event?: Event[];
 };
 
-export const DefaultCalendar: React.FC<Props> = ({ height, evnets }) => {
+export const DefaultCalendar: React.FC<Props> = ({ height, event }) => {
   return (
     <FullCalendar
       plugins={[dayGridPlugin, timeGridPlugin]}
@@ -29,7 +29,7 @@ export const DefaultCalendar: React.FC<Props> = ({ height, evnets }) => {
         center: 'title',
         left: 'dayGridMonth,timeGridWeek',
       }}
-      events={evnets}
+      events={event}
       height={height}
     />
   );
