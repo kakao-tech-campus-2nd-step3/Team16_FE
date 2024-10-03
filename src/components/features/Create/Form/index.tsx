@@ -9,26 +9,27 @@ import { Duration } from './Duration';
 import { MeetingName } from './MeetingName';
 import { TimeRange } from './TimeRange';
 
-export const FormSection: React.FC = () => {
+export const Form: React.FC = () => {
   const methods = useCreateFormContext();
 
   return (
     <FormProvider {...methods}>
-      <FormSectionContainer>
+      <FormContainer>
         <MeetingName />
         <DateRange />
         <Duration />
         <TimeRange />
-      </FormSectionContainer>
+      </FormContainer>
     </FormProvider>
   );
 };
 
-const FormSectionContainer = styled.div`
-  max-width: 500px;
-  margin: 0 auto;
+const FormContainer = styled.div`
+  flex: 1;
+  width: 100%;
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 40px;
+  box-sizing: border-box;
 `;
