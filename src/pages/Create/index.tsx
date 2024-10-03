@@ -42,7 +42,7 @@ const Container = styled.div`
 const Title = styled.h1`
   font-family: 'Pretendard', sans-serif;
   font-weight: 700;
-  font-size: 28px;
+  font-size: 1.5rem;
   padding: 0 20px;
 `;
 

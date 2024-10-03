@@ -20,14 +20,14 @@ export const TimeRange: React.FC = () => {
 const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 10px;
 `;
 
 const FormLabel = styled.label`
   font-family: 'Pretendard', sans-serif;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 1.25rem;
   display: block;
-  margin-bottom: 10px;
 `;
 
 const TimeRangeContainer = styled.div`
@@ -40,7 +40,7 @@ const TimeInput = styled.input`
   flex: 1;
   padding: 10px;
   font-family: 'Pretendard', sans-serif;
-  font-size: 14px;
+  font-size: 0.9rem;
   border: 1px solid lightgray;
   border-radius: 7px;
   color: darkgray;
@@ -48,6 +48,6 @@ const TimeInput = styled.input`
 
 const TimeSeparator = styled.span`
   margin: 0 10px;
-  font-size: 20px;
+  font-size: 1.25rem;
   color: lightgray;
 `;

@@ -22,22 +22,22 @@ export const Duration: React.FC = () => {
 const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 10px;
 `;
 
 const FormLabel = styled.label`
   font-family: 'Pretendard', sans-serif;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 1.25rem;
   display: block;
-  margin-bottom: 10px;
 `;
 
 const FormSelect = styled.select`
   width: 100%;
   padding: 10px;
-  font-size: 14px;
+  font-size: 0.9rem;
   font-family: 'Pretendard', sans-serif;
   border: 1px solid lightgray;
   border-radius: 7px;
-  color: gray;
+  color: darkgray;
 `;

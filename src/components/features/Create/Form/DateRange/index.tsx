@@ -44,14 +44,14 @@ export const DateRange: React.FC = () => {
 const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 10px;
 `;
 
 const FormLabel = styled.label`
   font-family: 'Pretendard', sans-serif;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 1.25rem;
   display: block;
-  margin-bottom: 10px;
 `;
 
 const DateRangeContainer = styled.div`
@@ -62,6 +62,6 @@ const DateRangeContainer = styled.div`
 
 const DateSeparator = styled.span`
   margin: 0 10px;
-  font-size: 20px;
+  font-size: 1.25rem;
   color: lightgray;
 `;
