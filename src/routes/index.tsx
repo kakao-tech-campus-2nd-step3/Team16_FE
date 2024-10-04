@@ -8,6 +8,7 @@ import { JoinPage } from '@/pages/Join';
 import { LeaderPage } from '@/pages/Leader';
 import { LoginPage } from '@/pages/Login';
 import { MyPage } from '@/pages/MyPage';
+import { OnboardingPage } from '@/pages/Onboarding';
 
 import { RouterPath } from './path';
 
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
         element: <MyPage />,
       },
     ],
+  },
+  {
+    path: RouterPath.onboarding,  
+    element: <OnboardingPage />,  
   },
 ]);
 
