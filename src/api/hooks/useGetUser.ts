@@ -14,6 +14,7 @@ interface UserProfile {
 
 export const getUserProfile = async () => {
   const response = await fetchWithToken<UserProfile>(getUserProfilePath());
+
   return response.data;
 };
 
