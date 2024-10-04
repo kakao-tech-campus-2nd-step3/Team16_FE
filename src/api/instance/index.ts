@@ -32,7 +32,7 @@ export const fetchWithToken = initInstance({
 
 fetchWithToken.interceptors.response.use(
   function (response) {
-    return response;
+    return response.data;
   },
   function (error) {
     const errorMessage = `서버 에러 : ${error.response.status}`;

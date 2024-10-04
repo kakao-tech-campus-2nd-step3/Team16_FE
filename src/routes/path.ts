@@ -6,4 +6,5 @@ export const RouterPath = {
   leader: '/leader',
   login: '/login',
   mypage: '/mypage',
+  onboarding: '/onboarding',
 };
