@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-import { Button } from '@/components/features/Create/Button';
-import { Form } from '@/components/features/Create/Form';
-import { Map } from '@/components/features/Create/Map';
+import { CreateBtn } from '@/components/features/Create/CreateButton';
+import { CreateForm } from '@/components/features/Create/CreateForm';
+import { CreateMap } from '@/components/features/Create/CreateMap';
 import { breakpoints } from '@/styles/variants';
 
 export const CreatePage = () => {
@@ -11,10 +11,10 @@ export const CreatePage = () => {
       <Container>
         <Title>모임 생성</Title>
         <BodyContainer>
-          <Form />
-          <Map />
+          <CreateForm />
+          <CreateMap />
         </BodyContainer>
-        <Button />
+        <CreateBtn />
       </Container>
     </Wrapper>
   );
@@ -28,8 +28,8 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
   width: 100%;
-  max-width: ${breakpoints.xl};
-  padding: 60px 20px;
+  max-width: ${breakpoints.lg};
+  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 40px;

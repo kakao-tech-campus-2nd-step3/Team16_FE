@@ -9,7 +9,7 @@ import { Duration } from './Duration';
 import { MeetingName } from './MeetingName';
 import { TimeRange } from './TimeRange';
 
-export const Form: React.FC = () => {
+export const CreateForm: React.FC = () => {
   const methods = useCreateFormContext();
 
   return (

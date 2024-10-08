@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 
 import { breakpoints } from '@/styles/variants';
 
-export const Map = () => {
-  return <MapImg></MapImg>;
+export const CreateMap = () => {
+  return <MapImg />;
 };
 
 const MapImg = styled.div`

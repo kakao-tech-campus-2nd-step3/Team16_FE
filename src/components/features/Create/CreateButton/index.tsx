@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const Button = () => {
+export const CreateBtn = () => {
   return (
     <ButtonContainer>
       <CreateButton>생성하기</CreateButton>
