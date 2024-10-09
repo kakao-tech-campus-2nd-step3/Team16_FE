@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { FormProvider } from 'react-hook-form';
 
-import { CreateBtn } from '@/components/features/Create/CreateButton';
+import { CreateBtn } from '@/components/features/Create/CreateBtn';
 import { CreateForm } from '@/components/features/Create/CreateForm';
 import { CreateMap } from '@/components/features/Create/CreateMap';
 import { useCreateFormContext } from '@/hooks/useCreateFormContext';
