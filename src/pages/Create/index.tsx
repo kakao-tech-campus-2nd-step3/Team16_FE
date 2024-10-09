@@ -1,20 +1,26 @@
 import styled from '@emotion/styled';
+import { FormProvider } from 'react-hook-form';
 
 import { CreateBtn } from '@/components/features/Create/CreateButton';
 import { CreateForm } from '@/components/features/Create/CreateForm';
 import { CreateMap } from '@/components/features/Create/CreateMap';
+import { useCreateFormContext } from '@/hooks/useCreateFormContext';
 import { breakpoints } from '@/styles/variants';
 
 export const CreatePage = () => {
+  const methods = useCreateFormContext();
+
   return (
     <Wrapper>
       <Container>
         <Title>모임 생성</Title>
-        <BodyContainer>
-          <CreateForm />
-          <CreateMap />
-        </BodyContainer>
-        <CreateBtn />
+        <FormProvider {...methods}>
+          <BodyContainer>
+            <CreateForm />
+            <CreateMap />
+          </BodyContainer>
+          <CreateBtn />
+        </FormProvider>
       </Container>
     </Wrapper>
   );

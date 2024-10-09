@@ -6,8 +6,10 @@ import React from 'react';
 import DatePicker from 'react-datepicker';
 import { useFormContext } from 'react-hook-form';
 
+import type { CreateFormInputs } from '@/hooks/useCreateFormContext';
+
 export const DateRange: React.FC = () => {
-  const { setValue, watch } = useFormContext();
+  const { setValue, watch } = useFormContext<CreateFormInputs>();
   const startDate = watch('startDate');
   const endDate = watch('endDate');
 

@@ -2,8 +2,10 @@ import styled from '@emotion/styled';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
+import type { CreateFormInputs } from '@/hooks/useCreateFormContext';
+
 export const Duration: React.FC = () => {
-  const { register } = useFormContext();
+  const { register } = useFormContext<CreateFormInputs>();
 
   return (
     <FormGroup>
