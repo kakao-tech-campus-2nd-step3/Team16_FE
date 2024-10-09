@@ -4,7 +4,7 @@ import { createMeetingPath } from '../hooks/useCreateMeeting';
 
 export const meetingMockHandler = [
   rest.post(createMeetingPath(), (_, res, ctx) => {
-    return res(ctx.status(200), ctx.json(CREATE_MEETING_MOCK));
+    return res(ctx.json(CREATE_MEETING_MOCK));
   }),
 ];
 
