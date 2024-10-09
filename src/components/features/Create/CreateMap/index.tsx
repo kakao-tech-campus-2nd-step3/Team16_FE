@@ -1,71 +1,30 @@
 import styled from '@emotion/styled';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { breakpoints } from '@/styles/variants';
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
-const { kakao } = window;
-
-interface Coordinates {
-  lat: number;
-  lng: number;
-}
+import type { Coordinates } from './types';
+import { useGeocoder } from './useGeocoder';
+import { useGeolocation } from './useGeolocation';
+import { useKakaoMap } from './useKakaoMap';
+import { usePlaceSearch } from './usePlaceSearch';
 
 export const CreateMap: React.FC = () => {
-  const [currentPosition, setCurrentPosition] = useState<Coordinates | null>(null);
+  const userLocation: Coordinates | null = useGeolocation();
 
-  const fetchCurrentPosition = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        ({ coords: { latitude, longitude } }) => {
-          setCurrentPosition({ lat: latitude, lng: longitude });
-        },
-        () => {
-          setCurrentPosition({ lat: 33.450701, lng: 126.570667 });
-        },
-      );
-    } else {
-      setCurrentPosition({ lat: 33.450701, lng: 126.570667 });
-    }
-  };
+  const coordinates: Coordinates | null = useKakaoMap('map', userLocation);
 
-  const initializeMap = (position: Coordinates) => {
-    const container = document.getElementById('map');
-    const options = {
-      center: new kakao.maps.LatLng(position.lat, position.lng),
-      level: 3,
-    };
-    const map = new kakao.maps.Map(container, options);
+  const addressInfo = useGeocoder(coordinates);
 
-    const marker = new kakao.maps.Marker({
-      position: map.getCenter(),
-      map: map,
-    });
-
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    kakao.maps.event.addListener(map, 'click', function (mouseEvent: kakao.maps.event.MouseEvent) {
-      const latlng = mouseEvent.latLng;
-      marker.setPosition(latlng);
-    });
-  };
+  const placeInfo = usePlaceSearch(addressInfo?.address || null);
 
   useEffect(() => {
-    fetchCurrentPosition();
-  }, []);
-
-  useEffect(() => {
-    if (currentPosition) {
-      initializeMap(currentPosition);
+    if (placeInfo) {
+      console.log('최종 장소 정보:', placeInfo);
     }
-  }, [currentPosition]);
+  }, [placeInfo]);
 
-  return (
-    <>
-      <MapContainer id="map" />
-    </>
-  );
+  return <MapContainer id="map" />;
 };
 
 const MapContainer = styled.div`
