@@ -1,6 +1,15 @@
 import { useEffect, useState } from 'react';
 
-import type { AddressInfo, Coordinates, GeocoderResult } from './types';
+import type { AddressInfo, Coordinates } from '@/types';
+
+export interface GeocoderResult {
+  address: {
+    address_name: string;
+  };
+  road_address?: {
+    address_name: string;
+  };
+}
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error

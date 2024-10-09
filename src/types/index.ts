@@ -15,12 +15,3 @@ export interface PlaceInfo {
   latitude: number;
   longitude: number;
 }
-
-export interface GeocoderResult {
-  address: {
-    address_name: string;
-  };
-  road_address?: {
-    address_name: string;
-  };
-}

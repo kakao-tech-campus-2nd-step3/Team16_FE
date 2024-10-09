@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import type { PlaceInfo } from './types';
+import type { PlaceInfo } from '@/types';
 
 const KAKAO_API_KEY = 'fe995452b0e63ba6e5276669fad15c21';
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import type { Coordinates } from './types';
+import type { Coordinates } from '@/types';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
