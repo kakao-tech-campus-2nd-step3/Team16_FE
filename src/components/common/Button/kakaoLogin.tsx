@@ -1,6 +1,17 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
-const KakaoLoginButton = styled.button`
+interface Props {
+  onClick: () => void;
+  children?: React.ReactNode;
+}
+
+const KakaoLoginButton: React.FC<Props> = ({ onClick, children }) => (
+  <StyledButton onClick={onClick}>
+    {children}
+  </StyledButton>
+);
+
+const StyledButton = styled.button`
   background-color: #fee500;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -22,15 +33,4 @@ const KakaoLoginButton = styled.button`
   }
 `;
 
-interface Props {
-  onClick: () => void;
-}
-
-const KakaoLogin: React.FC<Props> = ({ onClick }) => (
-  <KakaoLoginButton onClick={onClick}>
-    <img src="/icons/kakao-icon.svg" alt="카카오 로그인" style={{ position: 'absolute', left: '10px', width: '24px', height: '24px' }} />
-    카카오 로그인
-  </KakaoLoginButton>
-);
-
-export default KakaoLogin;
+export default KakaoLoginButton;
