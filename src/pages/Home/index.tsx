@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { MyMeetingList } from '@/components/features/Home/MyMeetingList';
+import { MyMeetingList } from '@/components/features/Home/MyMeetingListSection';
 import { vars } from '@/styles';
 
 export const HomePage = () => {
