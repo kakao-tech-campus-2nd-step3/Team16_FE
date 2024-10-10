@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import { colors } from '@/styles/variants';
+
 type Props = {
   theme?: 'green' | 'ivory' | 'red';
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
@@ -24,37 +26,37 @@ const Wrapper = styled.button<Pick<Props, 'theme'>>(
   ({ theme = 'green' }) => {
     if (theme === 'green') {
       return {
-        backgroundColor: '#698474',
+        backgroundColor: colors.primary,
         color: 'white',
         border: 'none',
 
         '&:hover': {
-          backgroundColor: '#567b65',
+          backgroundColor: colors.primary_hover,
         },
       };
     }
 
     if (theme === 'ivory') {
       return {
-        backgroundColor: '#FCF8F3',
+        backgroundColor: colors.secondary,
         color: '#698474',
         border: 'solid 2px',
-        borderColor: '#698474',
+        borderColor: colors.primary,
 
         '&:hover': {
-          backgroundColor: '#eae5d1',
+          backgroundColor: colors.secondary_hover,
         },
       };
     }
 
     if (theme === 'red') {
       return {
-        backgroundColor: '#d9534f',
+        backgroundColor: colors.third,
         color: 'white',
         border: 'none',
 
         '&:hover': {
-          backgroundColor: '#c9302c',
+          backgroundColor: colors.third_hover,
         },
       };
     }
