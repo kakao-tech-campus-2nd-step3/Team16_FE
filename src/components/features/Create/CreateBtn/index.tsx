@@ -24,11 +24,23 @@ export const CreateBtn: React.FC = () => {
       return;
     }
 
+    if (!values.baseLocation) {
+      alert('위치 정보를 선택해주세요.');
+      return;
+    }
+
     const meetingData = {
-      title: values.meetingName,
+      baseLocation: {
+        location_id: values.baseLocation.location_id,
+        name: values.baseLocation.name,
+        address: values.baseLocation.address,
+        latitude: values.baseLocation.latitude,
+        longitude: values.baseLocation.longitude,
+      },
+      title: values.title,
       startDate: values.startDate?.toISOString().split('T')[0] || '',
       endDate: values.endDate?.toISOString().split('T')[0] || '',
-      durationTime: values.duration,
+      durationTime: values.durationTime,
       startTime: values.startTime ? `${values.startTime}:00` : '',
       endTime: values.endTime ? `${values.endTime}:00` : '',
     };
@@ -49,16 +61,12 @@ export const CreateBtn: React.FC = () => {
     alert('폼 입력을 확인해주세요.');
   };
 
-  const handleCancel = () => {
-    navigate(-1);
-  };
-
   return (
     <ButtonContainer>
       <Button theme="green" onClick={handleSubmit(handleFormSubmit, handleFormError)}>
         생성하기
       </Button>
-      <Button theme="ivory" onClick={handleCancel}>
+      <Button theme="ivory" onClick={() => navigate(-1)}>
         취소
       </Button>
     </ButtonContainer>

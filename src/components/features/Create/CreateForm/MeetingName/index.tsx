@@ -14,7 +14,7 @@ export const MeetingName: React.FC = () => {
         type="text"
         id="meetingName"
         placeholder="모임 이름을 입력해주세요"
-        {...register('meetingName')}
+        {...register('title')}
       />
     </FormGroup>
   );

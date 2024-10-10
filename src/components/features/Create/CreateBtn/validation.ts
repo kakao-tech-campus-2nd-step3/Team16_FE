@@ -3,7 +3,7 @@ import type { CreateFormInputs } from '@/hooks/useCreateFormContext';
 export const validateCreateForm = (
   values: CreateFormInputs,
 ): { errorMessage?: string; isValid: boolean } => {
-  if (!values.meetingName || values.meetingName.trim() === '') {
+  if (!values.title || values.title.trim() === '') {
     return {
       errorMessage: '모임 이름을 입력해주세요.',
       isValid: false,
@@ -24,7 +24,7 @@ export const validateCreateForm = (
     };
   }
 
-  if (!values.duration || values.duration < 1) {
+  if (!values.durationTime || values.durationTime < 1) {
     return {
       errorMessage: '모임 소요 시간을 1시간 이상으로 설정해주세요.',
       isValid: false,
