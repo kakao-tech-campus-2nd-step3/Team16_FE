@@ -1,5 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+import { useHandleKakaoLogin } from '@/api/hooks/useHandleKakaoLogin';
+import { Layout } from '@/components/features/Layout';
 import { CreatePage } from '@/pages/Create';
 import { GroupPage } from '@/pages/Group';
 import { HomePage } from '@/pages/Home';
@@ -13,55 +15,57 @@ import { OnboardingPage } from '@/pages/Onboarding';
 
 import { RouterPath } from './path';
 
-  const router = createBrowserRouter([
-    {
-      path: RouterPath.home,
-      element: <OnboardingPage handleKakaoLogin={() => { throw new Error('Function not implemented.'); }} />,
-      children: [
-        {
-          path: '/',
-          element: <HomePage />,
-        },
-        {
-          path: RouterPath.create,
-          element: <CreatePage />,
-        },
-        {
-          path: RouterPath.group,
-          element: <GroupPage />,
-        },
-        {
-          path: RouterPath.join,
-          element: <JoinPage />,
-        },
-        {
-          path: RouterPath.leader,
-          element: <LeaderPage />,
-        },
-        {
-          path: RouterPath.login,
-          element: <LoginPage />,
-        },
-        {
-          path: RouterPath.mypage,
-          element: <MyPage />,
-        },
-        {
-          path: RouterPath.success,
-          element: <SuccessPage />,
-        },
-        {
-          path: RouterPath.failure,
-          element: <FailurePage />,
-        },
-      ],
-    },
-    {
-      path: RouterPath.onboarding,
-      element: <OnboardingPage handleKakaoLogin={() => { throw new Error('Function not implemented.'); }} />,
-    },
-  ]);
+export const Routes = () => {
+  const handleKakaoLogin = useHandleKakaoLogin();
 
-  export const Routes = () => {
-    return <RouterProvider router={router} />;
+const router = createBrowserRouter([
+  {
+    path: RouterPath.home,
+    element: <Layout />,
+    children: [
+      {
+        path: '/',
+        element: <HomePage />,
+      },
+      {
+        path: RouterPath.create,
+        element: <CreatePage />,
+      },
+      {
+        path: `${RouterPath.group}/:meetingId`,
+        element: <GroupPage />,
+      },
+      {
+        path: RouterPath.join,
+        element: <JoinPage />,
+      },
+      {
+        path: RouterPath.leader,
+        element: <LeaderPage />,
+      },
+      {
+        path: RouterPath.login,
+        element: <LoginPage />,
+      },
+      {
+        path: RouterPath.mypage,
+        element: <MyPage />,
+      },
+    ],
+  },
+  {
+    path: RouterPath.success,
+    element: <SuccessPage />,
+  },
+  {
+    path: RouterPath.failure,
+    element: <FailurePage />,
+  }, 
+  {
+      path: RouterPath.onboarding,
+      element: <OnboardingPage handleKakaoLogin={handleKakaoLogin} />,
+    },
+]);
+
+return <RouterProvider router={router} />;
 };

@@ -7,7 +7,7 @@ export const useHandleKakaoLogin = () => {
     if (isFailure) {
       navigate('/login');
     } else {
-      window.location.href ='url';  // 백엔드 URL로 리다이렉트
+      window.location.href ='url';  //추후 수정
     }
   };
 
