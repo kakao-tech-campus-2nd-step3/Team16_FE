@@ -1,7 +1,7 @@
-import type { CreateFormInputs } from '@/hooks/useCreateFormContext';
+import type { CreateMeetingRequest } from '@/types';
 
 export const validateCreateForm = (
-  values: CreateFormInputs,
+  values: CreateMeetingRequest,
 ): { errorMessage?: string; isValid: boolean } => {
   if (!values.title || values.title.trim() === '') {
     return {

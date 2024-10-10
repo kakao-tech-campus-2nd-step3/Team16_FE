@@ -5,13 +5,13 @@ import { useNavigate } from 'react-router-dom';
 
 import { useCreateMeeting } from '@/api/hooks/useCreateMeeting';
 import { Button } from '@/components/common/Button';
-import { type CreateFormInputs } from '@/hooks/useCreateFormContext';
 import { RouterPath } from '@/routes/path';
+import type { CreateMeetingRequest } from '@/types';
 
 import { validateCreateForm } from './validation';
 
 export const CreateBtn: React.FC = () => {
-  const { handleSubmit, getValues } = useFormContext<CreateFormInputs>();
+  const { handleSubmit, getValues } = useFormContext<CreateMeetingRequest>();
   const navigate = useNavigate();
   const { mutate: createMeeting } = useCreateMeeting();
 
@@ -27,8 +27,8 @@ export const CreateBtn: React.FC = () => {
     const meetingData = {
       baseLocation: values.baseLocation,
       title: values.title,
-      startDate: values.startDate?.toISOString().split('T')[0] || '',
-      endDate: values.endDate?.toISOString().split('T')[0] || '',
+      startDate: values.startDate,
+      endDate: values.endDate,
       durationTime: Number(values.durationTime),
       startTime: values.startTime ? `${values.startTime}:00` : '',
       endTime: values.endTime ? `${values.endTime}:00` : '',
@@ -45,7 +45,7 @@ export const CreateBtn: React.FC = () => {
     });
   };
 
-  const handleFormError = (errors: FieldErrors<CreateFormInputs>) => {
+  const handleFormError = (errors: FieldErrors<CreateMeetingRequest>) => {
     console.error('Form validation errors:', errors);
     alert('폼 입력을 확인해주세요.');
   };

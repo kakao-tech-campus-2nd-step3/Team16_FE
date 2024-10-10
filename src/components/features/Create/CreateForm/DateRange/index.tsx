@@ -6,10 +6,10 @@ import React from 'react';
 import DatePicker from 'react-datepicker';
 import { useFormContext } from 'react-hook-form';
 
-import type { CreateFormInputs } from '@/hooks/useCreateFormContext';
+import type { CreateMeetingRequest } from '@/types';
 
 export const DateRange: React.FC = () => {
-  const { setValue, watch } = useFormContext<CreateFormInputs>();
+  const { setValue, watch } = useFormContext<CreateMeetingRequest>();
   const startDate = watch('startDate');
   const endDate = watch('endDate');
 

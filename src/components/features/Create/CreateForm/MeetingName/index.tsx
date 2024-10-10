@@ -2,10 +2,10 @@ import styled from '@emotion/styled';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import type { CreateFormInputs } from '@/hooks/useCreateFormContext';
+import type { CreateMeetingRequest } from '@/types';
 
 export const MeetingName: React.FC = () => {
-  const { register } = useFormContext<CreateFormInputs>();
+  const { register } = useFormContext<CreateMeetingRequest>();
 
   return (
     <FormGroup>

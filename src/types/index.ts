@@ -25,8 +25,8 @@ export interface CreateMeetingRequest {
     longitude: number;
   } | null;
   title: string;
-  startDate: string | undefined;
-  endDate: string | undefined;
+  startDate: Date | undefined;
+  endDate: Date | undefined;
   durationTime: number;
   startTime: string;
   endTime: string;
