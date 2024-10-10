@@ -2,16 +2,16 @@ import styled from '@emotion/styled';
 import { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import type { CreateFormInputs } from '@/hooks/useCreateFormContext';
 import { useGeocoder } from '@/hooks/useGeocoder';
 import { useGeolocation } from '@/hooks/useGeolocation';
 import { useKakaoMap } from '@/hooks/useKakaoMap';
 import { usePlaceSearch } from '@/hooks/usePlaceSearch';
 import { breakpoints } from '@/styles/variants';
+import type { CreateMeetingRequest } from '@/types';
 import type { Coordinates } from '@/types';
 
 export const CreateMap: React.FC = () => {
-  const { setValue } = useFormContext<CreateFormInputs>();
+  const { setValue } = useFormContext<CreateMeetingRequest>();
   const userLocation: Coordinates | null = useGeolocation();
   const coordinates: Coordinates | null = useKakaoMap('map', userLocation);
   const addressInfo = useGeocoder(coordinates);

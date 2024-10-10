@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import type { PlaceInfo } from '@/types';
 
-const KAKAO_API_KEY = 'fe995452b0e63ba6e5276669fad15c21';
+const KAKAO_API_KEY = process.env.REACT_APP_KAKAO_API_KEY;
 
 export const usePlaceSearch = (address: string | null): PlaceInfo | null => {
   const [placeInfo, setPlaceInfo] = useState<PlaceInfo | null>(null);

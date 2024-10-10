@@ -1,30 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
 
+import type { CreateMeetingRequest, CreateMeetingResponse } from '@/types';
+
 import { fetchWithToken } from '../instance/index';
 
 export const createMeetingPath = () => `/api/meeting`;
-
-interface CreateMeetingRequest {
-  title: string;
-  startDate: string;
-  endDate: string;
-  durationTime: number;
-  startTime: string;
-  endTime: string;
-  baseLocation: {
-    location_id: number;
-    name: string;
-    address: string;
-    latitude: number;
-    longitude: number;
-  } | null;
-}
-
-interface CreateMeetingResponse {
-  status: number;
-  message: string;
-  data: null;
-}
 
 export const createMeeting = async (meetingData: CreateMeetingRequest) => {
   const response = await fetchWithToken<CreateMeetingResponse>(createMeetingPath(), {
