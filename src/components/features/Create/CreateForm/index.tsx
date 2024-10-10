@@ -1,26 +1,19 @@
 import styled from '@emotion/styled';
 import React from 'react';
-import { FormProvider } from 'react-hook-form';
-
-import { useCreateFormContext } from '@/hooks/useCreateFormContext';
 
 import { DateRange } from './DateRange';
 import { Duration } from './Duration';
 import { MeetingName } from './MeetingName';
 import { TimeRange } from './TimeRange';
 
-export const Form: React.FC = () => {
-  const methods = useCreateFormContext();
-
+export const CreateForm: React.FC = () => {
   return (
-    <FormProvider {...methods}>
-      <FormContainer>
-        <MeetingName />
-        <DateRange />
-        <Duration />
-        <TimeRange />
-      </FormContainer>
-    </FormProvider>
+    <FormContainer>
+      <MeetingName />
+      <DateRange />
+      <Duration />
+      <TimeRange />
+    </FormContainer>
   );
 };
 
