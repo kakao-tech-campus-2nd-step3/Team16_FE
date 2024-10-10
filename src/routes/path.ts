@@ -7,4 +7,6 @@ export const RouterPath = {
   login: '/login',
   mypage: '/mypage',
   onboarding: '/onboarding',
+  success: '/success',
+  failure: '/failure',
 };
