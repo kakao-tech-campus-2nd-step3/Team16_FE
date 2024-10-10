@@ -19,8 +19,6 @@ export const CreateMap: React.FC = () => {
 
   useEffect(() => {
     if (placeInfo) {
-      console.log('최종 장소 정보:', placeInfo);
-
       setValue('baseLocation', {
         location_id: Number(placeInfo.location_id),
         name: placeInfo.name,

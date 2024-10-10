@@ -24,23 +24,12 @@ export const CreateBtn: React.FC = () => {
       return;
     }
 
-    if (!values.baseLocation) {
-      alert('위치 정보를 선택해주세요.');
-      return;
-    }
-
     const meetingData = {
-      baseLocation: {
-        location_id: values.baseLocation.location_id,
-        name: values.baseLocation.name,
-        address: values.baseLocation.address,
-        latitude: values.baseLocation.latitude,
-        longitude: values.baseLocation.longitude,
-      },
+      baseLocation: values.baseLocation,
       title: values.title,
       startDate: values.startDate?.toISOString().split('T')[0] || '',
       endDate: values.endDate?.toISOString().split('T')[0] || '',
-      durationTime: values.durationTime,
+      durationTime: Number(values.durationTime),
       startTime: values.startTime ? `${values.startTime}:00` : '',
       endTime: values.endTime ? `${values.endTime}:00` : '',
     };

@@ -45,6 +45,13 @@ export const validateCreateForm = (
     };
   }
 
+  if (!values.baseLocation) {
+    return {
+      errorMessage: '위치 정보를 선택해주세요.',
+      isValid: false,
+    };
+  }
+
   return {
     isValid: true,
   };
