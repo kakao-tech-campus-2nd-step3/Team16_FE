@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import { colors } from '@/styles/variants';
 import type { Coordinates } from '@/types';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -18,7 +19,7 @@ export const useKakaoMap = (
     const container = document.getElementById(containerId);
     const options = {
       center: new kakao.maps.LatLng(defaultPosition.lat, defaultPosition.lng),
-      level: 3,
+      level: 4,
     };
     const map = new kakao.maps.Map(container, options);
 
@@ -26,6 +27,19 @@ export const useKakaoMap = (
       position: map.getCenter(),
       map: map,
     });
+
+    const circle = new kakao.maps.Circle({
+      center: new kakao.maps.LatLng(defaultPosition.lat, defaultPosition.lng),
+      radius: 500,
+      strokeWeight: 2,
+      strokeColor: colors.primary,
+      strokeOpacity: 0.5,
+      strokeStyle: 'solid',
+      fillColor: colors.primary,
+      fillOpacity: 0.2,
+    });
+
+    circle.setMap(map);
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
@@ -36,6 +50,7 @@ export const useKakaoMap = (
         lat: latlng.getLat(),
         lng: latlng.getLng(),
       });
+      circle.setPosition(latlng);
     });
   }, [containerId, defaultPosition]);
 
