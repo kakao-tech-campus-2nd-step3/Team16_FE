@@ -1,12 +1,22 @@
 import { rest } from 'msw';
 
 import { getMyMeetingsPath } from '../hooks/useGetMyMeetings';
+import { createMeetingPath } from '../hooks/useCreateMeeting';
 
-export const meetingMockhandler = [
+export const meetingMockHandler = [
   rest.get(getMyMeetingsPath(), (_, res, ctx) => {
     return res(ctx.json(MY_MEETING_MOCK));
   }),
+  rest.post(createMeetingPath(), (_, res, ctx) => {
+    return res(ctx.json(CREATE_MEETING_MOCK));
+  }),
 ];
+
+const CREATE_MEETING_MOCK = {
+  status: 200,
+  message: '모임 생성 성공',
+  data: null,
+};
 
 const MY_MEETING_MOCK = {
   status: null,
