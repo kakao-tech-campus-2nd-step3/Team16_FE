@@ -2,8 +2,10 @@ import styled from '@emotion/styled';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
+import type { CreateMeetingRequest } from '@/types';
+
 export const TimeRange: React.FC = () => {
-  const { register } = useFormContext();
+  const { register } = useFormContext<CreateMeetingRequest>();
 
   return (
     <FormGroup>

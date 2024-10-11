@@ -2,13 +2,15 @@ import styled from '@emotion/styled';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
+import type { CreateMeetingRequest } from '@/types';
+
 export const Duration: React.FC = () => {
-  const { register } = useFormContext();
+  const { register } = useFormContext<CreateMeetingRequest>();
 
   return (
     <FormGroup>
       <FormLabel htmlFor="duration">예정 소요 시간</FormLabel>
-      <FormSelect id="duration" {...register('duration')}>
+      <FormSelect id="duration" {...register('durationTime')}>
         {Array.from({ length: 24 }, (_, i) => i + 1).map((hour) => (
           <option key={hour} value={hour}>
             {hour}시간
