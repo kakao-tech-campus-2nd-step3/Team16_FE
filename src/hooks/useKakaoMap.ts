@@ -25,7 +25,7 @@ export const useKakaoMap = (
 
     const marker = new kakao.maps.Marker({
       position: map.getCenter(),
-      map: map,
+      map,
     });
 
     const circle = new kakao.maps.Circle({

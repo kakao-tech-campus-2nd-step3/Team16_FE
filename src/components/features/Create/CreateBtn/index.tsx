@@ -27,9 +27,9 @@ export const CreateBtn: React.FC = () => {
     const meetingData = {
       baseLocation: values.baseLocation,
       title: values.title,
-      startDate: values.startDate,
-      endDate: values.endDate,
-      durationTime: Number(values.durationTime),
+      startDate: values.startDate?.split('T')[0] || '',
+      endDate: values.endDate?.split('T')[0] || '',
+      durationTime: +values.durationTime,
       startTime: values.startTime ? `${values.startTime}:00` : '',
       endTime: values.endTime ? `${values.endTime}:00` : '',
     };

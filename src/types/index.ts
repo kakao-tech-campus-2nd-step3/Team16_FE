@@ -23,10 +23,10 @@ export interface CreateMeetingRequest {
     address: string;
     latitude: number;
     longitude: number;
-  } | null;
+  };
   title: string;
-  startDate: Date | undefined;
-  endDate: Date | undefined;
+  startDate: string | undefined;
+  endDate: string | undefined;
   durationTime: number;
   startTime: string;
   endTime: string;

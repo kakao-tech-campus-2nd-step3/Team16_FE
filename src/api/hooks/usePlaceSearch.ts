@@ -8,6 +8,7 @@ export const usePlaceSearch = (address: string | null): PlaceInfo | null => {
   const [placeInfo, setPlaceInfo] = useState<PlaceInfo | null>(null);
 
   useEffect(() => {
+    console.log(KAKAO_API_KEY);
     if (!address) return;
 
     const searchPlaceByKeyword = async (keyword: string) => {

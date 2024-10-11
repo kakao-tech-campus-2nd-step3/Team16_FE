@@ -2,10 +2,10 @@ import styled from '@emotion/styled';
 import { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 
+import { usePlaceSearch } from '@/api/hooks/usePlaceSearch';
 import { useGeocoder } from '@/hooks/useGeocoder';
 import { useGeolocation } from '@/hooks/useGeolocation';
 import { useKakaoMap } from '@/hooks/useKakaoMap';
-import { usePlaceSearch } from '@/hooks/usePlaceSearch';
 import { breakpoints } from '@/styles/variants';
 import type { CreateMeetingRequest } from '@/types';
 import type { Coordinates } from '@/types';
@@ -20,7 +20,7 @@ export const CreateMap: React.FC = () => {
   useEffect(() => {
     if (placeInfo) {
       setValue('baseLocation', {
-        location_id: Number(placeInfo.location_id),
+        location_id: +placeInfo.location_id,
         name: placeInfo.name,
         address: placeInfo.address,
         latitude: coordinates?.lat || 0,
