@@ -9,7 +9,6 @@ import { breakpoints } from '@/styles/variants';
 
 export const CreatePage = () => {
   const methods = useCreateFormContext();
-
   return (
     <Wrapper>
       <Container>

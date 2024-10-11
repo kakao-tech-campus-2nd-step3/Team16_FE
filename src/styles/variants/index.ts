@@ -17,3 +17,4 @@ export const colors = {
   secondary_hover: getCSSVariable('--secondary-color-hover'),
   third_hover: getCSSVariable('--third-color-hover'),
 };
+
