@@ -12,4 +12,9 @@ export const breakpoints = {
 export const colors = {
   primary: getCSSVariable('--primary-color'),
   secondary: getCSSVariable('--secondary-color'),
+  third: getCSSVariable('--third-color'),
+  primary_hover: getCSSVariable('--primary-color-hover'),
+  secondary_hover: getCSSVariable('--secondary-color-hover'),
+  third_hover: getCSSVariable('--third-color-hover'),
 };
+

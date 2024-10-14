@@ -1,12 +1,14 @@
-import { useForm } from 'react-hook-form';
+import { useForm, type UseFormReturn } from 'react-hook-form';
 
-export const useCreateFormContext = () => {
-  return useForm({
+import type { CreateMeetingRequest } from '@/types';
+
+export const useCreateFormContext = (): UseFormReturn<CreateMeetingRequest> => {
+  return useForm<CreateMeetingRequest>({
     defaultValues: {
-      meetingName: '',
+      title: '',
       startDate: undefined,
       endDate: undefined,
-      duration: 1,
+      durationTime: 1,
       startTime: '',
       endTime: '',
     },
