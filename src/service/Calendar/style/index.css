@@ -16,3 +16,7 @@
   border-color: #698474;
   --fc-button-text-color: #fcf8f3;
 }
+
+.fc {
+  font-family: 'Pretendard', sans-serif;
+}

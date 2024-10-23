@@ -44,10 +44,15 @@ const Inner = styled.div<
   Pick<Props, 'maxWidth' | 'flexDirection' | 'justifyContent' | 'alignItems' | 'gap'>
 >`
   width: 100%;
-  max-width: ${({ maxWidth }) => maxWidth ?? vars.breakpoints.md};
+  max-width: ${({ maxWidth }) => maxWidth ?? vars.breakpoints.lg};
   display: flex;
   flex-direction: ${({ flexDirection }) => flexDirection ?? 'column'};
   justify-content: ${({ justifyContent }) => justifyContent ?? 'left'};
   align-items: ${({ alignItems }) => alignItems ?? 'flex-start'};
   gap: ${({ gap }) => gap ?? '0'};
+  padding: 20px;
+
+  @media (max-width: ${vars.breakpoints.sm}) {
+    padding: 10px;
+  }
 `;
