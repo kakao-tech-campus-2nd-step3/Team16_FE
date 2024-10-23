@@ -64,6 +64,7 @@ export const CreateBtn: React.FC = () => {
 
 const ButtonContainer = styled.div`
   display: flex;
+  width: 100%;
   justify-content: right;
   gap: 20px;
 `;
