@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { fetchWithToken } from '../instance';
+import { baseURL, fetchWithToken } from '../instance';
 
-export const getMyEventPath = () => 'calendar/events';
+export const getMyEventPath = () => `${baseURL}/calendar/events`;
 
 interface Time {
   time_id: number; // 시간 id
