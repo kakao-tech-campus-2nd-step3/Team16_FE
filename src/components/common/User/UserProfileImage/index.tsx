@@ -5,18 +5,23 @@ const profileSize = {
   md: '48px',
 };
 
+const defaultProfileImageUrl = '/assets/images/defaultUser/default-user.png';
+
 type Props = {
-  profileImage?: string;
+  profileImageUrl?: string;
   size?: keyof typeof profileSize;
 };
 
-export const UserProfileImage: React.FC<Props> = ({ profileImage, size }) => {
+export const UserProfileImage: React.FC<Props> = ({
+  profileImageUrl = defaultProfileImageUrl,
+  size,
+}) => {
   return (
     <StyledUserProfile
-      profileImage={profileImage}
+      profileImage={profileImageUrl}
       size={size || 'sm'}
       style={{
-        backgroundImage: `url(${profileImage})`,
+        backgroundImage: `url(${defaultProfileImageUrl})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
@@ -31,5 +36,4 @@ const StyledUserProfile = styled.div<{
   width: ${({ size }) => profileSize[size]};
   height: ${({ size }) => profileSize[size]};
   border-radius: 50%;
-  background-color: black;
 `;
