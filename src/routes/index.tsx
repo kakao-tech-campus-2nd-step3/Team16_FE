@@ -6,14 +6,12 @@ import { HomePage } from '@/pages/Home';
 import { JoinPage } from '@/pages/Join';
 import { LeaderPage } from '@/pages/Leader';
 import { LoginPage } from '@/pages/Login';
-import FailurePage from '@/pages/Login/FailurePage';
-import SuccessPage from '@/pages/Login/SuccessPage';
+import { FailurePage } from '@/pages/Login/FailurePage';
+import { SuccessPage } from '@/pages/Login/SuccessPage';
 import { MyPage } from '@/pages/MyPage';
 import { OnboardingPage } from '@/pages/Onboarding';
 
 import { RouterPath } from './path';
-
-const RoutesComponent = () => {
 
   const router = createBrowserRouter([
     {
@@ -64,7 +62,6 @@ const RoutesComponent = () => {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  export const Routes = () => {
+    return <RouterProvider router={router} />;
 };
-
-export const Routes = RoutesComponent;

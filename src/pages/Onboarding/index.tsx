@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
-import KakaoLogin from 'src/components/common/Button/kakaoLogin';
+import { KakaoLoginButton } from 'src/components/common/Button/kakaoLogin';
 
 const onboardingImages = [
   '/assets/images/onboarding/image1.svg',
@@ -57,7 +57,7 @@ const OnboardingPage: React.FC<OnboardingPageProps> = ({ handleKakaoLogin }) => 
             <Title>{onboardingDescriptions[currentImageIndex].title}</Title>
             <Subtitle>{onboardingDescriptions[currentImageIndex].subtitle}</Subtitle>
 
-            <KakaoLogin onClick={handleKakaoLogin} />
+            <KakaoLoginButton onClick={handleKakaoLogin} />
 
             <Description>카카오 로그인으로 밥팅을 시작해보세요!</Description>
           </TextContent>

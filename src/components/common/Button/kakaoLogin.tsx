@@ -5,7 +5,7 @@ interface Props {
   children?: React.ReactNode;
 }
 
-const KakaoLoginButton: React.FC<Props> = ({ onClick, children }) => (
+export const KakaoLoginButton: React.FC<Props> = ({ onClick, children }) => (
   <StyledButton onClick={onClick}>
     {children}
   </StyledButton>
@@ -32,5 +32,3 @@ const StyledButton = styled.button`
     background-color: #fdda00;
   }
 `;
-
-export default KakaoLoginButton;
