@@ -26,7 +26,7 @@ const router = createBrowserRouter([
         element: <CreatePage />,
       },
       {
-        path: RouterPath.group,
+        path: `${RouterPath.group}/:meetingId`,
         element: <GroupPage />,
       },
       {
@@ -48,8 +48,8 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: RouterPath.onboarding,  
-    element: <OnboardingPage />,  
+    path: RouterPath.onboarding,
+    element: <OnboardingPage />,
   },
 ]);
 

@@ -15,14 +15,14 @@ export const MeetingList: React.FC<Props> = ({ meetings, title, showFoodName = f
     <>
       <MeetingsTitle>{title}</MeetingsTitle>
       <hr />
-      {meetings.map((meeting) => (
-        <Link to={RouterPath.group} key={meeting.meetingId}>
+      {meetings.map(({ confirmedDateTime, confirmedFood, meetingId, title: meetingTitle }) => (
+        <Link to={`${RouterPath.group}/${meetingId}`} key={meetingId}>
           <MeetingItem>
-            <MeetingTitle>{meeting.title}</MeetingTitle>
-            {showFoodName && meeting.confirmedFood && (
-              <MeetingConfirmFood>{meeting.confirmedFood.name}</MeetingConfirmFood>
+            <MeetingTitle>{meetingTitle}</MeetingTitle>
+            {showFoodName && confirmedFood && (
+              <MeetingConfirmFood>{confirmedFood.name}</MeetingConfirmFood>
             )}
-            <MeetingConfirmDateTime>{meeting.confirmedDateTime}</MeetingConfirmDateTime>
+            <MeetingConfirmDateTime>{confirmedDateTime}</MeetingConfirmDateTime>
           </MeetingItem>
         </Link>
       ))}
