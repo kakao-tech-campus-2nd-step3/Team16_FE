@@ -1,12 +1,20 @@
 import styled from '@emotion/styled';
 
-type Props = {
-  profileImage?: string;
+const profileSize = {
+  sm: '40px', //default
+  md: '48px',
 };
 
-export const UserProfile: React.FC<Props> = ({ profileImage }) => {
+type Props = {
+  profileImage?: string;
+  size?: keyof typeof profileSize;
+};
+
+export const UserProfileImage: React.FC<Props> = ({ profileImage, size }) => {
   return (
     <StyledUserProfile
+      profileImage={profileImage}
+      size={size || 'sm'}
       style={{
         backgroundImage: `url(${profileImage})`,
         backgroundSize: 'cover',
@@ -16,9 +24,12 @@ export const UserProfile: React.FC<Props> = ({ profileImage }) => {
   );
 };
 
-const StyledUserProfile = styled.div`
-  width: 40px;
-  height: 40px;
+const StyledUserProfile = styled.div<{
+  size: keyof typeof profileSize;
+  profileImage?: string;
+}>`
+  width: ${({ size }) => profileSize[size]};
+  height: ${({ size }) => profileSize[size]};
   border-radius: 50%;
   background-color: black;
 `;
