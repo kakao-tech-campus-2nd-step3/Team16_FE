@@ -1,7 +1,7 @@
 import { rest } from 'msw';
 
-import { getMyMeetingsPath } from '../hooks/useGetMyMeetings';
 import { createMeetingPath } from '../hooks/useCreateMeeting';
+import { getMyMeetingsPath } from '../hooks/useGetMyMeetings';
 
 export const meetingMockHandler = [
   rest.get(getMyMeetingsPath(), (_, res, ctx) => {
