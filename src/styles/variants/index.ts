@@ -16,5 +16,5 @@ export const colors = {
   primary_hover: getCSSVariable('--primary-color-hover'),
   secondary_hover: getCSSVariable('--secondary-color-hover'),
   third_hover: getCSSVariable('--third-color-hover'),
+  gray: getCSSVariable('--gray'),
 };
-
