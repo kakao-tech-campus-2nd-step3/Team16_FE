@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
 
+import { useGetCategory } from '@/api/hooks/useGetCategory';
 import type { Food } from '@/api/hooks/useGetRecommendMenu';
 import { colors } from '@/styles/variants';
-
-export const menuCategories = ['한식', '중식', '일식', '양식', '카페,디저트', '술집'] as const;
 
 type Props = {
   foods: Food[];
@@ -11,6 +10,11 @@ type Props = {
 };
 
 export const MenuCategory: React.FC<Props> = ({ foods, children }) => {
+  const { data: menuCategories, status } = useGetCategory();
+
+  if (status === 'pending') return <div>Loading...</div>;
+  if (status === 'error') return <div>Error</div>;
+
   return (
     <Wrapper>
       {menuCategories.map((menuCategory) => (

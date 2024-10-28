@@ -9,6 +9,7 @@ import { colors } from '@/styles/variants';
 
 export const GroupCollectionMenuSection: React.FC = () => {
   const meetingId = useGetMeetingId();
+
   const { data: foods, status } = useGetRecommandMenu(meetingId);
 
   if (status === 'pending') return <div>Loading...</div>;

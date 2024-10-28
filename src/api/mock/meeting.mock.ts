@@ -1,6 +1,7 @@
 import { rest } from 'msw';
 
 import { createMeetingPath } from '../hooks/useCreateMeeting';
+import { getCategoryPath } from '../hooks/useGetCategory';
 import { getMyMeetingsPath } from '../hooks/useGetMyMeetings';
 import { getparticipantPath } from '../hooks/useGetParticipant';
 import { getRecommandMenuPath } from '../hooks/useGetRecommendMenu';
@@ -28,7 +29,12 @@ export const meetingMockHandler = [
       return res(ctx.json(RECOMMEND_MENU_MOCK));
     },
   ),
+  rest.get(getCategoryPath(), (_, res, ctx) => {
+    return res(ctx.json(MENU_CATEGORY_MOCK));
+  }),
 ];
+
+// mocks
 
 const CREATE_MEETING_MOCK = {
   status: 200,
@@ -223,4 +229,10 @@ const RECOMMEND_MENU_MOCK = {
       name: '닭발',
     },
   ],
+};
+
+const MENU_CATEGORY_MOCK = {
+  status: 200,
+  message: '카테고리 조회 성공',
+  data: ['한식', '중식', '일식', '양식', '카페,디저트', '술집'],
 };

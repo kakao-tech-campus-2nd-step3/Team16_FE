@@ -1,12 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 
-import type { menuCategories } from '@/components/common/Menu/MenuCatoery';
-
 import { baseURL, fetchWithToken } from '../instance';
 
 export interface Food {
   food_id: number;
-  category: (typeof menuCategories)[number];
+  category: string;
   name: string;
 }
 
