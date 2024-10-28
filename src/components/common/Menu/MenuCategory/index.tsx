@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 import { useGetCategory } from '@/api/hooks/useGetCategory';
-import type { Food } from '@/api/hooks/useGetRecommendMenu';
+import type { Food } from '@/api/hooks/useGetRecommandMenu';
 import { colors } from '@/styles/variants';
 
 type Props = {

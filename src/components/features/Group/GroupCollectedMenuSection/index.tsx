@@ -1,16 +1,16 @@
 import styled from '@emotion/styled';
 
-import { useGetRecommandMenu } from '@/api/hooks/useGetRecommendMenu';
+import { useGetRecommendMenu } from '@/api/hooks/useGetRecommandMenu';
 import { Spacing } from '@/components/common/layouts/Spacing';
 import { DefaultMenu } from '@/components/common/Menu/DefaultMenu';
-import { MenuCategory } from '@/components/common/Menu/MenuCatoery';
+import { MenuCategory } from '@/components/common/Menu/MenuCategory';
 import { useGetMeetingId } from '@/hooks/useGetMeetingId';
 import { colors } from '@/styles/variants';
 
 export const GroupCollectionMenuSection: React.FC = () => {
   const meetingId = useGetMeetingId();
 
-  const { data: foods, status } = useGetRecommandMenu(meetingId);
+  const { data: foods, status } = useGetRecommendMenu(meetingId);
 
   if (status === 'pending') return <div>Loading...</div>;
   if (status === 'error') return <div>Error</div>;

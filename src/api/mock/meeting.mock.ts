@@ -4,7 +4,7 @@ import { createMeetingPath } from '../hooks/useCreateMeeting';
 import { getCategoryPath } from '../hooks/useGetCategory';
 import { getMyMeetingsPath } from '../hooks/useGetMyMeetings';
 import { getparticipantPath } from '../hooks/useGetParticipant';
-import { getRecommandMenuPath } from '../hooks/useGetRecommendMenu';
+import { getRecommendMenuPath } from '../hooks/useGetRecommandMenu';
 
 export const meetingMockHandler = [
   rest.get(getMyMeetingsPath(), (_, res, ctx) => {
@@ -22,7 +22,7 @@ export const meetingMockHandler = [
     },
   ),
   rest.get(
-    getRecommandMenuPath({
+    getRecommendMenuPath({
       meetingId: '1',
     }),
     (_, res, ctx) => {
