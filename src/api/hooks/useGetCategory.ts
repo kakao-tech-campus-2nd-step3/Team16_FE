@@ -14,5 +14,6 @@ export const useGetCategory = () => {
     queryKey: [getCategoryPath()],
     queryFn: getCategor,
     gcTime: 1000 * 60 * 60 * 24,
+    staleTime: 1000 * 60 * 60 * 24,
   });
 };
