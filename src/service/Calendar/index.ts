@@ -1,4 +1,5 @@
 import './style/index.css';
 
 export { DefaultCalendar } from './components/DefaultCalendar/index';
-export { WeeklyCalendar } from './components/WeeklyCalendar';
+export { PublicCalendar } from './components/PublicCalendar/index';
+export { PublicCalendarEditer } from './components/PublicCalendarEditer/index';
