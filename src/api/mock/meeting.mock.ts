@@ -1,7 +1,8 @@
 import { rest } from 'msw';
 
-import { getMyMeetingsPath } from '../hooks/useGetMyMeetings';
 import { createMeetingPath } from '../hooks/useCreateMeeting';
+import { getMyMeetingsPath } from '../hooks/useGetMyMeetings';
+import { getparticipantPath } from '../hooks/useGetParticipant';
 
 export const meetingMockHandler = [
   rest.get(getMyMeetingsPath(), (_, res, ctx) => {
@@ -10,6 +11,14 @@ export const meetingMockHandler = [
   rest.post(createMeetingPath(), (_, res, ctx) => {
     return res(ctx.json(CREATE_MEETING_MOCK));
   }),
+  rest.get(
+    getparticipantPath({
+      meetingId: '1',
+    }),
+    (_, res, ctx) => {
+      return res(ctx.json(PARTICIPANT));
+    },
+  ),
 ];
 
 const CREATE_MEETING_MOCK = {
@@ -49,6 +58,73 @@ const MY_MEETING_MOCK = {
       title: '밥먹자',
       confirmedDateTime: null,
       confirmedFood: null,
+    },
+  ],
+};
+
+const PARTICIPANT = {
+  status: 200,
+  message: '참가자 조회 성공',
+  data: [
+    {
+      member_id: 12345,
+      nickname: '쿠키즈',
+      thumbnail_image_url: 'https://example.com/thumbnails/sunshine_thumb.jpg',
+      profile_image_url: 'https://example.com/profiles/sunshine_profile.jpg',
+    },
+    {
+      member_id: 54312,
+      nickname: '구키즈',
+      thumbnail_image_url: 'https://example.com/thumbnails/sunshine_thumb.jpg',
+      profile_image_url: 'https://example.com/profiles/sunshine_profile.jpg',
+    },
+    {
+      member_id: 12345,
+      nickname: '쿠키즈',
+      thumbnail_image_url: 'https://example.com/thumbnails/sunshine_thumb.jpg',
+      profile_image_url: 'https://example.com/profiles/sunshine_profile.jpg',
+    },
+    {
+      member_id: 54312,
+      nickname: '구키즈',
+      thumbnail_image_url: 'https://example.com/thumbnails/sunshine_thumb.jpg',
+      profile_image_url: 'https://example.com/profiles/sunshine_profile.jpg',
+    },
+    {
+      member_id: 12345,
+      nickname: '쿠키즈',
+      thumbnail_image_url: 'https://example.com/thumbnails/sunshine_thumb.jpg',
+      profile_image_url: 'https://example.com/profiles/sunshine_profile.jpg',
+    },
+    {
+      member_id: 54312,
+      nickname: '구키즈',
+      thumbnail_image_url: 'https://example.com/thumbnails/sunshine_thumb.jpg',
+      profile_image_url: 'https://example.com/profiles/sunshine_profile.jpg',
+    },
+    {
+      member_id: 12345,
+      nickname: '쿠키즈',
+      thumbnail_image_url: 'https://example.com/thumbnails/sunshine_thumb.jpg',
+      profile_image_url: 'https://example.com/profiles/sunshine_profile.jpg',
+    },
+    {
+      member_id: 54312,
+      nickname: '구키즈',
+      thumbnail_image_url: 'https://example.com/thumbnails/sunshine_thumb.jpg',
+      profile_image_url: 'https://example.com/profiles/sunshine_profile.jpg',
+    },
+    {
+      member_id: 12345,
+      nickname: '쿠키즈',
+      thumbnail_image_url: 'https://example.com/thumbnails/sunshine_thumb.jpg',
+      profile_image_url: 'https://example.com/profiles/sunshine_profile.jpg',
+    },
+    {
+      member_id: 54312,
+      nickname: '구키즈',
+      thumbnail_image_url: 'https://example.com/thumbnails/sunshine_thumb.jpg',
+      profile_image_url: 'https://example.com/profiles/sunshine_profile.jpg',
     },
   ],
 };
