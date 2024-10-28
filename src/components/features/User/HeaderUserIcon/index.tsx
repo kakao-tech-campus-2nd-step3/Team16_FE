@@ -1,5 +1,5 @@
 import { useGetUserProfile } from '@/api/hooks/useGetUser';
-import { UserProfile } from '@/components/common/User/UserProfile';
+import { UserProfileImage } from '@/components/common/User/UserProfileImage';
 
 const DEFAULT_PROFILE_IMAGE = '/images/default_profile_image.png';
 
@@ -11,5 +11,5 @@ export const HeaderUserIcon = () => {
       ? DEFAULT_PROFILE_IMAGE
       : profileImage.profile_image_url;
 
-  return <UserProfile profileImage={profile} />;
+  return <UserProfileImage profileImageUrl={profile} />;
 };
