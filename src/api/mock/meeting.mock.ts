@@ -1,8 +1,10 @@
 import { rest } from 'msw';
 
 import { createMeetingPath } from '../hooks/useCreateMeeting';
+import { getCategoryPath } from '../hooks/useGetCategory';
 import { getMyMeetingsPath } from '../hooks/useGetMyMeetings';
 import { getparticipantPath } from '../hooks/useGetParticipant';
+import { getRecommendMenuPath } from '../hooks/useGetRecommandMenu';
 
 export const meetingMockHandler = [
   rest.get(getMyMeetingsPath(), (_, res, ctx) => {
@@ -19,7 +21,20 @@ export const meetingMockHandler = [
       return res(ctx.json(PARTICIPANT));
     },
   ),
+  rest.get(
+    getRecommendMenuPath({
+      meetingId: '1',
+    }),
+    (_, res, ctx) => {
+      return res(ctx.json(RECOMMEND_MENU_MOCK));
+    },
+  ),
+  rest.get(getCategoryPath(), (_, res, ctx) => {
+    return res(ctx.json(MENU_CATEGORY_MOCK));
+  }),
 ];
+
+// mocks
 
 const CREATE_MEETING_MOCK = {
   status: 200,
@@ -127,4 +142,97 @@ const PARTICIPANT = {
       profile_image_url: 'https://example.com/profiles/sunshine_profile.jpg',
     },
   ],
+};
+
+const RECOMMEND_MENU_MOCK = {
+  status: 200,
+  message: '모임 추천 음식 조회 성공',
+  data: [
+    {
+      food_id: 1,
+      category: '한식',
+      name: '삼겹살',
+    },
+    {
+      food_id: 123,
+      category: '한식',
+      name: '제육볶음',
+    },
+    {
+      food_id: 2,
+      category: '한식',
+      name: '김치찌개',
+    },
+    {
+      food_id: 3,
+      category: '한식',
+      name: '된장찌개',
+    },
+    {
+      food_id: 4,
+      category: '중식',
+      name: '짜장면',
+    },
+    {
+      food_id: 5,
+      category: '중식',
+      name: '마라탕',
+    },
+    {
+      food_id: 6,
+      category: '중식',
+      name: '양꼬치',
+    },
+    {
+      food_id: 7,
+      category: '일식',
+      name: '라멘',
+    },
+    {
+      food_id: 8,
+      category: '일식',
+      name: '우동',
+    },
+    {
+      food_id: 9,
+      category: '일식',
+      name: '돈카츠',
+    },
+    {
+      food_id: 10,
+      category: '양식',
+      name: '피자',
+    },
+    {
+      food_id: 11,
+      category: '양식',
+      name: '함박스테이크',
+    },
+    {
+      food_id: 12,
+      category: '카페,디저트',
+      name: '티라미수',
+    },
+    {
+      food_id: 13,
+      category: '카페,디저트',
+      name: '마카롱',
+    },
+    {
+      food_id: 14,
+      category: '술집',
+      name: '치킨',
+    },
+    {
+      food_id: 15,
+      category: '술집',
+      name: '닭발',
+    },
+  ],
+};
+
+const MENU_CATEGORY_MOCK = {
+  status: 200,
+  message: '카테고리 조회 성공',
+  data: ['한식', '중식', '일식', '양식', '카페,디저트', '술집'],
 };

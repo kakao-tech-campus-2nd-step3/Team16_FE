@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
-import { useParams } from 'react-router-dom';
 
 import { useGetParticipant } from '@/api/hooks/useGetParticipant';
 import { Participant } from '@/components/common/User/Participant';
+import { useGetMeetingId } from '@/hooks/useGetMeetingId';
 
 export const GroupParticipantsSection: React.FC = () => {
-  const meetingId = useParams<{ meetingId: string }>().meetingId || '';
+  const meetingId = useGetMeetingId();
 
   const { data: participants, status } = useGetParticipant(meetingId);
 
