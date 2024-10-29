@@ -11,6 +11,7 @@ export const HomePage = () => {
       <MyCalendar />
       <Spacing height={52} />
       <MyMeetingList />
+      <Spacing height={80} />
     </Wrapper>
   );
 };
