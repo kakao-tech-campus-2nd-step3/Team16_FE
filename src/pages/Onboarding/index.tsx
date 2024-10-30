@@ -1,6 +1,9 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // useNavigate 추가
 import { KakaoLoginButton } from 'src/components/common/Button/kakaoLogin';
+
+import { RouterPath } from '@/routes/path';
 
 const onboardingImages = [
   '/assets/images/onboarding/image1.svg',
@@ -32,8 +35,9 @@ interface OnboardingPageProps {
   handleKakaoLogin: () => void; // props로 로그인 로직을 받음
 }
 
-const OnboardingPage: React.FC<OnboardingPageProps> = ({ handleKakaoLogin }) => {
+const OnboardingPage: React.FC<OnboardingPageProps> = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const navigate = useNavigate();
 
   const handleNext = () => {
     setCurrentImageIndex((prev) => (prev + 1) % onboardingImages.length);
@@ -43,6 +47,10 @@ const OnboardingPage: React.FC<OnboardingPageProps> = ({ handleKakaoLogin }) => 
     setCurrentImageIndex((prev) =>
       prev === 0 ? onboardingImages.length - 1 : prev - 1
     );
+  };
+
+  const navigateToLogin = () => {
+    navigate(RouterPath.login); // /login 경로로 이동하여 LoginPage를 렌더링
   };
 
   return (
@@ -57,7 +65,7 @@ const OnboardingPage: React.FC<OnboardingPageProps> = ({ handleKakaoLogin }) => 
             <Title>{onboardingDescriptions[currentImageIndex].title}</Title>
             <Subtitle>{onboardingDescriptions[currentImageIndex].subtitle}</Subtitle>
 
-            <KakaoLoginButton onClick={handleKakaoLogin} />
+            <KakaoLoginButton onClick={navigateToLogin} />
 
             <Description>카카오 로그인으로 밥팅을 시작해보세요!</Description>
           </TextContent>
@@ -68,6 +76,7 @@ const OnboardingPage: React.FC<OnboardingPageProps> = ({ handleKakaoLogin }) => 
   );
 };
 
+//css
 const Description = styled.p`
   font-size: 0.9rem;
   color: #888;
