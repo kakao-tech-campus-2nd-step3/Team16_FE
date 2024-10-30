@@ -5,6 +5,7 @@ import { getCategoryPath } from '../hooks/useGetCategory';
 import { getMyMeetingsPath } from '../hooks/useGetMyMeetings';
 import { getparticipantPath } from '../hooks/useGetParticipant';
 import { getRecommendMenuPath } from '../hooks/useGetRecommandMenu';
+import { getLeaveGroupPath } from '../hooks/useLeaveGroup';
 
 export const meetingMockHandler = [
   rest.get(getMyMeetingsPath(), (_, res, ctx) => {
@@ -31,6 +32,9 @@ export const meetingMockHandler = [
   ),
   rest.get(getCategoryPath(), (_, res, ctx) => {
     return res(ctx.json(MENU_CATEGORY_MOCK));
+  }),
+  rest.delete(getLeaveGroupPath({ meetingId: '1' }), (_, res, ctx) => {
+    return res(ctx.json({ message: '성공' }));
   }),
 ];
 
