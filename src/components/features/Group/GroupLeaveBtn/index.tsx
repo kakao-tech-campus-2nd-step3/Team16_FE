@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLeaveGroup } from '@/api/hooks/useLeaveGroup';
 import { Button } from '@/components/common/Button';
 import { useGetMeetingId } from '@/hooks/useGetMeetingId';
+import { RouterPath } from '@/routes/path';
 
 export const GroupLeavtBtn: React.FC = () => {
   const meetingId = useGetMeetingId();
@@ -15,7 +16,7 @@ export const GroupLeavtBtn: React.FC = () => {
       { meetingId },
       {
         onSuccess: () => {
-          navigate('/');
+          navigate(RouterPath.home);
         },
       },
     );
