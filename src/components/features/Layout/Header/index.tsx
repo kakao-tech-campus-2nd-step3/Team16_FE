@@ -5,7 +5,11 @@ import { Logo } from '@/components/common/Icons/Logo';
 
 import { HeaderUserIcon } from '../../User/HeaderUserIcon';
 
-export const Header = () => {
+type Props = {
+  height?: number;
+};
+
+export const Header: React.FC<Props> = ({ height }) => {
   const router = useNavigate();
 
   const handleLogoClick = () => {
@@ -13,16 +17,17 @@ export const Header = () => {
   };
 
   return (
-    <StyledHeader>
-      <Logo width="16rem" onClick={handleLogoClick} />
+    <StyledHeader height={height}>
+      <Logo width="14rem" onClick={handleLogoClick} />
       <HeaderUserIcon />
     </StyledHeader>
   );
 };
 
-export const StyledHeader = styled.header`
+export const StyledHeader = styled.header<Props>`
   display: flex;
   justify-content: space-between;
+  height: ${(props) => (props.height ? `${props.height}px` : '4rem')};
   align-items: center;
   background-color: #fff;
   padding-inline: 0.75rem;
