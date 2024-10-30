@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-import { useHandleKakaoLogin } from '@/api/hooks/useHandleKakaoLogin';
 import { Layout } from '@/components/features/Layout';
 import { CreatePage } from '@/pages/Create';
 import { GroupPage } from '@/pages/Group';
@@ -14,9 +14,6 @@ import { MyPage } from '@/pages/MyPage';
 import { OnboardingPage } from '@/pages/Onboarding';
 
 import { RouterPath } from './path';
-
-export const Routes = () => {
-  const handleKakaoLogin = useHandleKakaoLogin();
 
 const router = createBrowserRouter([
   {
@@ -62,10 +59,18 @@ const router = createBrowserRouter([
     element: <FailurePage />,
   }, 
   {
-      path: RouterPath.onboarding,
-      element: <OnboardingPage handleKakaoLogin={handleKakaoLogin} />,
-    },
+    path: RouterPath.onboarding,
+    element: (
+      <OnboardingPage
+        handleKakaoLogin={() => {
+          const navigate = useNavigate();
+          navigate(RouterPath.login); // /login 경로로 이동
+        }}
+      />
+    ),
+  },
 ]);
 
-return <RouterProvider router={router} />;
+export const Routes = () => {
+  return <RouterProvider router={router} />;
 };
