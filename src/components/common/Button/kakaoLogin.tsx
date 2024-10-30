@@ -2,12 +2,11 @@ import styled from "@emotion/styled";
 
 interface Props {
   onClick: () => void;
-  children?: React.ReactNode;
 }
 
-export const KakaoLoginButton: React.FC<Props> = ({ onClick, children }) => (
+export const KakaoLoginButton: React.FC<Props> = ({ onClick }) => (
   <StyledButton onClick={onClick}>
-    {children}
+    카카오 로그인
   </StyledButton>
 );
 
@@ -31,6 +30,4 @@ const StyledButton = styled.button`
   &:hover {
     background-color: #fdda00;
   }
-    `;
-
-
+`;

@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 
 import { Layout } from '@/components/features/Layout';
 import { CreatePage } from '@/pages/Create';
@@ -57,17 +56,10 @@ const router = createBrowserRouter([
   {
     path: RouterPath.failure,
     element: <FailurePage />,
-  }, 
+  },
   {
     path: RouterPath.onboarding,
-    element: (
-      <OnboardingPage
-        handleKakaoLogin={() => {
-          const navigate = useNavigate();
-          navigate(RouterPath.login); // /login 경로로 이동
-        }}
-      />
-    ),
+    element: <OnboardingPage />,
   },
 ]);
 

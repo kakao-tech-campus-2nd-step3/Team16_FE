@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // useNavigate 추가
+import { useNavigate } from 'react-router-dom'; 
 import { KakaoLoginButton } from 'src/components/common/Button/kakaoLogin';
 
 import { RouterPath } from '@/routes/path';
@@ -31,11 +31,7 @@ const onboardingDescriptions = [
   },
 ];
 
-interface OnboardingPageProps {
-  handleKakaoLogin: () => void; // props로 로그인 로직을 받음
-}
-
-const OnboardingPage: React.FC<OnboardingPageProps> = () => {
+export const OnboardingPage: React.FC = () => { 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const navigate = useNavigate();
 
@@ -50,7 +46,7 @@ const OnboardingPage: React.FC<OnboardingPageProps> = () => {
   };
 
   const navigateToLogin = () => {
-    navigate(RouterPath.login); // /login 경로로 이동하여 LoginPage를 렌더링
+    navigate(RouterPath.login);
   };
 
   return (
@@ -186,5 +182,3 @@ const ArrowButton = styled.button<ArrowButtonProps>`
   left: ${props => props.direction === 'left' ? '10px' : 'auto'};
   right: ${props => props.direction === 'right' ? '10px' : 'auto'};
 `;
-
-export { OnboardingPage };
