@@ -1,7 +1,7 @@
 import type { AxiosInstance, AxiosRequestConfig } from 'axios';
 import axios from 'axios';
 
-const baseURL = process.env.REACT_APP_BASE_URL;
+export const baseURL = process.env.REACT_APP_BASE_URL;
 
 const initInstance = (config: AxiosRequestConfig): AxiosInstance => {
   const instance = axios.create({
@@ -32,11 +32,11 @@ export const fetchWithToken = initInstance({
 
 fetchWithToken.interceptors.response.use(
   function (response) {
-    return response;
+    return response.data;
   },
   function (error) {
-    const errorMessage = `서버 에러 : ${error.response.status}`;
-    alert(JSON.stringify(errorMessage));
+    // const errorMessage = `서버 에러 : ${error.response.status}`;
+    // alert(JSON.stringify(errorMessage));
     return Promise.reject(error);
   },
 );

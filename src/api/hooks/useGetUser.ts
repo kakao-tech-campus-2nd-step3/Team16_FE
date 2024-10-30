@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { fetchInstance } from '../instance/index';
+import { baseURL, fetchWithToken } from '../instance/index';
 
 //TODO: path만 따로 관리
-export const getUserProfilePath = () => `members`;
+export const getUserProfilePath = () => `${baseURL}/members`;
 
 interface UserProfile {
   member_id: number;
@@ -13,7 +13,8 @@ interface UserProfile {
 }
 
 export const getUserProfile = async () => {
-  const response = await fetchInstance<UserProfile>(getUserProfilePath());
+  const response = await fetchWithToken<UserProfile>(getUserProfilePath());
+
   return response.data;
 };
 
