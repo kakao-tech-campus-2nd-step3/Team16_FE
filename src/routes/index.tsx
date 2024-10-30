@@ -30,7 +30,7 @@ const router = createBrowserRouter([
         element: <GroupPage />,
       },
       {
-        path: RouterPath.join,
+        path: `${RouterPath.join}/:meetingId`,
         element: <JoinPage />,
       },
       {
