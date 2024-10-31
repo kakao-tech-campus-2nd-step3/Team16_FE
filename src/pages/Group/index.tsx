@@ -12,13 +12,15 @@ export const GroupPage = () => {
     <Wrapper>
       {/* title */}
       <GroupParticipantsSection />
+      <Spacing height={80} />
       <GroupCalendar />
-      <Spacing height={40} />
+      <Spacing height={80} />
       <GroupCollectionMenuSection />
       <Positioner>
         <GroupLeavtBtn />
       </Positioner>
       {/*  */}
+      <Spacing height={40} />
     </Wrapper>
   );
 };
