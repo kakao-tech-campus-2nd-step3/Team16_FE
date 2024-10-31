@@ -1,22 +1,33 @@
-/* TODO: 변수 사용하기 */
+@import '@/styles/variants.css';
+
 :root {
-  --fc-border-color: #698474;
-  --fc-button-bg-color: #fcf8f3;
+  --fc-border-color: var(--primary-color);
+  --fc-button-bg-color: var(--secondary-color);
   --fc-button-hover-bg-color: none;
-  --fc-button-active-bg-color: #5b6e7c;
-  --fc-button-text-color: #698474;
-  --fc-event-bg-color: #698474;
-  --fc-event-border-color: #698474;
-  --fc-today-bg-color: #fcf8f3;
+  --fc-button-active-bg-color: var(--primary-color-hover);
+  --fc-button-text-color: var(--primary-color);
+  --fc-event-bg-color: var(--primary-color);
+  --fc-event-border-color: var(--primary-color);
+  --fc-today-bg-color: var(--secondary-color);
 }
 
 .fc .fc-button-primary:not(:disabled).fc-button-active,
 .fc .fc-button-primary:not(:disabled):active {
-  background-color: #698474;
-  border-color: #698474;
-  --fc-button-text-color: #fcf8f3;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  --fc-button-text-color: var(--secondary-color);
 }
 
 .fc {
   font-family: 'Pretendard', sans-serif;
+}
+
+.fc .fc-highlight {
+  background-color: var(--primary-color-half);
+}
+
+.weekly .fc-event {
+  background-color: lightgray !important;
+  border-color: lightgray !important;
+  color: transparent !important;
 }

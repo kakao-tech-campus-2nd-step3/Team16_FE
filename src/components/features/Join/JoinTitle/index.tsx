@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
 import React from 'react';
 
-export const JoinTitle: React.FC = () => {
-  const title = '철수 모임';
+type JoinTitleProps = {
+  title: string;
+};
 
+export const JoinTitle: React.FC<JoinTitleProps> = ({ title }) => {
   return (
     <TitleConatiner>
       <Title>{title}</Title>

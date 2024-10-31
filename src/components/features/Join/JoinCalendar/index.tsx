@@ -2,11 +2,23 @@ import styled from '@emotion/styled';
 import React from 'react';
 
 import { useGetMyEvent } from '@/api/hooks/useGetMyEvents';
-import { DefaultCalendar } from '@/service/Calendar';
+import { WeeklyCalendar } from '@/service/Calendar';
 import type { Event } from '@/service/Calendar/types';
 import { vars } from '@/styles';
 
-export const JoinCalendar: React.FC = () => {
+type JoinCalendarProps = {
+  startDate: string;
+  endDate: string;
+  startTime: string;
+  endTime: string;
+};
+
+export const JoinCalendar: React.FC<JoinCalendarProps> = ({
+  startDate,
+  endDate,
+  startTime,
+  endTime,
+}) => {
   const { data, status } = useGetMyEvent();
 
   if (status === 'error') {
@@ -30,7 +42,13 @@ export const JoinCalendar: React.FC = () => {
 
   return (
     <CalendarContainer>
-      <DefaultCalendar event={events} />
+      <WeeklyCalendar
+        startDate={startDate}
+        endDate={endDate}
+        startTime={startTime}
+        endTime={endTime}
+        events={events}
+      />
     </CalendarContainer>
   );
 };

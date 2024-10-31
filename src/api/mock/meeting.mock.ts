@@ -2,6 +2,7 @@ import { rest } from 'msw';
 
 import { createMeetingPath } from '../hooks/useCreateMeeting';
 import { getCategoryPath } from '../hooks/useGetCategory';
+import { getMeetingInfoPath } from '../hooks/useGetMeetingInfo';
 import { getMyMeetingsPath } from '../hooks/useGetMyMeetings';
 import { getparticipantPath } from '../hooks/useGetParticipant';
 import { getRecommendMenuPath } from '../hooks/useGetRecommandMenu';
@@ -35,6 +36,9 @@ export const meetingMockHandler = [
   }),
   rest.delete(getLeaveGroupPath({ meetingId: '1' }), (_, res, ctx) => {
     return res(ctx.json({ message: '성공' }));
+  }),
+  rest.get(getMeetingInfoPath({ meetingId: '1' }), (_, res, ctx) => {
+    return res(ctx.json(MEETING_INFO_MOCK));
   }),
 ];
 
@@ -239,4 +243,16 @@ const MENU_CATEGORY_MOCK = {
   status: 200,
   message: '카테고리 조회 성공',
   data: ['한식', '중식', '일식', '양식', '카페,디저트', '술집'],
+};
+
+const MEETING_INFO_MOCK = {
+  status: 200,
+  message: '모임 정보 조회 성공',
+  data: {
+    title: `철수 모임`,
+    startDate: '2024-10-01',
+    endDate: '2024-10-12',
+    startTime: '09:00:00',
+    endTime: '15:00:00',
+  },
 };
