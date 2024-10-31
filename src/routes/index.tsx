@@ -6,7 +6,6 @@ import { GroupPage } from '@/pages/Group';
 import { HomePage } from '@/pages/Home';
 import { JoinPage } from '@/pages/Join';
 import { LeaderPage } from '@/pages/Leader';
-import { LoginPage } from '@/pages/Login';
 import { FailurePage } from '@/pages/Login/FailurePage';
 import { SuccessPage } from '@/pages/Login/SuccessPage';
 import { MyPage } from '@/pages/MyPage';
@@ -38,10 +37,6 @@ const router = createBrowserRouter([
       {
         path: RouterPath.leader,
         element: <LeaderPage />,
-      },
-      {
-        path: RouterPath.login,
-        element: <LoginPage />,
       },
       {
         path: RouterPath.mypage,
