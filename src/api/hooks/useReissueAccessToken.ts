@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { baseURL,fetchWithToken } from '@/api/instance';
+import { authLocalStorage } from '@/utils/storage';
 
 export const getReissueTokenPath = () => `${baseURL}/reissue`;
 
@@ -13,7 +14,7 @@ export const reissueAccessToken = async () => {
   if (response.status === 200) {
     console.log('토큰 재발급 성공:', response.headers);
     const newAccessToken = response.headers['access-token'];
-    localStorage.setItem('accessToken', newAccessToken);
+    authLocalStorage.set(newAccessToken);
     return newAccessToken;
   } else {
     throw new Error('Failed to reissue access token');
