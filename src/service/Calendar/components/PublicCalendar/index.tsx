@@ -5,15 +5,15 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 interface CalendarEvent {
   start: string;
   end: string;
-  display: string;
-  backgroundColor: string;
 }
 
 type Props = {
   events: CalendarEvent[];
+  availableStart: string;
+  availableEnd: string;
 };
 
-export const PublicCalendar: React.FC<Props> = ({ events }) => {
+export const PublicCalendar: React.FC<Props> = ({ events, availableStart, availableEnd }) => {
   const validRange =
     events.length > 0
       ? {
@@ -31,12 +31,15 @@ export const PublicCalendar: React.FC<Props> = ({ events }) => {
       allDaySlot={false}
       dayMaxEvents={true}
       weekends={true}
-      // events={displayedEvents}
       events={events}
       headerToolbar={{
         left: 'prev,next today',
         center: 'title',
         right: 'timeGridWeek,timeGridDay',
+      }}
+      selectConstraint={{
+        start: availableStart,
+        end: availableEnd,
       }}
       validRange={validRange}
       eventClassNames={(arg) => {
