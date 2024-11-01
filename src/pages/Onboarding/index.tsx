@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
+import { KakaoLoginButton } from 'src/components/common/Button/kakaoLogin';
 
 const onboardingImages = [
   '/assets/images/onboarding/image1.svg',
@@ -27,8 +28,14 @@ const onboardingDescriptions = [
   },
 ];
 
-const OnboardingPage: React.FC = () => {
+export const OnboardingPage: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // 카카오 로그인 로직을 바로 호출하는 함수
+  const handleKakaoLogin = () => {
+    const baseURL = process.env.REACT_APP_API_URL;
+    window.location.href = `${baseURL}/login`; // 백엔드 로그인 로직으로 직접 이동
+  };
 
   const handleNext = () => {
     setCurrentImageIndex((prev) => (prev + 1) % onboardingImages.length);
@@ -51,10 +58,10 @@ const OnboardingPage: React.FC = () => {
           <TextContent>
             <Title>{onboardingDescriptions[currentImageIndex].title}</Title>
             <Subtitle>{onboardingDescriptions[currentImageIndex].subtitle}</Subtitle>
-            <KakaoLoginButton>
-              <KakaoIcon src="/icons/kakao-icon.svg" alt="카카오 로그인" />
-              <Label>카카오 로그인</Label>
-            </KakaoLoginButton>
+
+            {/* 카카오 로그인 버튼에 handleKakaoLogin 함수 연결 */}
+            <KakaoLoginButton onClick={handleKakaoLogin} />
+
             <Description>카카오 로그인으로 밥팅을 시작해보세요!</Description>
           </TextContent>
           <ArrowButton direction="right" onClick={handleNext}>{">"}</ArrowButton>
@@ -64,6 +71,8 @@ const OnboardingPage: React.FC = () => {
   );
 };
 
+
+//css
 const Description = styled.p`
   font-size: 0.9rem;
   color: #888;
@@ -93,7 +102,7 @@ const ContentWrapper = styled.div`
   justify-content: space-between;
   
   @media (max-width: 768px) {
-    flex-direction: column;  // 화면이 작을 때 수직 정렬
+    flex-direction: column;
   }
 `;
 
@@ -103,8 +112,8 @@ const ImageContainer = styled.div`
   justify-content: center;
   
   @media (max-width: 768px) {
-    order: -1;  // 화면이 작을 때 이미지가 위로 올라감
-    margin-bottom: 1rem; // 이미지와 텍스트 사이의 간격 추가
+    order: -1;
+    margin-bottom: 1rem;
   }
 `;
 
@@ -114,7 +123,7 @@ const OnboardingImage = styled.img`
   height: auto;
   
   @media (max-width: 768px) {
-    max-width: 100%;  // 작은 화면에서 이미지가 화면을 꽉 채우도록함
+    max-width: 100%;
   }
 `;
 
@@ -141,7 +150,7 @@ const TextContent = styled.div`
   text-align: center;
   
   @media (max-width: 768px) {
-    max-width: 100%; // 작은 화면에서는 텍스트도 더 넓게 보이도록 조정
+    max-width: 100%;
   }
 `;
 
@@ -173,40 +182,3 @@ const ArrowButton = styled.button<ArrowButtonProps>`
   left: ${props => props.direction === 'left' ? '10px' : 'auto'};
   right: ${props => props.direction === 'right' ? '10px' : 'auto'};
 `;
-
-const KakaoLoginButton = styled.button`
-  background-color: #fee500;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1.2rem;
-  color: #000;
-  border-radius: 12px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s ease;
-  width: 300px;
-  height: 50px;
-  margin-top: 1.5rem;
-  position: relative;
-
-  &:hover {
-    background-color: #fdda00;
-  }
-`;
-
-const KakaoIcon = styled.img`
-  position: absolute;
-  left: 10px;
-  width: 24px;
-  height: 24px;
-`;
-
-const Label = styled.span`
-  font-size: 1.2rem;
-  color: #000;
-  margin-left: 40px;
-`;
-
-export { OnboardingPage };
