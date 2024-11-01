@@ -37,3 +37,11 @@ export interface CreateMeetingResponse {
   message: string;
   data: null;
 }
+
+export interface MeetingInfo {
+  title: string;
+  startDate: string;
+  endDate: string;
+  startTime: string;
+  endTime: string;
+}

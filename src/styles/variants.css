@@ -4,5 +4,9 @@
   --third-color: #d86f6f;
   --primary-color-hover: #567b65;
   --secondary-color-hover: #efefe4;
-  --third-color: #c56660;
+  --third-color-hover: #c56660;
+
+  --primary-color-half: rgba(105, 132, 116, 0.5);
+
+  --gray: #e0e0e0;
 }

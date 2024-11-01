@@ -6,7 +6,8 @@ import { GroupPage } from '@/pages/Group';
 import { HomePage } from '@/pages/Home';
 import { JoinPage } from '@/pages/Join';
 import { LeaderPage } from '@/pages/Leader';
-import { LoginPage } from '@/pages/Login';
+import { FailurePage } from '@/pages/Login/FailurePage';
+import { SuccessPage } from '@/pages/Login/SuccessPage';
 import { MyPage } from '@/pages/MyPage';
 import { OnboardingPage } from '@/pages/Onboarding';
 
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
         element: <GroupPage />,
       },
       {
-        path: RouterPath.join,
+        path: `${RouterPath.join}/:meetingId`,
         element: <JoinPage />,
       },
       {
@@ -38,14 +39,18 @@ const router = createBrowserRouter([
         element: <LeaderPage />,
       },
       {
-        path: RouterPath.login,
-        element: <LoginPage />,
-      },
-      {
         path: RouterPath.mypage,
         element: <MyPage />,
       },
     ],
+  },
+  {
+    path: RouterPath.success,
+    element: <SuccessPage />,
+  },
+  {
+    path: RouterPath.failure,
+    element: <FailurePage />,
   },
   {
     path: RouterPath.onboarding,
