@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { baseURL, fetchWithToken } from '../instance';
 
-interface AvaliableTime {
+interface AvailableTime {
   startAt: string;
   endAt: string;
   timeZone: string;
@@ -12,7 +12,7 @@ interface AvaliableTime {
 interface GroupCalendarResponse {
   startDate: string;
   endDate: string;
-  availableTime: AvaliableTime[];
+  availableTime: AvailableTime[];
 }
 
 export const getGroupCalendarPath = (meetingId: string) =>
