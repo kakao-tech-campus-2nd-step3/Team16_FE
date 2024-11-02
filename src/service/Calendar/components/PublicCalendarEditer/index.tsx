@@ -86,9 +86,9 @@ export const PublicCalendarEditer: React.FC<Props> = ({ events }) => {
       weekends={true}
       events={displayedEvents}
       headerToolbar={{
-        left: 'prev,next today',
+        right: 'prev,next today',
         center: 'title',
-        right: 'timeGridWeek,timeGridDay',
+        left: 'timeGridWeek,timeGridDay',
       }}
       validRange={validRange}
       dateClick={onDateClickHandler}

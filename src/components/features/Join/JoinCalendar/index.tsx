@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import React from 'react';
 
 import { useGetMyEvent } from '@/api/hooks/useGetMyEvents';
-import { WeeklyCalendar } from '@/service/Calendar/components/WeeklyCalendar';
+import { WeeklyCalendar } from '@/service/Calendar';
 import type { Event } from '@/service/Calendar/types';
 import { vars } from '@/styles';
 

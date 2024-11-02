@@ -33,9 +33,9 @@ export const PublicCalendar: React.FC<Props> = ({ events, availableStart, availa
       weekends={true}
       events={events}
       headerToolbar={{
-        left: 'prev,next today',
+        right: 'prev,next today',
         center: 'title',
-        right: 'timeGridWeek,timeGridDay',
+        left: 'timeGridWeek,timeGridDay',
       }}
       selectConstraint={{
         start: availableStart,
