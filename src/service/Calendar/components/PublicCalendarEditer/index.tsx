@@ -9,6 +9,7 @@ interface CalendarEvent {
   end: string;
   display: string;
   backgroundColor: string;
+  borderColor: string;
 }
 
 type Props = {
@@ -18,7 +19,14 @@ type Props = {
 export const PublicCalendarEditer: React.FC<Props> = ({ events }) => {
   const [selectedEvents, setSelectedEvents] = useState<CalendarEvent>();
 
-  const displayedEvents = [...events].concat(selectedEvents || []);
+  const convertedEvents = events.map(({ start, end }) => ({
+    start,
+    end,
+    backgroundColor: 'rgba(105, 132, 116, 0.7)',
+    borderColor: '698474',
+  }));
+
+  const displayedEvents = [...convertedEvents].concat(selectedEvents || []);
 
   const isWithinEventRange = (clickedTime: Date): { isValid: boolean; event?: CalendarEvent } => {
     for (const event of events) {
@@ -27,6 +35,7 @@ export const PublicCalendarEditer: React.FC<Props> = ({ events }) => {
 
       if (clickedTime >= eventStart && clickedTime <= eventEnd) {
         const hoursRemaining = (eventEnd.getTime() - clickedTime.getTime()) / (1000 * 60 * 60);
+        //TODO: 걸리는 시간을 받아서 사용할 수 있도록 수정
         if (hoursRemaining >= 2) {
           return { isValid: true, event };
         } else {
@@ -59,6 +68,7 @@ export const PublicCalendarEditer: React.FC<Props> = ({ events }) => {
       end: finalEnd.toISOString(),
       display: 'background',
       backgroundColor: 'green',
+      borderColor: '698474',
     });
   };
 
@@ -96,9 +106,6 @@ export const PublicCalendarEditer: React.FC<Props> = ({ events }) => {
         if (info.event.start) {
           handleTimeSelection(info.event.start);
         }
-      }}
-      eventClassNames={(arg) => {
-        return events.some((e) => e.start === arg.event.startStr) ? 'cursor-pointer' : '';
       }}
     />
   );

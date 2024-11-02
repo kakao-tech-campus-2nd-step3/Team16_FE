@@ -14,6 +14,13 @@ type Props = {
 };
 
 export const PublicCalendar: React.FC<Props> = ({ events, availableStart, availableEnd }) => {
+  const convertedEvents = events.map(({ start, end }) => ({
+    start,
+    end,
+    backgroundColor: 'rgba(105, 132, 116, 0.7)',
+    borderColor: '698474',
+  }));
+
   const validRange =
     events.length > 0
       ? {
@@ -31,7 +38,7 @@ export const PublicCalendar: React.FC<Props> = ({ events, availableStart, availa
       allDaySlot={false}
       dayMaxEvents={true}
       weekends={true}
-      events={events}
+      events={convertedEvents}
       headerToolbar={{
         right: 'prev,next today',
         center: 'title',
@@ -42,9 +49,6 @@ export const PublicCalendar: React.FC<Props> = ({ events, availableStart, availa
         end: availableEnd,
       }}
       validRange={validRange}
-      eventClassNames={(arg) => {
-        return events.some((e) => e.start === arg.event.startStr) ? 'cursor-pointer' : '';
-      }}
     />
   );
 };
