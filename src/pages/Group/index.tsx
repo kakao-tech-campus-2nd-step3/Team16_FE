@@ -19,7 +19,6 @@ export const GroupPage = () => {
       <Positioner>
         <GroupLeavtBtn />
       </Positioner>
-      {/*  */}
       <Spacing height={40} />
     </Wrapper>
   );
