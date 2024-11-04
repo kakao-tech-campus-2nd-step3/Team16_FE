@@ -5,6 +5,7 @@ import { getCategoryPath } from '../hooks/useGetCategory';
 import { getMeetingInfoPath } from '../hooks/useGetMeetingInfo';
 import { getMyMeetingsPath } from '../hooks/useGetMyMeetings';
 import { getparticipantPath } from '../hooks/useGetParticipant';
+import { getPermissionPath } from '../hooks/useGetPermission';
 import { getRecommendMenuPath } from '../hooks/useGetRecommandMenu';
 import { getLeaveGroupPath } from '../hooks/useLeaveGroup';
 
@@ -39,6 +40,9 @@ export const meetingMockHandler = [
   }),
   rest.get(getMeetingInfoPath({ meetingId: '1' }), (_, res, ctx) => {
     return res(ctx.json(MEETING_INFO_MOCK));
+  }),
+  rest.get(getPermissionPath({ meetingId: '1' }), (_, res, ctx) => {
+    return res(ctx.json(PERMISSION_MOCK));
   }),
 ];
 
@@ -254,5 +258,13 @@ const MEETING_INFO_MOCK = {
     endDate: '2024-10-12',
     startTime: '09:00:00',
     endTime: '15:00:00',
+  },
+};
+
+const PERMISSION_MOCK = {
+  status: 200,
+  message: '권한 조회 성공',
+  data: {
+    isHost: true,
   },
 };

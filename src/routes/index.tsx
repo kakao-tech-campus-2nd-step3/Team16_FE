@@ -11,6 +11,8 @@ import { SuccessPage } from '@/pages/Login/SuccessPage';
 import { MyPage } from '@/pages/MyPage';
 import { OnboardingPage } from '@/pages/Onboarding';
 
+import { GuestRoute } from './components/GuestRoute';
+import { HostRoute } from './components/HostRoute';
 import { RouterPath } from './path';
 
 const router = createBrowserRouter([
@@ -28,15 +30,27 @@ const router = createBrowserRouter([
       },
       {
         path: `${RouterPath.group}/:meetingId`,
-        element: <GroupPage />,
+        element: <GuestRoute />,
+        children: [
+          {
+            path: `${RouterPath.group}/:meetingId`,
+            element: <GroupPage />,
+          },
+        ],
       },
       {
         path: `${RouterPath.join}/:meetingId`,
         element: <JoinPage />,
       },
       {
-        path: RouterPath.leader,
-        element: <LeaderPage />,
+        path: `${RouterPath.leader}/:meetingId`,
+        element: <HostRoute />,
+        children: [
+          {
+            path: `${RouterPath.leader}/:meetingId`,
+            element: <LeaderPage />,
+          },
+        ],
       },
       {
         path: RouterPath.mypage,
