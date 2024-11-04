@@ -1,9 +1,18 @@
 @import '@/styles/variants.css';
 
+@import '@/styles/variants.css';
+
 :root {
   --fc-border-color: var(--primary-color);
   --fc-button-bg-color: var(--secondary-color);
+  --fc-border-color: var(--primary-color);
+  --fc-button-bg-color: var(--secondary-color);
   --fc-button-hover-bg-color: none;
+  --fc-button-active-bg-color: var(--primary-color-hover);
+  --fc-button-text-color: var(--primary-color);
+  --fc-event-bg-color: var(--primary-color);
+  --fc-event-border-color: var(--primary-color);
+  --fc-today-bg-color: var(--secondary-color);
   --fc-button-active-bg-color: var(--primary-color-hover);
   --fc-button-text-color: var(--primary-color);
   --fc-event-bg-color: var(--primary-color);
@@ -34,4 +43,14 @@
 
 .fc {
   font-family: 'Pretendard', sans-serif;
+}
+
+.fc .fc-highlight {
+  background-color: var(--primary-color-half);
+}
+
+.weekly .fc-event {
+  background-color: lightgray !important;
+  border-color: lightgray !important;
+  color: transparent !important;
 }

@@ -1,10 +1,14 @@
 import { rest } from 'msw';
 
+import { getGroupCalendarPath } from '../hooks/useGetGroupCalendar';
 import { getMyEventPath } from '../hooks/useGetMyEvents';
 
 export const calendarMockHandler = [
   rest.get(getMyEventPath(), (_, res, ctx) => {
     return res(ctx.json(CALENDAR_MOCK));
+  }),
+  rest.get(getGroupCalendarPath('1'), (_, res, ctx) => {
+    return res(ctx.json(GROUP_CALENDAR_MOCK));
   }),
 ];
 
@@ -55,4 +59,27 @@ const CALENDAR_MOCK = {
       memo: null,
     },
   ],
+};
+
+const GROUP_CALENDAR_MOCK = {
+  status: 200,
+  message: '모임 공통 시간표 조회 성공',
+  data: {
+    startDate: '2024-10-31',
+    endDate: '2024-11-01',
+    availableTime: [
+      {
+        startAt: '2024-10-31T09:00:00',
+        endAt: '2024-10-31T17:00:00',
+        timeZone: 'UTC',
+        allDay: false,
+      },
+      {
+        startAt: '2024-11-01T09:00:00',
+        endAt: '2024-11-01T17:00:00',
+        timeZone: 'UTC',
+        allDay: false,
+      },
+    ],
+  },
 };

@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import { Spacing } from '@/components/common/layouts/Spacing';
+import { GroupCalendar } from '@/components/features/Group/GroupCalendar';
 import { GroupCollectionMenuSection } from '@/components/features/Group/GroupCollectedMenuSection';
 import { GroupLeavtBtn } from '@/components/features/Group/GroupLeaveBtn';
 import { GroupParticipantsSection } from '@/components/features/Group/GroupParticipantsSection';
@@ -11,12 +12,15 @@ export const GroupPage = () => {
     <Wrapper>
       {/* title */}
       <GroupParticipantsSection />
-      {/* calendar */}
-      <Spacing height={40} />
+      <Spacing height={80} />
+      <GroupCalendar />
+      <Spacing height={80} />
       <GroupCollectionMenuSection />
       <Positioner>
         <GroupLeavtBtn />
       </Positioner>
+      {/*  */}
+      <Spacing height={40} />
     </Wrapper>
   );
 };
