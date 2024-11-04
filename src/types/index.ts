@@ -45,3 +45,15 @@ export interface MeetingInfo {
   startTime: string;
   endTime: string;
 }
+
+export interface CalendarEvent {
+  start: string;
+  end: string;
+}
+
+export interface GroupEvent {
+  start: string;
+  end: string;
+  backgroundColor: string;
+  borderColor: string;
+}
