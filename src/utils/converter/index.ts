@@ -14,3 +14,15 @@ export const convertToMeeting = (data: Meeting[]): MeetingDataList => {
     nonConfirmedMeetings,
   };
 };
+
+export const convertToLocaleString = (date: string) => {
+  return new Date(date).toLocaleString('ko-KR', {
+    timeZone: 'Asia/Seoul',
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+  });
+};
