@@ -1,23 +1,25 @@
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
-import { useGetPermission } from '@/api/hooks/useGetPermission';
 import { Spacing } from '@/components/common/layouts/Spacing';
 import { GroupCalendar } from '@/components/features/Group/GroupCalendar';
 import { GroupCollectionMenuSection } from '@/components/features/Group/GroupCollectedMenuSection';
 import { GroupLeavtBtn } from '@/components/features/Group/GroupLeaveBtn';
+import { GroupLinkBtn } from '@/components/features/Group/GroupLinkBtn';
 import { GroupParticipantsSection } from '@/components/features/Group/GroupParticipantsSection';
-import { useGetMeetingId } from '@/hooks/useGetMeetingId';
+import { GroupTitle } from '@/components/features/Group/GroupTitle';
 import { vars } from '@/styles';
 
 export const GroupPage = () => {
-  const meetingId = useGetMeetingId(); //TODO: 하위 컴포넌트에서 호출중임 수정 필요
-  const { data } = useGetPermission(meetingId);
-
-  if (!data) return null;
-
   return (
     <Wrapper>
-      {/* title */}
+      <GroupTitle>
+        <LinkWrapper>
+          <GroupLinkBtn />
+          <Link to="/edit">입력 정보 수정하기 &rarr;</Link>
+        </LinkWrapper>
+      </GroupTitle>
+      <Spacing height={60} />
       <GroupParticipantsSection />
       <Spacing height={80} />
       <GroupCalendar />
@@ -41,4 +43,11 @@ const Positioner = styled.div`
   display: flex;
   justify-content: end;
   align-items: center;
+`;
+
+const LinkWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 `;
