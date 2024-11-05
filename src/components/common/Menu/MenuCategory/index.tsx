@@ -32,13 +32,15 @@ export const MenuCategory: React.FC<Props> = ({ foods, children }) => {
 };
 
 const Wrapper = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  display: flex;
   gap: 1rem;
+  max-width: 100%;
+  overflow: auto;
 `;
 
 const CategoryList = styled.li`
   user-select: none;
+  min-width: 150px;
 `;
 
 const CategoryTitle = styled.h4`

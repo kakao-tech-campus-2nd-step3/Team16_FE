@@ -236,13 +236,43 @@ const RECOMMEND_MENU_MOCK = {
       category: '술집',
       name: '닭발',
     },
+    {
+      food_id: 10,
+      category: '양식',
+      name: '피자',
+    },
+    {
+      food_id: 11,
+      category: '양식',
+      name: '함박스테이크',
+    },
+    {
+      food_id: 12,
+      category: '카페,디저트',
+      name: '티라미수',
+    },
+    {
+      food_id: 13,
+      category: '카페,디저트',
+      name: '마카롱',
+    },
+    {
+      food_id: 14,
+      category: '술집',
+      name: '치킨',
+    },
+    {
+      food_id: 15,
+      category: '기타',
+      name: '닭발',
+    },
   ],
 };
 
 const MENU_CATEGORY_MOCK = {
   status: 200,
   message: '카테고리 조회 성공',
-  data: ['한식', '중식', '일식', '양식', '카페,디저트', '술집'],
+  data: ['한식', '중식', '일식', '양식', '카페,디저트', '술집', '기타'],
 };
 
 const MEETING_INFO_MOCK = {
