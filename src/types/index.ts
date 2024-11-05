@@ -56,4 +56,5 @@ export interface GroupEvent {
   end: string;
   backgroundColor: string;
   borderColor: string;
+  display: string;
 }

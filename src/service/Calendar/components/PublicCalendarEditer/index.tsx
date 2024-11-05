@@ -17,6 +17,7 @@ type Props = {
   availableStart: string;
   availableEnd: string;
   duration: number;
+  children?: (props: { selectedEvents?: GroupEvent }) => JSX.Element;
 };
 
 export const PublicCalendarEditer: React.FC<Props> = ({
@@ -24,6 +25,7 @@ export const PublicCalendarEditer: React.FC<Props> = ({
   availableEnd,
   availableStart,
   duration,
+  children,
 }) => {
   const [selectedEvents, setSelectedEvents] = useState<GroupEvent>();
   const convertedEvents = defaultEventToGroupEvent(events);
@@ -55,12 +57,12 @@ export const PublicCalendarEditer: React.FC<Props> = ({
       end: finalEnd.toISOString(),
       backgroundColor: 'green',
       borderColor: '698474',
+      display: 'background',
     });
   };
 
   const onDateClickHandler = (info: DateClickArg) => {
     const clickedTime = new Date(info.dateStr);
-    alert('clickedTime: ' + clickedTime);
     handleTimeSelection(clickedTime);
   };
 
@@ -73,31 +75,29 @@ export const PublicCalendarEditer: React.FC<Props> = ({
       : undefined;
 
   return (
-    <FullCalendar
-      plugins={[timeGridPlugin, interactionPlugin]}
-      initialView="timeGridWeek"
-      selectable={false}
-      selectMirror={false}
-      allDaySlot={false}
-      dayMaxEvents={true}
-      weekends={true}
-      events={displayedEvents}
-      headerToolbar={{
-        right: 'prev,next today',
-        center: 'title',
-        left: 'timeGridWeek,timeGridDay',
-      }}
-      validRange={validRange}
-      selectConstraint={{
-        start: availableStart,
-        end: availableEnd,
-      }}
-      dateClick={onDateClickHandler}
-      // eventClick={(info) => {
-      //   if (info.event.start) {
-      //     handleTimeSelection(new Date(info.event.start));
-      //   }
-      // }}
-    />
+    <>
+      <FullCalendar
+        plugins={[timeGridPlugin, interactionPlugin]}
+        initialView="timeGridWeek"
+        selectable={false}
+        selectMirror={false}
+        allDaySlot={false}
+        dayMaxEvents={true}
+        weekends={true}
+        events={displayedEvents}
+        headerToolbar={{
+          right: 'prev,next today',
+          center: 'title',
+          left: 'timeGridWeek,timeGridDay',
+        }}
+        validRange={validRange}
+        selectConstraint={{
+          start: availableStart,
+          end: availableEnd,
+        }}
+        dateClick={onDateClickHandler}
+      />
+      {children && children({ selectedEvents })}
+    </>
   );
 };
