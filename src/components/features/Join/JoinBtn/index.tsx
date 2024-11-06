@@ -20,7 +20,6 @@ export const JoinBtn: React.FC = () => {
       preferences,
       nonPreferences,
     };
-    console.log('Form values on submit:', values);
 
     if (!meetingId) {
       alert('유효한 모임 ID가 없습니다.');
