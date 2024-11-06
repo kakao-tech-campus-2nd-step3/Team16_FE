@@ -17,7 +17,7 @@ export const Header: React.FC<Props> = ({ height }) => {
   };
 
   const handleUserIconClick = () => {
-    router('/my-page');
+    router('/mypage');
   };
 
   return (
