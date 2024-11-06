@@ -11,7 +11,7 @@ type Props = {
   endTime: string;
   displayedEvents: Event[];
   selectedEvents: Event[];
-  onSelectTime: (start: string, end: string) => void;
+  onSelectTime?: (start: string, end: string) => void;
 };
 
 export const WeeklyCalendar: React.FC<Props> = ({
@@ -47,7 +47,9 @@ export const WeeklyCalendar: React.FC<Props> = ({
         select={(info) => {
           const start = info.start.toISOString();
           const end = info.end.toISOString();
-          onSelectTime(start, end);
+          if (onSelectTime) {
+            onSelectTime(start, end);
+          }
         }}
       />
     </div>

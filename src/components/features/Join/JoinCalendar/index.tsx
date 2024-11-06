@@ -6,6 +6,7 @@ import { useJoinFormContext } from '@/hooks/useJoinFormContext';
 import { WeeklyCalendar } from '@/service/Calendar';
 import type { Event } from '@/service/Calendar/types';
 import { vars } from '@/styles';
+import { isOverlapping } from '@/utils/calendar/isOverlapping';
 import { toggleSelectedEvent } from '@/utils/calendar/toggleSelectedEvent';
 
 type JoinCalendarProps = {
@@ -43,29 +44,13 @@ export const JoinCalendar: React.FC<JoinCalendarProps> = ({
     backgroundColor: 'lightgray',
   }));
 
-  const isOverlappingWithDisplayed = (start: Date, end: Date) => {
-    return displayedEvents.some((event) => {
-      const displayedStart = new Date(event.start);
-      const displayedEnd = new Date(event.end);
-
-      return (
-        (start > displayedStart && start < displayedEnd) ||
-        (end > displayedStart && end < displayedEnd) ||
-        (start <= displayedStart && end >= displayedEnd)
-      );
-    });
-  };
-
   const handleSelectTime = (start: string, end: string) => {
-    let selectedStart = new Date(start);
-    let selectedEnd = new Date(end);
+    const [selectedStart, selectedEnd] = [new Date(start), new Date(end)].sort(
+      (a, b) => a.getTime() - b.getTime(),
+    );
 
-    if (selectedStart > selectedEnd) {
-      [selectedStart, selectedEnd] = [selectedEnd, selectedStart];
-    }
-
-    if (isOverlappingWithDisplayed(selectedStart, selectedEnd)) {
-      alert('선택할 수 없는 시간대입니다.');
+    if (isOverlapping(selectedStart, selectedEnd, displayedEvents)) {
+      alert('공통 일정은 선택할 수 없습니다.');
       return;
     }
 
