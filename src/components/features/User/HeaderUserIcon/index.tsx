@@ -1,9 +1,15 @@
+import React from 'react';
+
 import { useGetUserProfile } from '@/api/hooks/useGetUser';
 import { UserProfileImage } from '@/components/common/User/UserProfileImage';
 
 const DEFAULT_PROFILE_IMAGE = '/images/default_profile_image.png';
 
-export const HeaderUserIcon = () => {
+type Props = {
+  onClick?: () => void;
+};
+
+export const HeaderUserIcon: React.FC<Props> = ({ onClick }) => {
   const { data: profileImage, status } = useGetUserProfile();
 
   const profile =
@@ -11,5 +17,9 @@ export const HeaderUserIcon = () => {
       ? DEFAULT_PROFILE_IMAGE
       : profileImage.profile_image_url;
 
-  return <UserProfileImage profileImageUrl={profile} />;
+      return (
+        <div onClick={onClick}>
+          <UserProfileImage profileImageUrl={profile} size="sm" />
+        </div>
+      );
 };

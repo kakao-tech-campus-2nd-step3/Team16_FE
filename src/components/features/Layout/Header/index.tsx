@@ -16,10 +16,14 @@ export const Header: React.FC<Props> = ({ height }) => {
     router('/');
   };
 
+  const handleUserIconClick = () => {
+    router('/my-page');
+  };
+
   return (
     <StyledHeader height={height}>
       <Logo width="14rem" onClick={handleLogoClick} />
-      <HeaderUserIcon />
+      <HeaderUserIcon onClick={handleUserIconClick} />
     </StyledHeader>
   );
 };
