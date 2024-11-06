@@ -1,28 +1,23 @@
-// pages/MyPage.tsx
 import styled from '@emotion/styled';
 import React from 'react';
 
-import { useGetUserProfile } from '@/api/hooks/useGetUser';
 import { UserProfileImage } from '@/components/common/User/UserProfileImage';
 
-export const MyPage: React.FC = () => {
-  const { data: profileData, status } = useGetUserProfile();
+interface ProfileData {
+  profile_image_url: string;
+  nickname: string;
+}
 
-  if (status === 'pending') {
-    return <LoadingMessage>로딩 중...</LoadingMessage>;
-  }
+interface MyPageProps {
+  profileData: ProfileData;
+}
 
-  if (status === 'error' || !profileData) {
-    return <ErrorMessage>프로필 정보를 불러오는 데 실패했습니다.</ErrorMessage>;
-  }
-
-  return (
-    <ProfileContainer>
-      <UserProfileImage profileImageUrl={profileData.profile_image_url} size="lg" />
-      <ProfileName>{profileData.nickname}</ProfileName>
-    </ProfileContainer>
-  );
-};
+export const MyPage: React.FC<MyPageProps> = ({ profileData }) => (
+  <ProfileContainer>
+    <UserProfileImage profileImageUrl={profileData.profile_image_url} size="lg" />
+    <ProfileName>{profileData.nickname}</ProfileName>
+  </ProfileContainer>
+);
 
 export default MyPage;
 
@@ -31,29 +26,15 @@ const ProfileContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: calc(100vh - 4rem); /* 헤더 바로 아래에 더 가깝게 배치 */
-  justify-content: flex-start; /* 상단에 가까이 배치 */
+  height: calc(100vh - 4rem);
+  justify-content: flex-start;
   padding-top: 2rem;
   text-align: center;
 `;
 
 const ProfileName = styled.h2`
-  font-size: 1.6rem; /* 이름 크기 확대 */
+  font-size: 1.6rem;
   font-weight: 600;
   color: #333;
-  margin-top: 0.8rem; /* 프로필 이미지와의 간격 조정 */
-`;
-
-const LoadingMessage = styled.div`
-  text-align: center;
-  font-size: 1.2rem;
-  color: #666;
-  margin-top: 2rem;
-`;
-
-const ErrorMessage = styled.div`
-  text-align: center;
-  font-size: 1.2rem;
-  color: red;
-  margin-top: 2rem;
+  margin-top: 0.8rem;
 `;
