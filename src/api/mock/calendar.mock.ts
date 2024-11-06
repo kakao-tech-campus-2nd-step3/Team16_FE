@@ -23,7 +23,7 @@ const CALENDAR_MOCK = {
       calendar_id: null,
       time: {
         start_at: '2024-10-01T03:00:00Z',
-        end_at: '2022-10-01T06:00:00Z',
+        end_at: '2024-10-01T06:00:00Z',
         time_zone: 'Asia/Seoul',
         all_day: false,
       },
@@ -44,7 +44,7 @@ const CALENDAR_MOCK = {
       calendar_id: null,
       time: {
         start_at: '2024-10-03T03:00:00Z',
-        end_at: '2022-10-3T06:00:00Z',
+        end_at: '2024-10-03T06:00:00Z',
         time_zone: 'Asia/Seoul',
         all_day: false,
       },
