@@ -2,22 +2,21 @@ import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
 import { Logo } from '@/components/common/Icons/Logo';
-
-import { HeaderUserIcon } from '../../User/HeaderUserIcon';
+import { HeaderUserIcon } from '@/components/features/User/HeaderUserIcon';
 
 type Props = {
   height?: number;
 };
 
 export const Header: React.FC<Props> = ({ height }) => {
-  const router = useNavigate();
+  const navigate = useNavigate();
 
   const handleLogoClick = () => {
-    router('/');
+    navigate('/');
   };
 
   const handleUserIconClick = () => {
-    router('/mypage');
+    navigate('/mypage');
   };
 
   return (

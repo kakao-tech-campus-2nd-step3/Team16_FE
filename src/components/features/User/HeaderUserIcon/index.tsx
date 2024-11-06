@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { useGetUserProfile } from '@/api/hooks/useGetUser';
 import { UserProfileImage } from '@/components/common/User/UserProfileImage';
@@ -11,7 +10,6 @@ type Props = {
 };
 
 export const HeaderUserIcon: React.FC<Props> = ({ onClick }) => {
-  const navigate = useNavigate();
   const { data: profileImage, status } = useGetUserProfile();
 
   const profile =
@@ -19,16 +17,8 @@ export const HeaderUserIcon: React.FC<Props> = ({ onClick }) => {
       ? DEFAULT_PROFILE_IMAGE
       : profileImage.profile_image_url;
 
-  const handleClick = () => {
-    if (onClick) {
-      onClick();
-    } else {
-      navigate('/mypage');
-    }
-  };
-
   return (
-    <div onClick={handleClick} style={{ cursor: 'pointer' }}>
+    <div onClick={onClick} style={{ cursor: 'pointer' }}>
       <UserProfileImage profileImageUrl={profile} size="sm" />
     </div>
   );
