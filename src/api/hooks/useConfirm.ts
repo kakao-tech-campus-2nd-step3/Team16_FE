@@ -8,11 +8,11 @@ export interface ConfirmMeetingRequest {
 }
 
 interface ConfirmParams {
-  meetingId: number;
+  meetingId: string;
   confirmRequest: ConfirmMeetingRequest;
 }
 
-export const getConfirmPath = ({ meetingId }: { meetingId: number }) =>
+export const getConfirmPath = ({ meetingId }: { meetingId: string }) =>
   `${baseURL}/meeting/${meetingId}/useConfirm.ts`;
 
 export const getConfirm = async ({ meetingId, confirmRequest }: ConfirmParams) => {
