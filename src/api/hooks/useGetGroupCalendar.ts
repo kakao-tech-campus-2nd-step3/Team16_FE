@@ -12,6 +12,7 @@ interface AvailableTime {
 interface GroupCalendarResponse {
   startDate: string;
   endDate: string;
+  durationTime: number;
   availableTime: AvailableTime[];
 }
 

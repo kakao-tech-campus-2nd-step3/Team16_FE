@@ -2,10 +2,8 @@ import interactionPlugin from '@fullcalendar/interaction';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 
-interface CalendarEvent {
-  start: string;
-  end: string;
-}
+import type { CalendarEvent } from '@/types';
+import { defaultEventToGroupEvent } from '@/utils/calendar';
 
 type Props = {
   events: CalendarEvent[];
@@ -14,12 +12,7 @@ type Props = {
 };
 
 export const PublicCalendar: React.FC<Props> = ({ events, availableStart, availableEnd }) => {
-  const convertedEvents = events.map(({ start, end }) => ({
-    start,
-    end,
-    backgroundColor: 'rgba(105, 132, 116, 0.7)',
-    borderColor: '698474',
-  }));
+  const convertedEvents = defaultEventToGroupEvent(events);
 
   const validRange =
     events.length > 0
