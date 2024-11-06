@@ -1,27 +1,24 @@
 import styled from '@emotion/styled';
 import React from 'react';
-import { type FieldErrors, useFormContext } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useJoinMeeting } from '@/api/hooks/useJoinMeeting';
 import { Button } from '@/components/common/Button';
+import { useJoinFormContext } from '@/hooks/useJoinFormContext';
 import { RouterPath } from '@/routes/path';
-import type { JoinMeetingRequest, SelectedTime } from '@/types';
+import type { JoinMeetingRequest } from '@/types';
 
-type JoinBtnProps = {
-  times: SelectedTime[];
-};
-
-export const JoinBtn: React.FC<JoinBtnProps> = ({ times }) => {
-  const { handleSubmit, getValues } = useFormContext<JoinMeetingRequest>();
+export const JoinBtn: React.FC = () => {
   const navigate = useNavigate();
   const { meetingId } = useParams<{ meetingId: string }>();
   const { mutate: join } = useJoinMeeting();
+  const { times, preferences, nonPreferences } = useJoinFormContext();
 
   const handleFormSubmit = () => {
-    const values = {
-      ...getValues(),
+    const values: JoinMeetingRequest = {
       times,
+      preferences,
+      nonPreferences,
     };
     console.log('Form values on submit:', values);
 
@@ -44,14 +41,9 @@ export const JoinBtn: React.FC<JoinBtnProps> = ({ times }) => {
     );
   };
 
-  const handleFormError = (errors: FieldErrors<JoinMeetingRequest>) => {
-    console.error('Form validation errors:', errors);
-    alert('폼 입력을 확인해주세요.');
-  };
-
   return (
     <ButtonContainer>
-      <Button theme="green" onClick={handleSubmit(handleFormSubmit, handleFormError)}>
+      <Button theme="green" onClick={handleFormSubmit}>
         참여하기
       </Button>
       <Button theme="ivory" onClick={() => navigate(-1)}>

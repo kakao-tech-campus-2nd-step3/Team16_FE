@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import React, { useState } from 'react';
 
 import { useGetMyEvent } from '@/api/hooks/useGetMyEvents';
+import { useJoinFormContext } from '@/hooks/useJoinFormContext';
 import { WeeklyCalendar } from '@/service/Calendar';
 import type { Event } from '@/service/Calendar/types';
 import { vars } from '@/styles';
@@ -14,7 +15,6 @@ type JoinCalendarProps = {
   endDate: string;
   startTime: string;
   endTime: string;
-  onTimesUpdate: (newTimes: SelectedTime[]) => void;
 };
 
 export const JoinCalendar: React.FC<JoinCalendarProps> = ({
@@ -22,9 +22,9 @@ export const JoinCalendar: React.FC<JoinCalendarProps> = ({
   endDate,
   startTime,
   endTime,
-  onTimesUpdate,
 }) => {
   const { data, status } = useGetMyEvent();
+  const { setTimes } = useJoinFormContext();
   const [selectedEvents, setSelectedEvents] = useState<Event[]>([]);
 
   if (status === 'error') {
@@ -68,8 +68,7 @@ export const JoinCalendar: React.FC<JoinCalendarProps> = ({
       timeZone: 'Asia/Seoul',
       allDay: false,
     }));
-
-    onTimesUpdate(newTimes);
+    setTimes(newTimes);
   };
 
   return (

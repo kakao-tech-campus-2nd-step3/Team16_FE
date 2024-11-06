@@ -1,13 +1,36 @@
-import { useForm, type UseFormReturn } from 'react-hook-form';
+import React, { createContext, useContext, useState } from 'react';
 
-import type { JoinMeetingRequest } from '@/types';
+import type { SelectedTime } from '@/types';
 
-export const useJoinFormContext = (): UseFormReturn<JoinMeetingRequest> => {
-  return useForm<JoinMeetingRequest>({
-    defaultValues: {
-      times: [],
-      preferences: [],
-      nonPreferences: [],
-    },
-  });
+interface JoinFormContextType {
+  times: SelectedTime[];
+  preferences: number[];
+  nonPreferences: number[];
+  setTimes: React.Dispatch<React.SetStateAction<SelectedTime[]>>;
+  setPreferences: React.Dispatch<React.SetStateAction<number[]>>;
+  setNonPreferences: React.Dispatch<React.SetStateAction<number[]>>;
+}
+
+const JoinFormContext = createContext<JoinFormContextType | undefined>(undefined);
+
+export const JoinFormProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [times, setTimes] = useState<SelectedTime[]>([]);
+  const [preferences, setPreferences] = useState<number[]>([]);
+  const [nonPreferences, setNonPreferences] = useState<number[]>([]);
+
+  return (
+    <JoinFormContext.Provider
+      value={{ times, setTimes, preferences, setPreferences, nonPreferences, setNonPreferences }}
+    >
+      {children}
+    </JoinFormContext.Provider>
+  );
+};
+
+export const useJoinFormContext = () => {
+  const context = useContext(JoinFormContext);
+  if (!context) {
+    throw new Error('useJoinFormContext must be used within a JoinFormProvider');
+  }
+  return context;
 };
