@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
+import { useGetUserProfile } from '@/api/hooks/useGetUser';
 import { Logo } from '@/components/common/Icons/Logo';
 import { HeaderUserIcon } from '@/components/features/User/HeaderUserIcon';
+import { RouterPath } from '@/routes/path';
 
 type Props = {
   height?: number;
@@ -10,19 +12,25 @@ type Props = {
 
 export const Header: React.FC<Props> = ({ height }) => {
   const navigate = useNavigate();
+  const { data: profileData, status } = useGetUserProfile();
 
   const handleLogoClick = () => {
-    navigate('/');
+    navigate(RouterPath.home);
   };
 
   const handleUserIconClick = () => {
-    navigate('/mypage');
+    navigate(RouterPath.mypage);
   };
+
+  const profileImageUrl =
+    status === 'pending' || status === 'error'
+      ? undefined
+      : profileData?.profile_image_url;
 
   return (
     <StyledHeader height={height}>
       <Logo width="14rem" onClick={handleLogoClick} />
-      <HeaderUserIcon onClick={handleUserIconClick} />
+      <HeaderUserIcon profileImageUrl={profileImageUrl} onClick={handleUserIconClick} />
     </StyledHeader>
   );
 };
