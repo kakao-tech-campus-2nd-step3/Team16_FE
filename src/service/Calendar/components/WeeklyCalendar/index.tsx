@@ -24,47 +24,32 @@ export const WeeklyCalendar: React.FC<Props> = ({
   onSelectTime,
 }) => {
   return (
-    <FullCalendar
-      plugins={[timeGridPlugin, interactionPlugin]}
-      initialView="timeGridWeek"
-      views={{
-        timeGridWeek: {
-          type: 'timeGridWeek',
-          buttonText: '주간',
-        },
-      }}
-      headerToolbar={{
-        left: 'timeGridWeek',
-        center: 'title',
-        right: 'prev,next today',
-      }}
-      height="auto"
-      selectable={true}
-      selectMirror={true}
-      validRange={{
-        start: startDate,
-        end: endDate,
-      }}
-      slotMinTime={startTime}
-      slotMaxTime={endTime}
-      events={[...displayedEvents, ...selectedEvents]}
-      eventDisplay="background"
-      eventOverlap={false}
-      selectOverlap={(event) =>
-        !displayedEvents.some(
-          (e) => e.start === event.start?.toISOString() && e.end === event.end?.toISOString(),
-        )
-      }
-      select={(info) => {
-        const start = info.start.toISOString();
-        const end = info.end.toISOString();
-        onSelectTime(start, end);
-      }}
-      dateClick={(info) => {
-        const start = info.date.toISOString();
-        const end = new Date(info.date.getTime() + 30 * 60 * 1000).toISOString();
-        onSelectTime(start, end);
-      }}
-    />
+    <div className="weekly">
+      <FullCalendar
+        plugins={[timeGridPlugin, interactionPlugin]}
+        initialView="timeGridWeek"
+        headerToolbar={{
+          left: 'timeGridWeek',
+          center: 'title',
+          right: 'prev,next today',
+        }}
+        height="auto"
+        selectable={true}
+        validRange={{
+          start: startDate,
+          end: endDate,
+        }}
+        slotMinTime={startTime}
+        slotMaxTime={endTime}
+        events={[...displayedEvents, ...selectedEvents]}
+        eventDisplay="background"
+        allDaySlot={false}
+        select={(info) => {
+          const start = info.start.toISOString();
+          const end = info.end.toISOString();
+          onSelectTime(start, end);
+        }}
+      />
+    </div>
   );
 };

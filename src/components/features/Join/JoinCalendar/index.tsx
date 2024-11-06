@@ -33,20 +33,34 @@ export const JoinCalendar: React.FC<JoinCalendarProps> = ({
     return <div>Loading...</div>;
   }
 
-  const displayedEvents: Event[] = data.map(
-    ({ id, title, time: { start_at, all_day, end_at } }) => ({
-      id: id,
-      title: title,
-      date: start_at,
-      allDay: all_day,
-      start: start_at,
-      end: end_at,
-      editable: false,
-      backgroundColor: vars.colors.gray,
-    }),
-  );
+  const displayedEvents: Event[] = data.map(({ id, time: { start_at, end_at } }) => ({
+    id: id,
+    title: '',
+    date: start_at,
+    start: start_at,
+    end: end_at,
+    allDay: false,
+    backgroundColor: 'lightgray',
+    editable: false,
+  }));
+
+  const isOverlappingWithDisplayed = (start: Date, end: Date) => {
+    return displayedEvents.some((event) => {
+      const eventStart = new Date(event.start);
+      const eventEnd = new Date(event.end);
+      return start < eventEnd && end > eventStart;
+    });
+  };
 
   const handleSelectTime = (start: string, end: string) => {
+    const startD = new Date(start);
+    const endD = new Date(end);
+
+    if (isOverlappingWithDisplayed(startD, endD)) {
+      alert('선택할 수 없는 시간대입니다.');
+      return;
+    }
+
     const updatedEvents = toggleSelectedEvent(start, end, selectedEvents);
     setSelectedEvents(updatedEvents);
 
