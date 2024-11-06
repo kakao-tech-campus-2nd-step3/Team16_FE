@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { FormProvider } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
@@ -8,17 +9,24 @@ import { JoinCalendar } from '@/components/features/Join/JoinCalendar';
 import { JoinFood } from '@/components/features/Join/JoinFood';
 import { JoinTitle } from '@/components/features/Join/JoinTitle';
 import { useJoinFormContext } from '@/hooks/useJoinFormContext';
+import type { SelectedTime } from '@/types';
 
 export const JoinPage: React.FC = () => {
   const { meetingId } = useParams<{ meetingId: string }>();
   const { data: meetingInfo, isLoading } = useGetMeetingInfo(meetingId || '');
   const methods = useJoinFormContext();
 
+  const [times, setTimes] = useState<SelectedTime[]>([]);
+
   if (isLoading || !meetingInfo) {
     return <div>Loading...</div>;
   }
 
   const { title, startDate, endDate, startTime, endTime } = meetingInfo;
+
+  const handleTimesUpdate = (newTimes: SelectedTime[]) => {
+    setTimes(newTimes);
+  };
 
   return (
     <Container gap="40px">
@@ -29,9 +37,10 @@ export const JoinPage: React.FC = () => {
           endDate={endDate}
           startTime={startTime}
           endTime={endTime}
+          onTimesUpdate={handleTimesUpdate}
         />
         <JoinFood />
-        <JoinBtn />
+        <JoinBtn times={times} />
       </FormProvider>
     </Container>
   );

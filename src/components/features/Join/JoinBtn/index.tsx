@@ -6,16 +6,24 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useJoinMeeting } from '@/api/hooks/useJoinMeeting';
 import { Button } from '@/components/common/Button';
 import { RouterPath } from '@/routes/path';
-import type { JoinMeetingRequest } from '@/types';
+import type { JoinMeetingRequest, SelectedTime } from '@/types';
 
-export const JoinBtn: React.FC = () => {
+type JoinBtnProps = {
+  times: SelectedTime[];
+};
+
+export const JoinBtn: React.FC<JoinBtnProps> = ({ times }) => {
   const { handleSubmit, getValues } = useFormContext<JoinMeetingRequest>();
   const navigate = useNavigate();
   const { meetingId } = useParams<{ meetingId: string }>();
   const { mutate: join } = useJoinMeeting();
 
   const handleFormSubmit = () => {
-    const values = getValues();
+    const values = {
+      ...getValues(),
+      times,
+    };
+    console.log('Form values on submit:', values);
 
     if (!meetingId) {
       alert('유효한 모임 ID가 없습니다.');

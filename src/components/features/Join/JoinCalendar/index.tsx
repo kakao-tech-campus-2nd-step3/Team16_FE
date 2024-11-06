@@ -2,10 +2,10 @@ import styled from '@emotion/styled';
 import React, { useState } from 'react';
 
 import { useGetMyEvent } from '@/api/hooks/useGetMyEvents';
-import { useJoinFormContext } from '@/hooks/useJoinFormContext';
 import { WeeklyCalendar } from '@/service/Calendar';
 import type { Event } from '@/service/Calendar/types';
 import { vars } from '@/styles';
+import type { SelectedTime } from '@/types';
 import { isOverlapping } from '@/utils/calendar/isOverlapping';
 import { toggleSelectedEvent } from '@/utils/calendar/toggleSelectedEvent';
 
@@ -14,6 +14,7 @@ type JoinCalendarProps = {
   endDate: string;
   startTime: string;
   endTime: string;
+  onTimesUpdate: (newTimes: SelectedTime[]) => void;
 };
 
 export const JoinCalendar: React.FC<JoinCalendarProps> = ({
@@ -21,9 +22,9 @@ export const JoinCalendar: React.FC<JoinCalendarProps> = ({
   endDate,
   startTime,
   endTime,
+  onTimesUpdate,
 }) => {
   const { data, status } = useGetMyEvent();
-  const { setValue } = useJoinFormContext();
   const [selectedEvents, setSelectedEvents] = useState<Event[]>([]);
 
   if (status === 'error') {
@@ -61,15 +62,14 @@ export const JoinCalendar: React.FC<JoinCalendarProps> = ({
     );
     setSelectedEvents(updatedEvents);
 
-    setValue(
-      'times',
-      updatedEvents.map((event) => ({
-        startAt: event.start,
-        endAt: event.end,
-        timeZone: 'Asia/Seoul',
-        allDay: false,
-      })),
-    );
+    const newTimes: SelectedTime[] = updatedEvents.map((event) => ({
+      startAt: event.start,
+      endAt: event.end,
+      timeZone: 'Asia/Seoul',
+      allDay: false,
+    }));
+
+    onTimesUpdate(newTimes);
   };
 
   return (
