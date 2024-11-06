@@ -1,5 +1,6 @@
 import { rest } from 'msw';
 
+import { getConfirmPath } from '../hooks/useConfirm';
 import { createMeetingPath } from '../hooks/useCreateMeeting';
 import { getCategoryPath } from '../hooks/useGetCategory';
 import { getMeetingInfoPath } from '../hooks/useGetMeetingInfo';
@@ -44,6 +45,9 @@ export const meetingMockHandler = [
   }),
   rest.get(getPermissionPath({ meetingId: '1' }), (_, res, ctx) => {
     return res(ctx.json(PERMISSION_MOCK));
+  }),
+  rest.post(getConfirmPath({ meetingId: '1' }), (_, res, ctx) => {
+    return res(ctx.json({ message: '확정 성공' }));
   }),
   rest.post(joinMeetingPath({ meetingId: '1' }), (_, res, ctx) => {
     return res(ctx.json(JOIN_MEETING_MOCK));
