@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 import type { SelectedTime } from '@/types';
 
@@ -11,7 +11,7 @@ interface JoinFormContextType {
   setNonPreferences: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
-const JoinFormContext = createContext<JoinFormContextType | undefined>(undefined);
+const JoinFormContext = createContext<JoinFormContextType | null>(null);
 
 export const JoinFormProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [times, setTimes] = useState<SelectedTime[]>([]);

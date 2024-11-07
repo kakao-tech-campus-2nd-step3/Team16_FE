@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { useGetMyEvent } from '@/api/hooks/useGetMyEvents';
 import { useJoinFormContext } from '@/hooks/useJoinFormContext';

@@ -15,7 +15,7 @@ export const JoinBtn: React.FC = () => {
   const { times, preferences, nonPreferences } = useJoinFormContext();
 
   const handleFormSubmit = () => {
-    const values: JoinMeetingRequest = {
+    const joinData: JoinMeetingRequest = {
       times,
       preferences,
       nonPreferences,
@@ -27,7 +27,7 @@ export const JoinBtn: React.FC = () => {
     }
 
     join(
-      { meetingId, joinData: values },
+      { meetingId, joinData },
       {
         onSuccess: () => {
           alert('참여 정보가 성공적으로 전송되었습니다!');
