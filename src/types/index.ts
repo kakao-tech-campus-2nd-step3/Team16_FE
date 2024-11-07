@@ -45,3 +45,8 @@ export interface MeetingInfo {
   startTime: string;
   endTime: string;
 }
+export interface Food {
+  food_id: number;
+  category: string;
+  name: string;
+}
