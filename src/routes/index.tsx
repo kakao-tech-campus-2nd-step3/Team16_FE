@@ -1,7 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { Layout } from '@/components/features/Layout';
-import { MyPageContainer } from '@/components/features/MyPageContainer';
 import { CreatePage } from '@/pages/Create';
 import { GroupPage } from '@/pages/Group';
 import { HomePage } from '@/pages/Home';
@@ -9,6 +8,7 @@ import { JoinPage } from '@/pages/Join';
 import { LeaderPage } from '@/pages/Leader';
 import { FailurePage } from '@/pages/Login/FailurePage';
 import { SuccessPage } from '@/pages/Login/SuccessPage';
+import { MyPage } from '@/pages/MyPage';
 import { OnboardingPage } from '@/pages/Onboarding';
 
 import { RouterPath } from './path';
@@ -40,7 +40,7 @@ const router = createBrowserRouter([
       },
       {
         path: RouterPath.mypage,
-        element: <MyPageContainer />, // MyPage 대신 MyPageContainer 사용
+        element: <MyPage />,
       },
     ],
   },

@@ -9,13 +9,13 @@ interface ProfileData {
 }
 
 interface MyPageProps {
-  profileData: ProfileData;
+  profileData?: ProfileData;
 }
 
 export const MyPage: React.FC<MyPageProps> = ({ profileData }) => (
   <ProfileContainer>
-    <UserProfileImage profileImageUrl={profileData.profile_image_url} size="lg" />
-    <ProfileName>{profileData.nickname}</ProfileName>
+    <UserProfileImage profileImageUrl={profileData?.profile_image_url || '/images/default_profile_image.png'} size="lg" />
+    <ProfileName>{profileData?.nickname || '쿠키즈'}</ProfileName>
   </ProfileContainer>
 );
 

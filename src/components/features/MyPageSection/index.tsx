@@ -3,7 +3,7 @@ import MyPage from 'src/pages/MyPage';
 
 import { useGetUserProfile } from '@/api/hooks/useGetUser';
 
-export const MyPageContainer: React.FC = () => {
+export const MyPageSection: React.FC = () => {
   const { data: profileData, status } = useGetUserProfile();
 
   if (status === 'pending') {
@@ -16,5 +16,3 @@ export const MyPageContainer: React.FC = () => {
 
   return <MyPage profileData={profileData} />;
 };
-
-export default MyPageContainer;
