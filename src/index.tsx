@@ -9,7 +9,7 @@ async function deferRender() {
   const environment = process.env.REACT_APP_ENV;
   if (environment === 'development') {
     const { worker } = await import('./mocks/browser');
-    await worker.start();
+    await worker.start({ onUnhandledRequest: 'bypass',});
   }
 
   return;
