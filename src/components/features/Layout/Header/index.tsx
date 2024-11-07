@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { useGetUserProfile } from '@/api/hooks/useGetUser';
 import { Logo } from '@/components/common/Icons/Logo';
@@ -11,26 +11,20 @@ type Props = {
 };
 
 export const Header: React.FC<Props> = ({ height }) => {
-  const navigate = useNavigate();
-  const { data: profileData, status } = useGetUserProfile();
+  const navigate = useNavigate(); // useNavigate 훅을 사용하여 navigate를 선언
+
+  useGetUserProfile();
 
   const handleLogoClick = () => {
     navigate(RouterPath.home);
   };
 
-  const handleUserIconClick = () => {
-    navigate(RouterPath.mypage);
-  };
-
-  const profileImageUrl =
-    status === 'pending' || status === 'error'
-      ? undefined
-      : profileData?.profile_image_url;
-
   return (
     <StyledHeader height={height}>
       <Logo width="14rem" onClick={handleLogoClick} />
-      <HeaderUserIcon profileImageUrl={profileImageUrl} onClick={handleUserIconClick} />
+      <Link to={RouterPath.mypage}>
+        <HeaderUserIcon />
+      </Link>
     </StyledHeader>
   );
 };
