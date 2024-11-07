@@ -12,7 +12,7 @@ export const JoinPage: React.FC = () => {
   const { meetingId } = useParams<{ meetingId: string }>();
   const { data: meetingInfo, isLoading } = useGetMeetingInfo(meetingId || '');
 
-  if (isLoading || !meetingInfo) {
+  if (isLoading || !meetingInfo || !meetingId) {
     return <div>Loading...</div>;
   }
 
@@ -23,13 +23,14 @@ export const JoinPage: React.FC = () => {
       <Container gap="40px">
         <JoinTitle title={title} />
         <JoinCalendar
+          meetingId={meetingId}
           startDate={startDate}
           endDate={endDate}
           startTime={startTime}
           endTime={endTime}
         />
         <JoinFood />
-        <JoinBtn />
+        <JoinBtn meetingId={meetingId} />
       </Container>
     </JoinFormProvider>
   );

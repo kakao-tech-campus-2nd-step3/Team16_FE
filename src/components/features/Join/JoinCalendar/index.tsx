@@ -11,6 +11,7 @@ import { isOverlapping } from '@/utils/calendar/isOverlapping';
 import { toggleSelectedEvent } from '@/utils/calendar/toggleSelectedEvent';
 
 type JoinCalendarProps = {
+  meetingId: string;
   startDate: string;
   endDate: string;
   startTime: string;
@@ -18,6 +19,7 @@ type JoinCalendarProps = {
 };
 
 export const JoinCalendar: React.FC<JoinCalendarProps> = ({
+  meetingId,
   startDate,
   endDate,
   startTime,
@@ -68,7 +70,9 @@ export const JoinCalendar: React.FC<JoinCalendarProps> = ({
       timeZone: 'Asia/Seoul',
       allDay: false,
     }));
-    setTimes(newTimes);
+    if (meetingId) {
+      setTimes(meetingId, newTimes);
+    }
   };
 
   return (
