@@ -9,26 +9,25 @@ type Props = {
   endDate: string;
   startTime: string;
   endTime: string;
-  events?: Event[];
+  displayedEvents: Event[];
+  selectedEvents: Event[];
+  onSelectTime?: (start: string, end: string) => void;
 };
+
 export const WeeklyCalendar: React.FC<Props> = ({
   startDate,
   endDate,
   startTime,
   endTime,
-  events = [],
+  displayedEvents,
+  selectedEvents,
+  onSelectTime,
 }) => {
   return (
     <div className="weekly">
       <FullCalendar
         plugins={[timeGridPlugin, interactionPlugin]}
         initialView="timeGridWeek"
-        views={{
-          timeGridWeek: {
-            type: 'timeGridWeek',
-            buttonText: '주간',
-          },
-        }}
         headerToolbar={{
           left: 'timeGridWeek',
           center: 'title',
@@ -42,10 +41,16 @@ export const WeeklyCalendar: React.FC<Props> = ({
         }}
         slotMinTime={startTime}
         slotMaxTime={endTime}
-        events={events}
+        events={[...displayedEvents, ...selectedEvents]}
         eventDisplay="background"
-        eventOverlap={false}
-        selectOverlap={false}
+        allDaySlot={false}
+        select={(info) => {
+          const start = info.start.toISOString();
+          const end = info.end.toISOString();
+          if (onSelectTime) {
+            onSelectTime(start, end);
+          }
+        }}
       />
     </div>
   );

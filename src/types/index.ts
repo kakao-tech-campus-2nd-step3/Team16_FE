@@ -58,3 +58,22 @@ export interface GroupEvent {
   borderColor: string;
   display: string;
 }
+
+export interface SelectedTime {
+  startAt: string;
+  endAt: string;
+  timeZone: string;
+  allDay: boolean;
+}
+
+export interface JoinMeetingRequest {
+  preferences: number[];
+  nonPreferences: number[];
+  times: SelectedTime[];
+}
+
+export interface JoinMeetingResponse {
+  status: number;
+  message: string;
+  data: null;
+}

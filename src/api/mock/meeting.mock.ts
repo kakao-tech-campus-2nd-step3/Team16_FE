@@ -7,6 +7,7 @@ import { getMyMeetingsPath } from '../hooks/useGetMyMeetings';
 import { getparticipantPath } from '../hooks/useGetParticipant';
 import { getPermissionPath } from '../hooks/useGetPermission';
 import { getRecommendMenuPath } from '../hooks/useGetRecommandMenu';
+import { joinMeetingPath } from '../hooks/useJoinMeeting';
 import { getLeaveGroupPath } from '../hooks/useLeaveGroup';
 
 export const meetingMockHandler = [
@@ -43,6 +44,9 @@ export const meetingMockHandler = [
   }),
   rest.get(getPermissionPath({ meetingId: '1' }), (_, res, ctx) => {
     return res(ctx.json(PERMISSION_MOCK));
+  }),
+  rest.post(joinMeetingPath({ meetingId: '1' }), (_, res, ctx) => {
+    return res(ctx.json(JOIN_MEETING_MOCK));
   }),
 ];
 
@@ -297,4 +301,10 @@ const PERMISSION_MOCK = {
   data: {
     isHost: true,
   },
+};
+
+const JOIN_MEETING_MOCK = {
+  status: 200,
+  message: '모임 참여 성공',
+  data: null,
 };
