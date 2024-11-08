@@ -1,5 +1,7 @@
 import React from 'react';
-import { ProfileSection }from 'src/components/features/MyPage/ProfileSection';
+
+import { ProfileSection } from '@/components/features/MyPage/ProfileSection';
+
 
 export const MyPage: React.FC = () => {
   return (
