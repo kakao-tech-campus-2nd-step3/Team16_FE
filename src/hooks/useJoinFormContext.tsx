@@ -17,8 +17,11 @@ interface JoinFormContextType {
 
 const JoinFormContext = createContext<JoinFormContextType | null>(null);
 
-export const JoinFormProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [meetingData, setData] = useState<{ [meetingId: string]: MeetingData }>({});
+export const JoinFormProvider: React.FC<{
+  children: React.ReactNode;
+  initialData?: { [meetingId: string]: MeetingData };
+}> = ({ children, initialData = {} }) => {
+  const [meetingData, setData] = useState<{ [meetingId: string]: MeetingData }>(() => initialData);
 
   const setTimes = (meetingId: string, times: SelectedTime[]) => {
     setData((prevData) => ({

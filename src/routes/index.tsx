@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { Layout } from '@/components/features/Layout';
 import { CreatePage } from '@/pages/Create';
+import { EditPage } from '@/pages/Edit';
 import { GroupPage } from '@/pages/Group';
 import { HomePage } from '@/pages/Home';
 import { JoinPage } from '@/pages/Join';
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: `${RouterPath.join}/:meetingId`,
         element: <JoinPage />,
+      },
+      {
+        path: `${RouterPath.edit}/:meetingId`,
+        element: <EditPage />,
       },
       {
         path: `${RouterPath.leader}/:meetingId`,
