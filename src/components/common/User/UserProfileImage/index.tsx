@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 const profileSize = {
   sm: '40px', //default
   md: '48px',
+  lg: '80px',
 };
 
 const defaultProfileImageUrl = '/assets/images/defaultUser/default-user.png';

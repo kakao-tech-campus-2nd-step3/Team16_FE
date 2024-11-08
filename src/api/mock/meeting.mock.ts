@@ -3,6 +3,7 @@ import { rest } from 'msw';
 import { getConfirmPath } from '../hooks/useConfirm';
 import { createMeetingPath } from '../hooks/useCreateMeeting';
 import { getCategoryPath } from '../hooks/useGetCategory';
+import { getConfirmInfoPath } from '../hooks/useGetConfirmInfo';
 import { getMeetingInfoPath } from '../hooks/useGetMeetingInfo';
 import { getMyMeetingsPath } from '../hooks/useGetMyMeetings';
 import { getparticipantPath } from '../hooks/useGetParticipant';
@@ -51,6 +52,9 @@ export const meetingMockHandler = [
   }),
   rest.post(joinMeetingPath({ meetingId: '1' }), (_, res, ctx) => {
     return res(ctx.json(JOIN_MEETING_MOCK));
+  }),
+  rest.get(getConfirmInfoPath({ meetingId: '1' }), (_, res, ctx) => {
+    return res(ctx.json(CONFIRMED_INFO_MOCK));
   }),
 ];
 
@@ -311,4 +315,17 @@ const JOIN_MEETING_MOCK = {
   status: 200,
   message: '모임 참여 성공',
   data: null,
+};
+
+const CONFIRMED_INFO_MOCK = {
+  status: 200,
+  message: '모임 확정 날짜, 확정 음식 조회 성공',
+  data: {
+    confirmedDateTime: '2022-10-28T03:00:00Z',
+    confirmedFood: {
+      foodId: 1001,
+      category: '한식',
+      name: '불고기',
+    },
+  },
 };
