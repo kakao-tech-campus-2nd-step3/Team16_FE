@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Spacing } from '@/components/common/layouts/Spacing';
 import { GroupCalendar } from '@/components/features/Group/GroupCalendar';
 import { GroupCollectionMenuSection } from '@/components/features/Group/GroupCollectedMenuSection';
+import { GroupConfirmedInfo } from '@/components/features/Group/GroupConfirmedInfo';
 import { GroupLeavtBtn } from '@/components/features/Group/GroupLeaveBtn';
 import { GroupLinkBtn } from '@/components/features/Group/GroupLinkBtn';
 import { GroupParticipantsSection } from '@/components/features/Group/GroupParticipantsSection';
@@ -19,6 +20,8 @@ export const GroupPage = () => {
           <Link to="/edit">입력 정보 수정하기 &rarr;</Link>
         </LinkWrapper>
       </GroupTitle>
+      <Spacing height={20} />
+      <GroupConfirmedInfo />
       <Spacing height={60} />
       <GroupParticipantsSection />
       <Spacing height={80} />
