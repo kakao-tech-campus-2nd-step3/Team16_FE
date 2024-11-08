@@ -2,6 +2,7 @@ import { rest } from 'msw';
 
 import { getGroupCalendarPath } from '../hooks/useGetGroupCalendar';
 import { getMyEventPath } from '../hooks/useGetMyEvents';
+import { getPersonalPath } from '../hooks/useGetPersonalEvents';
 
 export const calendarMockHandler = [
   rest.get(getMyEventPath(), (_, res, ctx) => {
@@ -9,6 +10,9 @@ export const calendarMockHandler = [
   }),
   rest.get(getGroupCalendarPath('1'), (_, res, ctx) => {
     return res(ctx.json(GROUP_CALENDAR_MOCK));
+  }),
+  rest.get(getPersonalPath({ meetingId: '1' }), (_, res, ctx) => {
+    return res(ctx.json(PERSONAL_EVENTS_MOCK));
   }),
 ];
 
@@ -79,6 +83,27 @@ const GROUP_CALENDAR_MOCK = {
         startAt: '2024-11-01T09:00:00',
         endAt: '2024-11-01T17:00:00',
         timeZone: 'UTC',
+        allDay: false,
+      },
+    ],
+  },
+};
+
+const PERSONAL_EVENTS_MOCK = {
+  status: 200,
+  message: '개인 모임별 시간표 조회 성공',
+  data: {
+    meeting_personal_times: [
+      {
+        startAt: '2024-10-08T09:00:00Z',
+        endAt: '2024-10-08T12:00:00Z',
+        timeZone: 'Asia/Seoul',
+        allDay: false,
+      },
+      {
+        startAt: '2024-10-10T09:00:00Z',
+        endAt: '2024-10-11T10:00:00Z',
+        timeZone: 'Asia/Seoul',
         allDay: false,
       },
     ],

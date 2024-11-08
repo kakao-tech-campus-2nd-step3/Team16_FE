@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useGetMyEvent } from '@/api/hooks/useGetMyEvents';
 import { useJoinFormContext } from '@/hooks/useJoinFormContext';
@@ -7,6 +7,7 @@ import { WeeklyCalendar } from '@/service/Calendar';
 import type { Event } from '@/service/Calendar/types';
 import { vars } from '@/styles';
 import type { SelectedTime } from '@/types';
+import { convertSelectedTimesToEvents } from '@/utils/calendar/convertSelectedTimesToEvents';
 import { isOverlapping } from '@/utils/calendar/isOverlapping';
 import { toggleSelectedEvent } from '@/utils/calendar/toggleSelectedEvent';
 
@@ -26,8 +27,15 @@ export const JoinCalendar: React.FC<JoinCalendarProps> = ({
   endTime,
 }) => {
   const { data, status } = useGetMyEvent();
-  const { setTimes } = useJoinFormContext();
-  const [selectedEvents, setSelectedEvents] = useState<Event[]>([]);
+  const { setTimes, meetingData } = useJoinFormContext();
+
+  const [selectedEvents, setSelectedEvents] = useState<Event[]>(
+    convertSelectedTimesToEvents(meetingData[meetingId]?.times || []),
+  );
+
+  useEffect(() => {
+    setSelectedEvents(convertSelectedTimesToEvents(meetingData[meetingId]?.times || []));
+  }, [meetingData, meetingId]);
 
   if (status === 'error') {
     return <div>Error</div>;
@@ -38,7 +46,7 @@ export const JoinCalendar: React.FC<JoinCalendarProps> = ({
   }
 
   const displayedEvents: Event[] = data.map(({ id, time: { start_at, end_at } }) => ({
-    id: id,
+    id,
     title: '',
     date: start_at,
     start: start_at,

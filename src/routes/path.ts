@@ -3,6 +3,7 @@ export const RouterPath = {
   create: '/create',
   group: '/group',
   join: '/join',
+  edit: '/edit',
   leader: '/leader',
   login: '/login',
   mypage: '/mypage',
