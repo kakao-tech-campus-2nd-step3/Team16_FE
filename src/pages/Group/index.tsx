@@ -5,7 +5,7 @@ import { Spacing } from '@/components/common/layouts/Spacing';
 import { GroupCalendar } from '@/components/features/Group/GroupCalendar';
 import { GroupCollectionMenuSection } from '@/components/features/Group/GroupCollectedMenuSection';
 import { GroupConfirmedInfo } from '@/components/features/Group/GroupConfirmedInfo';
-import { GroupLeavetBtn } from '@/components/features/Group/GroupLeaveBtn';
+import { GroupLeaveBtn } from '@/components/features/Group/GroupLeaveBtn';
 import { GroupLinkBtn } from '@/components/features/Group/GroupLinkBtn';
 import { GroupParticipantsSection } from '@/components/features/Group/GroupParticipantsSection';
 import { GroupTitle } from '@/components/features/Group/GroupTitle';
@@ -29,7 +29,7 @@ export const GroupPage = () => {
       <Spacing height={80} />
       <GroupCollectionMenuSection />
       <Positioner>
-        <GroupLeavetBtn />
+        <GroupLeaveBtn />
       </Positioner>
       <Spacing height={40} />
     </Wrapper>
