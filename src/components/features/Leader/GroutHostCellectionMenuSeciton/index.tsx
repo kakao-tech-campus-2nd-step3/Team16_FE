@@ -13,17 +13,17 @@ import { colors } from '@/styles/variants';
 
 export const GroupHostCollectionMenuSection: React.FC = () => {
   const meetingId = useGetMeetingId();
-  const [selectedMunuName, setSelectedMenuName] = useState('');
+  const [selectedMenuName, setSelectedMenuName] = useState('');
   const { setValue } = useFormContext<ConfirmMeetingRequest>();
 
   const { data: foods, status } = useGetRecommendMenu(meetingId);
 
   useEffect(() => {
-    if (selectedMunuName) {
-      const selectedMenuId = foods?.find((food) => food.name === selectedMunuName)?.food_id;
+    if (selectedMenuName) {
+      const selectedMenuId = foods?.find((food) => food.name === selectedMenuName)?.food_id;
       if (selectedMenuId) setValue('confirmFoodId', selectedMenuId);
     }
-  }, [selectedMunuName, foods, setValue]);
+  }, [selectedMenuName, foods, setValue]);
 
   if (status === 'pending') return <div>Loading...</div>;
   if (status === 'error') return <div>Error</div>;
@@ -35,7 +35,7 @@ export const GroupHostCollectionMenuSection: React.FC = () => {
       <MenuCategory foods={foods}>
         {({ name }) => (
           <>
-            {selectedMunuName === name ? (
+            {selectedMenuName === name ? (
               <SelectedMenu menuName={name} />
             ) : (
               <div
