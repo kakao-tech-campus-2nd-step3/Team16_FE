@@ -4,7 +4,6 @@ import { colors } from '@/styles/variants';
 import type { Coordinates } from '@/types';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
 const { kakao } = window;
 
 export const useKakaoMap = (
@@ -16,7 +15,7 @@ export const useKakaoMap = (
   useEffect(() => {
     if (!defaultPosition) return;
 
-    const container = document.getElementById(containerId);
+    const container: HTMLElement = document.getElementById(containerId)!;
     const options = {
       center: new kakao.maps.LatLng(defaultPosition.lat, defaultPosition.lng),
       level: 4,
@@ -42,7 +41,6 @@ export const useKakaoMap = (
     circle.setMap(map);
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
     kakao.maps.event.addListener(map, 'click', (mouseEvent: kakao.maps.event.MouseEvent) => {
       const latlng = mouseEvent.latLng;
       marker.setPosition(latlng);
