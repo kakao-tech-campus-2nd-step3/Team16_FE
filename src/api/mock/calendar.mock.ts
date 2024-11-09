@@ -91,20 +91,20 @@ const GROUP_CALENDAR_MOCK = {
 
 const PERSONAL_EVENTS_MOCK = {
   status: 200,
-  message: '개인 모임별 시간표 조회 성공',
+  message: '모임별 개인 시간표 조회 성공',
   data: {
     meeting_personal_times: [
       {
-        startAt: '2024-10-08T09:00:00Z',
-        endAt: '2024-10-08T12:00:00Z',
-        timeZone: 'Asia/Seoul',
-        allDay: false,
+        start_at: '2024-10-08T09:00:00',
+        end_at: '2024-10-08T12:00:00',
+        time_zone: 'Asia/Seoul',
+        all_day: false,
       },
       {
-        startAt: '2024-10-10T09:00:00Z',
-        endAt: '2024-10-11T10:00:00Z',
-        timeZone: 'Asia/Seoul',
-        allDay: false,
+        start_at: '2024-10-10T09:00:00',
+        end_at: '2024-10-11T10:00:00',
+        time_zone: 'Asia/Seoul',
+        all_day: false,
       },
     ],
   },
