@@ -27,15 +27,22 @@ export const LeaderPage = () => {
           </LinkWrapper>
         </GroupTitle>
         <Spacing height={20} />
+
         <GroupConfirmedInfo />
         <Spacing height={20} />
+
         <GroupConfirmedMap />
         <Spacing height={80} />
+
         <GroupParticipantsSection />
         <Spacing height={80} />
+
         <GroupHostCalendar />
         <Spacing height={80} />
+
         <GroupHostCollectionMenuSection />
+        <Spacing height={40} />
+
         <Positioner>
           <ConfirmBtn />
           <GroupLeaveBtn />
