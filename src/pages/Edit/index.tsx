@@ -8,7 +8,7 @@ import { JoinCalendar } from '@/components/features/Join/JoinCalendar';
 import { JoinFood } from '@/components/features/Join/JoinFood';
 import { JoinTitle } from '@/components/features/Join/JoinTitle';
 import { JoinFormProvider } from '@/hooks/useJoinFormContext';
-import type { PersonalEvent } from '@/types';
+import type { PersonalEvent, SelectedTime } from '@/types';
 
 export const EditPage: React.FC = () => {
   const { meetingId } = useParams<{ meetingId: string }>();
@@ -27,17 +27,29 @@ export const EditPage: React.FC = () => {
     return <div>Loading...</div>;
   }
 
-  const initialSelectedTimes = personalEvents.map((event: PersonalEvent) => ({
-    startAt: event.start_at,
-    endAt: event.end_at,
-    timeZone: event.time_zone,
-    allDay: event.all_day,
-  }));
+  const initialSelectedTimes: SelectedTime[] = personalEvents.flatMap((event: PersonalEvent) => {
+    const startTime = new Date(event.start_at).getTime();
+    const endTime = new Date(event.end_at).getTime();
+    const timeSlots: SelectedTime[] = [];
+
+    for (let time = startTime; time < endTime; time += 30 * 60 * 1000) {
+      timeSlots.push({
+        startAt: new Date(time).toISOString(),
+        endAt: new Date(time + 30 * 60 * 1000).toISOString(),
+        timeZone: event.time_zone,
+        allDay: event.all_day,
+      });
+    }
+
+    return timeSlots;
+  });
 
   const { title, startDate, endDate, startTime, endTime } = meetingInfo;
 
   return (
-    <JoinFormProvider>
+    <JoinFormProvider
+      initialData={{ times: initialSelectedTimes, preferences: [], nonPreferences: [] }}
+    >
       <Container gap="40px">
         <JoinTitle title={title} />
         <JoinCalendar
@@ -46,7 +58,6 @@ export const EditPage: React.FC = () => {
           endDate={endDate}
           startTime={startTime}
           endTime={endTime}
-          initialSelectedTimes={initialSelectedTimes}
         />
         <JoinFood />
         <EditBtn meetingId={meetingId} />
