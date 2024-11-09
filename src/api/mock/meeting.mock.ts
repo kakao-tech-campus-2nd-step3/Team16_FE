@@ -325,13 +325,13 @@ const CONFIRMED_INFO_MOCK = {
     confirmedFood: {
       foodId: 1001,
       category: '한식',
-      name: '불고기',
+      name: '고기',
     },
     baseLocation: {
       locationId: 18577297,
-      address: '경기 성남시 분당구 판교역로 166',
-      latitude: 37.39570088983171,
-      longitude: 127.1104335101161,
+      address: '전남대학교',
+      latitude: 35.1755091,
+      longitude: 126.9071166,
     },
   },
 };

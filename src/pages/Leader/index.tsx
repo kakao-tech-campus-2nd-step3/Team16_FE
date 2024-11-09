@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { Spacing } from '@/components/common/layouts/Spacing';
 import { GroupConfirmedInfo } from '@/components/features/Group/GroupConfirmedInfo';
+import { GroupConfirmedMap } from '@/components/features/Group/GroupConfirmedMap';
 import { GroupLeaveBtn } from '@/components/features/Group/GroupLeaveBtn';
 import { GroupLinkBtn } from '@/components/features/Group/GroupLinkBtn';
 import { GroupParticipantsSection } from '@/components/features/Group/GroupParticipantsSection';
@@ -27,7 +28,9 @@ export const LeaderPage = () => {
         </GroupTitle>
         <Spacing height={20} />
         <GroupConfirmedInfo />
-        <Spacing height={60} />
+        <Spacing height={20} />
+        <GroupConfirmedMap />
+        <Spacing height={80} />
         <GroupParticipantsSection />
         <Spacing height={80} />
         <GroupHostCalendar />
