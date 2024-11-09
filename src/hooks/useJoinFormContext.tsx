@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 import type { SelectedTime } from '@/types';
 
@@ -9,47 +9,46 @@ interface MeetingData {
 }
 
 interface JoinFormContextType {
-  meetingData: { [meetingId: string]: MeetingData };
-  setTimes: (meetingId: string, times: SelectedTime[]) => void;
-  setPreferences: (meetingId: string, preferences: number[]) => void;
-  setNonPreferences: (meetingId: string, nonPreferences: number[]) => void;
+  meetingData: MeetingData;
+  setTimes: (times: SelectedTime[]) => void;
+  setPreferences: (preferences: number[]) => void;
+  setNonPreferences: (nonPreferences: number[]) => void;
 }
 
 const JoinFormContext = createContext<JoinFormContextType | null>(null);
 
 export const JoinFormProvider: React.FC<{
   children: React.ReactNode;
-  initialData?: { [meetingId: string]: MeetingData };
-}> = ({ children, initialData = {} }) => {
-  const [meetingData, setData] = useState<{ [meetingId: string]: MeetingData }>(() => initialData);
+  initialData?: MeetingData;
+}> = ({ children, initialData }) => {
+  const [meetingData, setData] = useState<MeetingData>(
+    initialData || { times: [], preferences: [], nonPreferences: [] },
+  );
 
-  const setTimes = (meetingId: string, times: SelectedTime[]) => {
+  useEffect(() => {
+    if (initialData) {
+      setData(initialData);
+    }
+  }, [initialData]);
+
+  const setTimes = (times: SelectedTime[]) => {
     setData((prevData) => ({
       ...prevData,
-      [meetingId]: {
-        ...prevData[meetingId],
-        times,
-      },
+      times,
     }));
   };
 
-  const setPreferences = (meetingId: string, preferences: number[]) => {
+  const setPreferences = (preferences: number[]) => {
     setData((prevData) => ({
       ...prevData,
-      [meetingId]: {
-        ...prevData[meetingId],
-        preferences,
-      },
+      preferences,
     }));
   };
 
-  const setNonPreferences = (meetingId: string, nonPreferences: number[]) => {
+  const setNonPreferences = (nonPreferences: number[]) => {
     setData((prevData) => ({
       ...prevData,
-      [meetingId]: {
-        ...prevData[meetingId],
-        nonPreferences,
-      },
+      nonPreferences,
     }));
   };
 

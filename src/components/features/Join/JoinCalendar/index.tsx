@@ -17,25 +17,25 @@ type JoinCalendarProps = {
   endDate: string;
   startTime: string;
   endTime: string;
+  initialSelectedTimes?: SelectedTime[];
 };
 
 export const JoinCalendar: React.FC<JoinCalendarProps> = ({
-  meetingId,
   startDate,
   endDate,
   startTime,
   endTime,
+  initialSelectedTimes,
 }) => {
   const { data, status } = useGetMyEvent();
   const { setTimes, meetingData } = useJoinFormContext();
 
-  const [selectedEvents, setSelectedEvents] = useState<Event[]>(
-    convertSelectedTimesToEvents(meetingData[meetingId]?.times || []),
-  );
+  const [selectedEvents, setSelectedEvents] = useState<Event[]>([]);
 
   useEffect(() => {
-    setSelectedEvents(convertSelectedTimesToEvents(meetingData[meetingId]?.times || []));
-  }, [meetingData, meetingId]);
+    const initialTimes = initialSelectedTimes || meetingData?.times || [];
+    setSelectedEvents(convertSelectedTimesToEvents(initialTimes));
+  }, [initialSelectedTimes, meetingData?.times]);
 
   if (status === 'error') {
     return <div>Error</div>;
@@ -78,9 +78,7 @@ export const JoinCalendar: React.FC<JoinCalendarProps> = ({
       timeZone: 'Asia/Seoul',
       allDay: false,
     }));
-    if (meetingId) {
-      setTimes(meetingId, newTimes);
-    }
+    setTimes(newTimes);
   };
 
   return (

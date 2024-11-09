@@ -18,7 +18,7 @@ export const EditBtn: React.FC<EditBtnProps> = ({ meetingId }) => {
   const { meetingData } = useJoinFormContext();
 
   const handleFormSubmit = () => {
-    const { times, preferences, nonPreferences } = meetingData[meetingId];
+    const { times, preferences, nonPreferences } = meetingData;
     const personalData: JoinMeetingRequest = {
       times,
       preferences,

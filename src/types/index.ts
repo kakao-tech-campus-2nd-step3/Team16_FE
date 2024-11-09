@@ -79,21 +79,8 @@ export interface JoinMeetingResponse {
 }
 
 export interface PersonalEvent {
-  startAt: string;
-  endAt: string;
-  timeZone: string;
-  allDay: boolean;
-}
-
-export interface PersonalEventsResponse {
-  status: number;
-  message: string;
-  data: {
-    meeting_personal_times: {
-      start_at: string;
-      end_at: string;
-      time_zone: string;
-      all_day: boolean;
-    }[];
-  };
+  start_at: string;
+  end_at: string;
+  time_zone: string;
+  all_day: boolean;
 }
