@@ -17,7 +17,6 @@ type JoinCalendarProps = {
   endDate: string;
   startTime: string;
   endTime: string;
-  initialSelectedTimes?: SelectedTime[];
 };
 
 export const JoinCalendar: React.FC<JoinCalendarProps> = ({
@@ -25,17 +24,17 @@ export const JoinCalendar: React.FC<JoinCalendarProps> = ({
   endDate,
   startTime,
   endTime,
-  initialSelectedTimes,
 }) => {
   const { data, status } = useGetMyEvent();
   const { setTimes, meetingData } = useJoinFormContext();
 
-  const [selectedEvents, setSelectedEvents] = useState<Event[]>([]);
+  const [selectedEvents, setSelectedEvents] = useState<Event[]>(
+    convertSelectedTimesToEvents(meetingData.times),
+  );
 
   useEffect(() => {
-    const initialTimes = initialSelectedTimes || meetingData?.times || [];
-    setSelectedEvents(convertSelectedTimesToEvents(initialTimes));
-  }, [initialSelectedTimes, meetingData?.times]);
+    setSelectedEvents(convertSelectedTimesToEvents(meetingData.times));
+  }, [meetingData.times]);
 
   if (status === 'error') {
     return <div>Error</div>;
@@ -79,6 +78,7 @@ export const JoinCalendar: React.FC<JoinCalendarProps> = ({
       allDay: false,
     }));
     setTimes(newTimes);
+    console.log('selecetedEvnents: ', selectedEvents);
   };
 
   return (
