@@ -6,6 +6,6 @@ export const RouterPath = {
   leader: '/leader',
   login: '/login',
   mypage: '/mypage',
-  success: '/success',
-  failure: '/failure',
+  success: '/login/success',
+  failure: '/login/failure',
 };

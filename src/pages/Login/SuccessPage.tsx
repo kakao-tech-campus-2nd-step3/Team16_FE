@@ -8,17 +8,20 @@ export const SuccessPage = () => {
   const navigate = useNavigate();
   const { refetch, status, error } = useReissueAccessToken();
 
+  const searchParams = new URLSearchParams(location.search);
+  const redirectUrl = searchParams.get('redirectUrl') || RouterPath.home;
+
   useEffect(() => {
-    refetch(); // 컴포넌트가 로드될 때 토큰 재발급 요청 수행
+    refetch();
   }, [refetch]);
 
   useEffect(() => {
     if (status === 'success') {
-      navigate(RouterPath.home); // 성공 시 홈 페이지로 이동
+      navigate(redirectUrl);
     } else if (status === 'error' && error) {
       console.error('토큰을 가져오던 중 에러 발생', error);
     }
-  }, [status, error, navigate]);
+  }, [status, error, navigate, redirectUrl]);
 
   return null;
 };

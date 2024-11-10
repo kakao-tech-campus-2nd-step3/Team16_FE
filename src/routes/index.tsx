@@ -19,7 +19,6 @@ import { RouterPath } from './path';
 
 const router = createBrowserRouter([
   {
-    path: RouterPath.home,
     element: (
       <AuthProvider>
         <Layout />
