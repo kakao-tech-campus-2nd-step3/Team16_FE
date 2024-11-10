@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
-import { KakaoLoginButton } from 'src/components/common/Button/kakaoLogin';
+
+import { baseURL } from '@/api/instance';
+import { KakaoLoginButton } from '@/components/common/Button/kakaoLogin';
 
 const onboardingImages = [
   '/assets/images/onboarding/image1.svg',
@@ -28,13 +30,11 @@ const onboardingDescriptions = [
   },
 ];
 
-export const OnboardingPage: React.FC = () => {
+export const LoginPage: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // 카카오 로그인 로직을 바로 호출하는 함수
   const handleKakaoLogin = () => {
-    const baseURL = process.env.REACT_APP_API_URL;
-    window.location.href = `${baseURL}/login`; // 백엔드 로그인 로직으로 직접 이동
+    window.location.href = `${baseURL}/login`;
   };
 
   const handleNext = () => {
@@ -42,9 +42,7 @@ export const OnboardingPage: React.FC = () => {
   };
 
   const handlePrev = () => {
-    setCurrentImageIndex((prev) =>
-      prev === 0 ? onboardingImages.length - 1 : prev - 1
-    );
+    setCurrentImageIndex((prev) => (prev === 0 ? onboardingImages.length - 1 : prev - 1));
   };
 
   return (
@@ -54,25 +52,24 @@ export const OnboardingPage: React.FC = () => {
           <OnboardingImage src={onboardingImages[currentImageIndex]} alt="Onboarding" />
         </ImageContainer>
         <DescriptionContainer>
-          <ArrowButton direction="left" onClick={handlePrev}>{"<"}</ArrowButton>
+          <ArrowButton direction="left" onClick={handlePrev}>
+            {'<'}
+          </ArrowButton>
           <TextContent>
             <Title>{onboardingDescriptions[currentImageIndex].title}</Title>
             <Subtitle>{onboardingDescriptions[currentImageIndex].subtitle}</Subtitle>
-
-            {/* 카카오 로그인 버튼에 handleKakaoLogin 함수 연결 */}
             <KakaoLoginButton onClick={handleKakaoLogin} />
-
             <Description>카카오 로그인으로 밥팅을 시작해보세요!</Description>
           </TextContent>
-          <ArrowButton direction="right" onClick={handleNext}>{">"}</ArrowButton>
+          <ArrowButton direction="right" onClick={handleNext}>
+            {'>'}
+          </ArrowButton>
         </DescriptionContainer>
       </ContentWrapper>
     </OnboardingContainer>
   );
 };
 
-
-//css
 const Description = styled.p`
   font-size: 0.9rem;
   color: #888;
@@ -96,11 +93,11 @@ const OnboardingContainer = styled.div`
 
 const ContentWrapper = styled.div`
   display: flex;
-  max-width: 1200px; 
+  max-width: 1200px;
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  
+
   @media (max-width: 768px) {
     flex-direction: column;
   }
@@ -110,7 +107,7 @@ const ImageContainer = styled.div`
   flex: 1;
   display: flex;
   justify-content: center;
-  
+
   @media (max-width: 768px) {
     order: -1;
     margin-bottom: 1rem;
@@ -118,10 +115,10 @@ const ImageContainer = styled.div`
 `;
 
 const OnboardingImage = styled.img`
-  max-width: 500px; 
+  max-width: 500px;
   width: 100%;
   height: auto;
-  
+
   @media (max-width: 768px) {
     max-width: 100%;
   }
@@ -133,7 +130,7 @@ const DescriptionContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  
+
   @media (max-width: 768px) {
     justify-content: center;
     text-align: center;
@@ -143,12 +140,12 @@ const DescriptionContainer = styled.div`
 const TextContent = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center; 
-  justify-content: center; 
+  align-items: center;
+  justify-content: center;
   max-width: 380px;
   margin-bottom: 2rem;
   text-align: center;
-  
+
   @media (max-width: 768px) {
     max-width: 100%;
   }
@@ -158,7 +155,6 @@ const Title = styled.h2`
   font-size: 2rem;
   color: #333;
   margin-bottom: 1rem;
-  font-family: 'Pretendard', sans-serif;
   font-weight: 700;
 `;
 
@@ -166,8 +162,7 @@ const Subtitle = styled.p`
   font-size: 1.2rem;
   color: #555;
   margin-bottom: 2rem;
-  font-family: 'Pretendard', sans-serif;
-  line-height: 1.6; 
+  line-height: 1.6;
   word-break: break-word;
 `;
 
@@ -177,8 +172,8 @@ const ArrowButton = styled.button<ArrowButtonProps>`
   font-size: 2rem;
   cursor: pointer;
   position: absolute;
-  top: 50%; 
+  top: 50%;
   transform: translateY(-50%);
-  left: ${props => props.direction === 'left' ? '10px' : 'auto'};
-  right: ${props => props.direction === 'right' ? '10px' : 'auto'};
+  left: ${(props) => (props.direction === 'left' ? '10px' : 'auto')};
+  right: ${(props) => (props.direction === 'right' ? '10px' : 'auto')};
 `;
