@@ -11,6 +11,7 @@ import { getPermissionPath } from '../hooks/useGetPermission';
 import { getRecommendMenuPath } from '../hooks/useGetRecommandMenu';
 import { joinMeetingPath } from '../hooks/useJoinMeeting';
 import { getLeaveGroupPath } from '../hooks/useLeaveGroup';
+import { getUpdatePersonalPath } from '../hooks/useUpdatePersonal';
 
 export const meetingMockHandler = [
   rest.get(getMyMeetingsPath(), (_, res, ctx) => {
@@ -55,6 +56,9 @@ export const meetingMockHandler = [
   }),
   rest.get(getConfirmInfoPath({ meetingId: '1' }), (_, res, ctx) => {
     return res(ctx.json(CONFIRMED_INFO_MOCK));
+  }),
+  rest.put(getUpdatePersonalPath('1'), (_, res, ctx) => {
+    return res(ctx.json(PERSONAL_MEETING_MOCK));
   }),
 ];
 
@@ -334,4 +338,10 @@ const CONFIRMED_INFO_MOCK = {
       longitude: 126.9071166,
     },
   },
+};
+
+const PERSONAL_MEETING_MOCK = {
+  status: 200,
+  message: '모임별 개인 정보 수정 성공',
+  data: null,
 };
