@@ -14,7 +14,7 @@ type EditBtnProps = {
 
 export const EditBtn: React.FC<EditBtnProps> = ({ meetingId }) => {
   const navigate = useNavigate();
-  const { mutate: join } = useUpdatePersonal();
+  const { mutate: updatePersonal } = useUpdatePersonal(meetingId);
   const { meetingData } = useJoinFormContext();
 
   const handleFormSubmit = () => {
@@ -30,18 +30,15 @@ export const EditBtn: React.FC<EditBtnProps> = ({ meetingId }) => {
       return;
     }
 
-    join(
-      { meetingId, personalData },
-      {
-        onSuccess: () => {
-          alert('참여 정보가 성공적으로 전송되었습니다!');
-          navigate(`${RouterPath.group}/${meetingId}`);
-        },
-        onError: () => {
-          alert('참여 정보 전송에 실패했습니다.');
-        },
+    updatePersonal(personalData, {
+      onSuccess: () => {
+        alert('참여 정보가 성공적으로 전송되었습니다!');
+        navigate(`${RouterPath.group}/${meetingId}`);
       },
-    );
+      onError: () => {
+        alert('참여 정보 전송에 실패했습니다.');
+      },
+    });
   };
 
   return (
