@@ -97,6 +97,7 @@ export const KakaoMapSearch: React.FC<Props> = ({ keyword, baseLocation = DEFAUL
             <InfoItem
               key={`info-${content}-${lat},${lng}`}
               onClick={() => setSelectedMarker(content)}
+              isSelected={selectedMarker === content}
             >
               <InfoItemContent>{content}</InfoItemContent>
               <Link to={`https://map.kakao.com/link/map/${content},${lat},${lng}`} target="_blank">
@@ -121,8 +122,7 @@ const Info = styled.ul`
   top: 0;
   left: 0;
   z-index: 1;
-  background-color: ${colors.gray};
-  opacity: 0.8;
+  background-color: white;
   padding: 10px;
   border-radius: 5px;
   max-height: ${MAX_HEIGHT}px;
@@ -130,7 +130,7 @@ const Info = styled.ul`
   list-style: none;
 `;
 
-const InfoItem = styled.li`
+const InfoItem = styled.li<{ isSelected: boolean }>`
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -138,10 +138,19 @@ const InfoItem = styled.li`
   cursor: pointer;
   padding: 1.3rem;
   border-radius: 4px;
+
   width: 13rem;
 
+  ${({ isSelected }) =>
+    isSelected &&
+    `
+    border-color: ${colors.primary};
+    background-color: ${colors.primary_half};
+  `}
+
   &:hover {
-    background-color: ${colors.secondary};
+    background-color: ${({ isSelected }) => !isSelected && `${colors.secondary}`};
+    opacity: ${({ isSelected }) => isSelected && 0.8};
   }
 `;
 
