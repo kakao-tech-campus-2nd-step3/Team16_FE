@@ -55,20 +55,19 @@ export const JoinCalendar: React.FC<JoinCalendarProps> = ({
   }));
 
   const handleSelectTime = (start: string, end: string) => {
-    const [selectedStart, selectedEnd] = [new Date(start), new Date(end)].sort(
-      (a, b) => a.getTime() - b.getTime(),
-    );
+    const selectedStart = new Date(start);
+    const selectedEnd = new Date(end);
 
     if (isOverlapping(selectedStart, selectedEnd, displayedEvents)) {
       alert('공통 일정은 선택할 수 없습니다.');
       return;
     }
 
-    const updatedEvents = toggleSelectedEvent(
-      selectedStart.toISOString(),
-      selectedEnd.toISOString(),
-      selectedEvents,
-    );
+    const localStartTime = `${selectedStart.getFullYear()}-${String(selectedStart.getMonth() + 1).padStart(2, '0')}-${String(selectedStart.getDate()).padStart(2, '0')}T${String(selectedStart.getHours()).padStart(2, '0')}:${String(selectedStart.getMinutes()).padStart(2, '0')}:00`;
+    const localEndTime = `${selectedEnd.getFullYear()}-${String(selectedEnd.getMonth() + 1).padStart(2, '0')}-${String(selectedEnd.getDate()).padStart(2, '0')}T${String(selectedEnd.getHours()).padStart(2, '0')}:${String(selectedEnd.getMinutes()).padStart(2, '0')}:00`;
+
+    const updatedEvents = toggleSelectedEvent(localStartTime, localEndTime, selectedEvents);
+
     setSelectedEvents(updatedEvents);
 
     const newTimes: SelectedTime[] = updatedEvents.map((event) => ({
@@ -77,8 +76,8 @@ export const JoinCalendar: React.FC<JoinCalendarProps> = ({
       timeZone: 'Asia/Seoul',
       allDay: false,
     }));
+
     setTimes(newTimes);
-    console.log('selecetedEvnents: ', selectedEvents);
   };
 
   return (

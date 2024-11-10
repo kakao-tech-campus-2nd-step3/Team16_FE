@@ -7,6 +7,7 @@ import { Button } from '@/components/common/Button';
 import { useJoinFormContext } from '@/hooks/useJoinFormContext';
 import { RouterPath } from '@/routes/path';
 import type { JoinMeetingRequest } from '@/types';
+import { mergeTimes } from '@/utils/calendar/mergeTimes';
 
 type EditBtnProps = {
   meetingId: string;
@@ -18,9 +19,11 @@ export const EditBtn: React.FC<EditBtnProps> = ({ meetingId }) => {
   const { meetingData } = useJoinFormContext();
 
   const handleFormSubmit = () => {
-    const { times, preferences, nonPreferences } = meetingData;
+    const { preferences, nonPreferences } = meetingData;
+
+    const mergedTimes = mergeTimes(meetingData.times);
     const personalData: JoinMeetingRequest = {
-      times,
+      times: mergedTimes,
       preferences,
       nonPreferences,
     };
