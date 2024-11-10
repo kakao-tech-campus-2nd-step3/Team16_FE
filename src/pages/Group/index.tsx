@@ -26,12 +26,6 @@ export const GroupPage = () => {
       <GroupConfirmedInfo />
       <Spacing height={20} />
 
-      <GroupConfirmedInfo />
-      <Spacing height={20} />
-
-      <GroupConfirmedInfo />
-      <Spacing height={20} />
-
       <GroupConfirmedMap />
       <Spacing height={80} />
 
