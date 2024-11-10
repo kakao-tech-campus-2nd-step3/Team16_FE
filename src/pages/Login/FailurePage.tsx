@@ -5,7 +5,7 @@ import { KakaoLoginButton } from '@/components/common/Button/kakaoLogin';
 
 export const FailurePage: React.FC = () => {
   const login = () => {
-    window.location.href = `${baseURL}/loginn`;
+    window.location.href = `${baseURL}/login`;
   };
 
   return (

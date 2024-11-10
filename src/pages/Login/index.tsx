@@ -87,7 +87,7 @@ const OnboardingContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f4f4f9;
+  background-color: #ffffff;
   padding: 2rem;
 `;
 
