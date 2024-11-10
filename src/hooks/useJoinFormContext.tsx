@@ -29,7 +29,6 @@ export const JoinFormProvider: React.FC<{
     if (initialData) {
       setData(initialData);
     }
-    console.log('initialData: ', initialData);
   }, [initialData]);
 
   const setTimes = (times: SelectedTime[]) => {
@@ -37,7 +36,6 @@ export const JoinFormProvider: React.FC<{
       ...prevData,
       times,
     }));
-    console.log('times: ', times);
   };
 
   const setPreferences = (preferences: number[]) => {

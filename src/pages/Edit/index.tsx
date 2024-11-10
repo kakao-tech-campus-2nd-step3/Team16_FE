@@ -33,12 +33,17 @@ export const EditPage: React.FC = () => {
     const timeSlots: SelectedTime[] = [];
 
     for (let time = startTime; time < endTime; time += 30 * 60 * 1000) {
-      timeSlots.push({
-        startAt: new Date(time).toISOString(),
-        endAt: new Date(time + 30 * 60 * 1000).toISOString(),
+      const slot = {
+        startAt: new Date(time)
+          .toLocaleString('sv-SE', { timeZone: 'Asia/Seoul' })
+          .replace(' ', 'T'),
+        endAt: new Date(time + 30 * 60 * 1000)
+          .toLocaleString('sv-SE', { timeZone: 'Asia/Seoul' })
+          .replace(' ', 'T'),
         timeZone: event.time_zone,
         allDay: event.all_day,
-      });
+      };
+      timeSlots.push(slot);
     }
 
     return timeSlots;

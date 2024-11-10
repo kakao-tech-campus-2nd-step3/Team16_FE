@@ -1,5 +1,4 @@
 import type { Event } from '@/service/Calendar/types';
-import { colors } from '@/styles/variants';
 
 export const toggleSelectedEvent = (
   start: string,
@@ -11,24 +10,25 @@ export const toggleSelectedEvent = (
   const endTimestamp = new Date(end).getTime();
 
   for (let time = startTimestamp; time < endTimestamp; time += 30 * 60 * 1000) {
-    const timeStart = new Date(time).toISOString();
-    const timeEnd = new Date(time + 30 * 60 * 1000).toISOString();
+    const timeStart = new Date(time);
+    const timeEnd = new Date(time + 30 * 60 * 1000);
+
+    const localStartTime = `${timeStart.getFullYear()}-${String(timeStart.getMonth() + 1).padStart(2, '0')}-${String(timeStart.getDate()).padStart(2, '0')}T${String(timeStart.getHours()).padStart(2, '0')}:${String(timeStart.getMinutes()).padStart(2, '0')}:00`;
+    const localEndTime = `${timeEnd.getFullYear()}-${String(timeEnd.getMonth() + 1).padStart(2, '0')}-${String(timeEnd.getDate()).padStart(2, '0')}T${String(timeEnd.getHours()).padStart(2, '0')}:${String(timeEnd.getMinutes()).padStart(2, '0')}:00`;
 
     const existingIndex = updatedEvents.findIndex(
-      (event) => event.start === timeStart && event.end === timeEnd,
+      (event) => event.start === localStartTime && event.end === localEndTime,
     );
 
     if (existingIndex !== -1) {
       updatedEvents.splice(existingIndex, 1);
     } else {
       updatedEvents.push({
-        id: `selected-${timeStart}`,
+        id: `selected-${localStartTime}`,
         title: '',
-        date: timeStart,
-        start: timeStart,
-        end: timeEnd,
-        backgroundColor: colors.primary_half,
-        borderColor: colors.primary_half,
+        date: localStartTime,
+        start: localStartTime,
+        end: localEndTime,
         allDay: false,
       });
     }

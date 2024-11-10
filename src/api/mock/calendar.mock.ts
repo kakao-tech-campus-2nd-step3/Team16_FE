@@ -102,7 +102,7 @@ const PERSONAL_EVENTS_MOCK = {
       },
       {
         start_at: '2024-10-10T09:00:00',
-        end_at: '2024-10-11T10:00:00',
+        end_at: '2024-10-10T15:00:00',
         time_zone: 'Asia/Seoul',
         all_day: false,
       },
