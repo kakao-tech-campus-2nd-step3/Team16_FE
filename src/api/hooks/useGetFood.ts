@@ -11,14 +11,14 @@ const getFoodsByCategory = async (category: string): Promise<Food[]> => {
     throw new Error("Invalid category");
   }
   const response = await fetchWithToken.get(getFoodsByCategoryPath(category));
-  return response.data.data || [];
+  return response.data || [];
 };
 
-export const useGetFoodsByCategory = (category: string | undefined) => {
+export const useGetFoodsByCategory = (category: string | undefined, options?: { enabled: boolean }) => {
   return useQuery<Food[]>({
     queryKey: ['foods', category],
     queryFn: () => getFoodsByCategory(category!),
-    enabled: !!category && category !== 'undefined',
+    enabled: options?.enabled ?? !!category,
     staleTime: 1000 * 60 * 60,
   });
 };
