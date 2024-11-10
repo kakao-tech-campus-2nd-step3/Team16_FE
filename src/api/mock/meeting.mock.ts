@@ -325,7 +325,13 @@ const CONFIRMED_INFO_MOCK = {
     confirmedFood: {
       foodId: 1001,
       category: '한식',
-      name: '불고기',
+      name: '고기',
+    },
+    baseLocation: {
+      locationId: 18577297,
+      address: '전남대학교',
+      latitude: 35.1755091,
+      longitude: 126.9071166,
     },
   },
 };

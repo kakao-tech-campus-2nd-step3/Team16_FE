@@ -1,6 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 
 import { useConfirm } from '@/api/hooks/useConfirm';
+import { useGetConfirmInfo } from '@/api/hooks/useGetConfirmInfo';
 import { Button } from '@/components/common/Button';
 import { useGetMeetingId } from '@/hooks/useGetMeetingId';
 
@@ -9,6 +10,7 @@ export const ConfirmBtn: React.FC = () => {
   const { watch } = useFormContext();
   const { confirmDateTime, confirmFoodId } = watch();
 
+  const { refetch, data } = useGetConfirmInfo({ meetingId });
   const { mutate } = useConfirm();
 
   const onClick = () => {
@@ -26,8 +28,7 @@ export const ConfirmBtn: React.FC = () => {
       {
         onSuccess: () => {
           alert('확정이 완료되었습니다.');
-          // TODO: 확정 정보 쿼리 캐싱 제거문으로 수정
-          window.location.reload();
+          refetch();
         },
         onError: () => alert('확정에 실패했습니다.'),
       },
@@ -35,7 +36,7 @@ export const ConfirmBtn: React.FC = () => {
   };
 
   return (
-    <Button theme="green" onClick={onClick}>
+    <Button theme="green" onClick={onClick} disabled={Boolean(data)}>
       확정하기
     </Button>
   );

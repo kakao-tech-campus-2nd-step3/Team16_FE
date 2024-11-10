@@ -8,11 +8,10 @@ export interface GeocoderResult {
   };
   road_address?: {
     address_name: string;
-  };
+  } | null;
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
 const { kakao } = window;
 
 type GeocoderStatus = 'OK' | 'ZERO_RESULT' | 'ERROR';

@@ -9,6 +9,12 @@ interface ConfirmInfo {
     category: string;
     name: string;
   };
+  baseLocation: {
+    locationId: number;
+    address: string;
+    latitude: number;
+    longitude: number;
+  };
 }
 
 export const getConfirmInfoPath = ({ meetingId }: { meetingId: string }) =>
