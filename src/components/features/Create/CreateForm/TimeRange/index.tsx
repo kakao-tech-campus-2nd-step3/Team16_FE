@@ -25,12 +25,14 @@ export const TimeRange: React.FC = () => {
     if (date) {
       const selectedTime = date.toTimeString().slice(0, 8);
 
-      const endDate = new Date(date);
-      endDate.setHours(endDate.getHours() + 1);
-      const newEndTime = endDate.toTimeString().slice(0, 8);
+      if (endTime && selectedTime >= endTime) {
+        const endDate = new Date(date);
+        endDate.setHours(endDate.getHours() + 1);
+        const newEndTime = endDate.toTimeString().slice(0, 8);
+        setValue('endTime', newEndTime);
+      }
 
       setValue('startTime', selectedTime);
-      setValue('endTime', newEndTime);
     }
   };
 
@@ -38,12 +40,14 @@ export const TimeRange: React.FC = () => {
     if (date) {
       const selectedTime = date.toTimeString().slice(0, 8);
 
-      const startDate = new Date(date);
-      startDate.setHours(startDate.getHours() - 1);
-      const newStartTime = startDate.toTimeString().slice(0, 8);
+      if (startTime && selectedTime <= startTime) {
+        const startDate = new Date(date);
+        startDate.setHours(startDate.getHours() - 1);
+        const newStartTime = startDate.toTimeString().slice(0, 8);
+        setValue('startTime', newStartTime);
+      }
 
       setValue('endTime', selectedTime);
-      setValue('startTime', newStartTime);
     }
   };
 
