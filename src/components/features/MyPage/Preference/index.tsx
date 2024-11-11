@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
-import { useAddPreferenceFood } from '@/api/hooks/useAddFoodPreference'
-import {useDeletePreferenceFood } from '@/api/hooks/useDeleteFoodPreference'
+import { useAddPreferenceFood } from '@/api/hooks/useAddPreferenceFood'
+import { useDeletePreferenceFood } from '@/api/hooks/useDeletePreference'
 import { useGetPreferenceFoods } from '@/api/hooks/useGetPreferenceFoods';
 import { FoodPreferenceSection } from '@/components/common/Food/FoodPreferenceSection';
 import type { Food } from '@/types';

@@ -1,9 +1,9 @@
 import { rest } from 'msw';
 
-import { getAddPreferenceFoodPath } from '../hooks/useAddFoodPreference';
-import { getAddNonPreferenceFoodPath } from '../hooks/useAddFoodPreference';
-import { getDeletePreferenceFoodPath } from '../hooks/useDeleteFoodPreference';
-import { getDeleteNonPreferenceFoodPath } from '../hooks/useDeleteFoodPreference';
+import { getAddNonPreferenceFoodPath } from '../hooks/useAddNonPreferenceFood';
+import { getAddPreferenceFoodPath } from '../hooks/useAddPreferenceFood';
+import { getDeleteNonPreferenceFoodPath } from '../hooks/useDeleteNonPreference';
+import { getDeletePreferenceFoodPath } from '../hooks/useDeletePreference';
 import { getCategoryPath } from '../hooks/useGetCategory';
 import { getFoodsByCategoryPath } from '../hooks/useGetFood';
 import { getNonPreferencePath } from '../hooks/useGetNonPreferenceFoods';

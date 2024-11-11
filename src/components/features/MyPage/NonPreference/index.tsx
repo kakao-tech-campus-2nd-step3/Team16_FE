@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
-import { useAddNonPreferenceFood } from '@/api/hooks/useAddFoodPreference';
-import { useDeleteNonPreferenceFood } from '@/api/hooks/useDeleteFoodPreference';
+import { useAddNonPreferenceFood } from '@/api/hooks/useAddNonPreferenceFood';
+import { useDeleteNonPreferenceFood } from '@/api/hooks/useDeleteNonPreference';
 import { useGetNonPreferenceFoods } from '@/api/hooks/useGetNonPreferenceFoods';
 import { FoodPreferenceSection } from '@/components/common/Food/FoodPreferenceSection';
 import type { Food } from '@/types';
