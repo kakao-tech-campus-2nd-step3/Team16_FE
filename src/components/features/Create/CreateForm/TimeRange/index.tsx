@@ -11,8 +11,8 @@ import type { CreateMeetingRequest } from '@/types';
 export const TimeRange: React.FC = () => {
   const { setValue, watch } = useFormContext<CreateMeetingRequest>();
 
-  const startTime = watch('startTime');
-  const endTime = watch('endTime');
+  const startTime = watch('startTime')?.slice(0, 5);
+  const endTime = watch('endTime')?.slice(0, 5);
 
   const selectedStartTime = startTime
     ? new Date(`1970-01-01T${startTime}:00`)
@@ -23,13 +23,27 @@ export const TimeRange: React.FC = () => {
 
   const handleStartTimeChange = (date: Date | null) => {
     if (date) {
-      setValue('startTime', date.toTimeString().slice(0, 5));
+      const selectedTime = date.toTimeString().slice(0, 8);
+
+      const endDate = new Date(date);
+      endDate.setHours(endDate.getHours() + 1);
+      const newEndTime = endDate.toTimeString().slice(0, 8);
+
+      setValue('startTime', selectedTime);
+      setValue('endTime', newEndTime);
     }
   };
 
   const handleEndTimeChange = (date: Date | null) => {
     if (date) {
-      setValue('endTime', date.toTimeString().slice(0, 5));
+      const selectedTime = date.toTimeString().slice(0, 8);
+
+      const startDate = new Date(date);
+      startDate.setHours(startDate.getHours() - 1);
+      const newStartTime = startDate.toTimeString().slice(0, 8);
+
+      setValue('endTime', selectedTime);
+      setValue('startTime', newStartTime);
     }
   };
 
