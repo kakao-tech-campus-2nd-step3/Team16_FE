@@ -2,24 +2,25 @@ import 'react-datepicker/dist/react-datepicker.css';
 import '../custom-datepicker.css';
 
 import styled from '@emotion/styled';
-import React from 'react';
+import React, { useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import { useFormContext } from 'react-hook-form';
 
 import type { CreateMeetingRequest } from '@/types';
 
 export const TimeRange: React.FC = () => {
-  const { setValue, watch } = useFormContext<CreateMeetingRequest>();
+  const { setValue, getValues, watch } = useFormContext<CreateMeetingRequest>();
 
-  const startTime = watch('startTime')?.slice(0, 5);
-  const endTime = watch('endTime')?.slice(0, 5);
+  useEffect(() => {
+    if (!getValues('startTime')) setValue('startTime', '09:00:00');
+    if (!getValues('endTime')) setValue('endTime', '18:00:00');
+  }, [setValue, getValues]);
 
-  const selectedStartTime = startTime
-    ? new Date(`1970-01-01T${startTime}:00`)
-    : new Date(`1970-01-01T09:00:00`);
-  const selectedEndTime = endTime
-    ? new Date(`1970-01-01T${endTime}:00`)
-    : new Date(`1970-01-01T18:00:00`);
+  const startTime = watch('startTime') || '09:00:00';
+  const endTime = watch('endTime') || '18:00:00';
+
+  const selectedStartTime = new Date(`1970-01-01T${startTime}`);
+  const selectedEndTime = new Date(`1970-01-01T${endTime}`);
 
   const handleStartTimeChange = (date: Date | null) => {
     if (date) {
