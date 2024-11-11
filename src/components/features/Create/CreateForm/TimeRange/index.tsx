@@ -26,7 +26,6 @@ const FormGroup = styled.div`
 `;
 
 const FormLabel = styled.label`
-  font-family: 'Pretendard', sans-serif;
   font-weight: 600;
   font-size: 1.25rem;
   display: block;
@@ -41,7 +40,6 @@ const TimeRangeContainer = styled.div`
 const TimeInput = styled.input`
   flex: 1;
   padding: 10px;
-  font-family: 'Pretendard', sans-serif;
   font-size: 0.9rem;
   border: 1px solid lightgray;
   border-radius: 7px;

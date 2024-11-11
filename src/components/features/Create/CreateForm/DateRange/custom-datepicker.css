@@ -1,7 +1,9 @@
+@import '@/styles/variants.css';
+
 :root {
   --black: #2f2f2f;
-  --green: #698474;
-  --lightgreen: #b4c1b9;
+  --green: var(--primary-color);
+  --lightgreen: var(--primary-color-half);
 }
 
 .react-datepicker__input-container input {
