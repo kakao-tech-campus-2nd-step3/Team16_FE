@@ -13,9 +13,6 @@ export const TimeRange: React.FC = () => {
   const startTime = watch('startTime');
   const endTime = watch('endTime');
 
-  console.log('startTime :', startTime);
-  console.log('endTime :', endTime);
-
   const selectedStartTime = startTime
     ? new Date(`1970-01-01T${startTime}:00`)
     : new Date(`1970-01-01T09:00:00`);
