@@ -1,8 +1,3 @@
-export interface Coordinates {
-  lat: number;
-  lng: number;
-}
-
 export interface AddressInfo {
   address: string;
   roadAddress: string | null;

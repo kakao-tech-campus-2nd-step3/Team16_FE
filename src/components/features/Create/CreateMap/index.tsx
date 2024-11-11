@@ -3,33 +3,48 @@ import { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import { usePlaceSearch } from '@/api/hooks/usePlaceSearch';
-import { useGeocoder } from '@/hooks/useGeocoder';
-import { useGeolocation } from '@/hooks/useGeolocation';
-import { useKakaoMap } from '@/hooks/useKakaoMap';
+import { CircleMap } from '@/service/KakaoMap/CircleMap';
+import { useGeocoder } from '@/service/KakaoMap/hooks/useGeocoder';
+import { useGeolocation } from '@/service/KakaoMap/hooks/useGeolocation';
+import type { Coordinates } from '@/service/KakaoMap/types';
 import { breakpoints } from '@/styles/variants';
 import type { CreateMeetingRequest } from '@/types';
-import type { Coordinates } from '@/types';
 
 export const CreateMap: React.FC = () => {
   const { setValue } = useFormContext<CreateMeetingRequest>();
   const userLocation: Coordinates | null = useGeolocation();
-  const coordinates: Coordinates | null = useKakaoMap('map', userLocation);
-  const addressInfo = useGeocoder(coordinates);
+  const addressInfo = useGeocoder(userLocation);
   const placeInfo = usePlaceSearch(addressInfo?.address || null);
 
   useEffect(() => {
-    if (placeInfo) {
+    if (userLocation) {
       setValue('baseLocation', {
-        location_id: +placeInfo.location_id,
-        name: placeInfo.name,
-        address: placeInfo.address,
-        latitude: coordinates?.lat || 0,
-        longitude: coordinates?.lng || 0,
+        location_id: placeInfo?.location_id ? +placeInfo.location_id : 0,
+        name: placeInfo?.name || '',
+        address: placeInfo?.address || '',
+        latitude: userLocation.lat,
+        longitude: userLocation.lng,
       });
     }
-  }, [placeInfo, setValue, coordinates?.lat, coordinates?.lng]);
+  }, [userLocation, setValue, placeInfo]);
 
-  return <MapContainer id="map" />;
+  const handleMapClick = (coordinates: Coordinates) => {
+    setValue('baseLocation', {
+      location_id: placeInfo?.location_id ? +placeInfo.location_id : 0,
+      name: placeInfo?.name || '',
+      address: placeInfo?.address || '',
+      latitude: coordinates.lat,
+      longitude: coordinates.lng,
+    });
+  };
+
+  return (
+    <MapContainer>
+      {userLocation && (
+        <CircleMap containerId="map" defaultPosition={userLocation} onClick={handleMapClick} />
+      )}
+    </MapContainer>
+  );
 };
 
 const MapContainer = styled.div`

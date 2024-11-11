@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import type { AddressInfo, Coordinates } from '@/types';
+import type { AddressInfo } from '@/types';
+
+import type { Coordinates } from '../types';
 
 export interface GeocoderResult {
   address: {
