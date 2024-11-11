@@ -4,7 +4,7 @@ import type { Food } from '@/types';
 
 import { baseURL, fetchWithToken } from '../instance';
 
-export const getFoodsByCategoryPath = (category: string) => `${baseURL}/foods?category=${category}`;
+export const getFoodsByCategoryPath = (category: string = '') => `${baseURL}/foods?category=${category}`;
 
 const getFoodsByCategory = async (category: string): Promise<Food[]> => {
   if (!category || category === 'undefined') {

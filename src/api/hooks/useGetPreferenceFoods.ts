@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { baseURL, fetchWithToken } from '@/api/instance';
 
-const getPreferencePath = () => `${baseURL}/preferences`;
+export const getPreferencePath = () => `${baseURL}/preferences`;
 
 export const getPreferenceFoods = async () => {
   const response = await fetchWithToken.get(getPreferencePath());
