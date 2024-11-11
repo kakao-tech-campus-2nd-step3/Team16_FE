@@ -6,28 +6,32 @@ import { JoinBtn } from '@/components/features/Join/JoinBtn';
 import { JoinCalendar } from '@/components/features/Join/JoinCalendar';
 import { JoinFood } from '@/components/features/Join/JoinFood';
 import { JoinTitle } from '@/components/features/Join/JoinTitle';
+import { JoinFormProvider } from '@/hooks/useJoinFormContext';
 
 export const JoinPage: React.FC = () => {
   const { meetingId } = useParams<{ meetingId: string }>();
   const { data: meetingInfo, isLoading } = useGetMeetingInfo(meetingId || '');
 
-  if (isLoading || !meetingInfo) {
+  if (isLoading || !meetingInfo || !meetingId) {
     return <div>Loading...</div>;
   }
 
   const { title, startDate, endDate, startTime, endTime } = meetingInfo;
 
   return (
-    <Container gap="40px">
-      <JoinTitle title={title} />
-      <JoinCalendar
-        startDate={startDate}
-        endDate={endDate}
-        startTime={startTime}
-        endTime={endTime}
-      />
-      <JoinFood />
-      <JoinBtn />
-    </Container>
+    <JoinFormProvider>
+      <Container gap="40px">
+        <JoinTitle title={title} />
+        <JoinCalendar
+          meetingId={meetingId}
+          startDate={startDate}
+          endDate={endDate}
+          startTime={startTime}
+          endTime={endTime}
+        />
+        <JoinFood />
+        <JoinBtn meetingId={meetingId} />
+      </Container>
+    </JoinFormProvider>
   );
 };

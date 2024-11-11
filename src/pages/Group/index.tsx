@@ -1,22 +1,37 @@
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 import { Spacing } from '@/components/common/layouts/Spacing';
+import { GroupCalendar } from '@/components/features/Group/GroupCalendar';
 import { GroupCollectionMenuSection } from '@/components/features/Group/GroupCollectedMenuSection';
-import { GroupLeavtBtn } from '@/components/features/Group/GroupLeaveBtn';
+import { GroupConfirmedInfo } from '@/components/features/Group/GroupConfirmedInfo';
+import { GroupLeaveBtn } from '@/components/features/Group/GroupLeaveBtn';
+import { GroupLinkBtn } from '@/components/features/Group/GroupLinkBtn';
 import { GroupParticipantsSection } from '@/components/features/Group/GroupParticipantsSection';
+import { GroupTitle } from '@/components/features/Group/GroupTitle';
 import { vars } from '@/styles';
 
 export const GroupPage = () => {
   return (
     <Wrapper>
-      {/* title */}
+      <GroupTitle>
+        <LinkWrapper>
+          <GroupLinkBtn />
+          <Link to="/edit">입력 정보 수정하기 &rarr;</Link>
+        </LinkWrapper>
+      </GroupTitle>
+      <Spacing height={20} />
+      <GroupConfirmedInfo />
+      <Spacing height={60} />
       <GroupParticipantsSection />
-      {/* calendar */}
-      <Spacing height={40} />
+      <Spacing height={80} />
+      <GroupCalendar />
+      <Spacing height={80} />
       <GroupCollectionMenuSection />
       <Positioner>
-        <GroupLeavtBtn />
+        <GroupLeaveBtn />
       </Positioner>
+      <Spacing height={40} />
     </Wrapper>
   );
 };
@@ -31,4 +46,11 @@ const Positioner = styled.div`
   display: flex;
   justify-content: end;
   align-items: center;
+`;
+
+const LinkWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 `;

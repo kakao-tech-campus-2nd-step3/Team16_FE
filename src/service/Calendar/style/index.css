@@ -25,13 +25,3 @@
 .fc .fc-highlight {
   background-color: var(--primary-color-half);
 }
-
-.weekly .fc-event {
-  background-color: lightgray !important;
-  border-color: lightgray !important;
-  color: transparent !important;
-}
-
-.fc {
-  font-family: 'Pretendard', sans-serif;
-}

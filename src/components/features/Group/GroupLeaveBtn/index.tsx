@@ -5,7 +5,7 @@ import { Button } from '@/components/common/Button';
 import { useGetMeetingId } from '@/hooks/useGetMeetingId';
 import { RouterPath } from '@/routes/path';
 
-export const GroupLeavtBtn: React.FC = () => {
+export const GroupLeaveBtn: React.FC = () => {
   const meetingId = useGetMeetingId();
   const navigate = useNavigate();
 

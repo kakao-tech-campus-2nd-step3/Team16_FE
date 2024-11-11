@@ -1,25 +1,30 @@
 import styled from '@emotion/styled';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
+import { useGetUserProfile } from '@/api/hooks/useGetUser';
 import { Logo } from '@/components/common/Icons/Logo';
-
-import { HeaderUserIcon } from '../../User/HeaderUserIcon';
+import { HeaderUserIcon } from '@/components/features/User/HeaderUserIcon';
+import { RouterPath } from '@/routes/path';
 
 type Props = {
   height?: number;
 };
 
 export const Header: React.FC<Props> = ({ height }) => {
-  const router = useNavigate();
+  const navigate = useNavigate(); // useNavigate 훅을 사용하여 navigate를 선언
+
+  useGetUserProfile();
 
   const handleLogoClick = () => {
-    router('/');
+    navigate(RouterPath.home);
   };
 
   return (
     <StyledHeader height={height}>
       <Logo width="14rem" onClick={handleLogoClick} />
-      <HeaderUserIcon />
+      <Link to={RouterPath.mypage}>
+        <HeaderUserIcon />
+      </Link>
     </StyledHeader>
   );
 };

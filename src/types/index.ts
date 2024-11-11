@@ -45,3 +45,35 @@ export interface MeetingInfo {
   startTime: string;
   endTime: string;
 }
+
+export interface CalendarEvent {
+  start: string;
+  end: string;
+}
+
+export interface GroupEvent {
+  start: string;
+  end: string;
+  backgroundColor: string;
+  borderColor: string;
+  display: string;
+}
+
+export interface SelectedTime {
+  startAt: string;
+  endAt: string;
+  timeZone: string;
+  allDay: boolean;
+}
+
+export interface JoinMeetingRequest {
+  preferences: number[];
+  nonPreferences: number[];
+  times: SelectedTime[];
+}
+
+export interface JoinMeetingResponse {
+  status: number;
+  message: string;
+  data: null;
+}

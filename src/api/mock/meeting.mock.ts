@@ -1,11 +1,15 @@
 import { rest } from 'msw';
 
+import { getConfirmPath } from '../hooks/useConfirm';
 import { createMeetingPath } from '../hooks/useCreateMeeting';
 import { getCategoryPath } from '../hooks/useGetCategory';
+import { getConfirmInfoPath } from '../hooks/useGetConfirmInfo';
 import { getMeetingInfoPath } from '../hooks/useGetMeetingInfo';
 import { getMyMeetingsPath } from '../hooks/useGetMyMeetings';
 import { getparticipantPath } from '../hooks/useGetParticipant';
+import { getPermissionPath } from '../hooks/useGetPermission';
 import { getRecommendMenuPath } from '../hooks/useGetRecommandMenu';
+import { joinMeetingPath } from '../hooks/useJoinMeeting';
 import { getLeaveGroupPath } from '../hooks/useLeaveGroup';
 
 export const meetingMockHandler = [
@@ -39,6 +43,18 @@ export const meetingMockHandler = [
   }),
   rest.get(getMeetingInfoPath({ meetingId: '1' }), (_, res, ctx) => {
     return res(ctx.json(MEETING_INFO_MOCK));
+  }),
+  rest.get(getPermissionPath({ meetingId: '1' }), (_, res, ctx) => {
+    return res(ctx.json(PERMISSION_MOCK));
+  }),
+  rest.post(getConfirmPath({ meetingId: '1' }), (_, res, ctx) => {
+    return res(ctx.json({ message: '확정 성공' }));
+  }),
+  rest.post(joinMeetingPath({ meetingId: '1' }), (_, res, ctx) => {
+    return res(ctx.json(JOIN_MEETING_MOCK));
+  }),
+  rest.get(getConfirmInfoPath({ meetingId: '1' }), (_, res, ctx) => {
+    return res(ctx.json(CONFIRMED_INFO_MOCK));
   }),
 ];
 
@@ -236,13 +252,43 @@ const RECOMMEND_MENU_MOCK = {
       category: '술집',
       name: '닭발',
     },
+    {
+      food_id: 10,
+      category: '양식',
+      name: '피자',
+    },
+    {
+      food_id: 11,
+      category: '양식',
+      name: '함박스테이크',
+    },
+    {
+      food_id: 12,
+      category: '카페,디저트',
+      name: '티라미수',
+    },
+    {
+      food_id: 13,
+      category: '카페,디저트',
+      name: '마카롱',
+    },
+    {
+      food_id: 14,
+      category: '술집',
+      name: '치킨',
+    },
+    {
+      food_id: 15,
+      category: '기타',
+      name: '닭발',
+    },
   ],
 };
 
 const MENU_CATEGORY_MOCK = {
   status: 200,
   message: '카테고리 조회 성공',
-  data: ['한식', '중식', '일식', '양식', '카페,디저트', '술집'],
+  data: ['한식', '중식', '일식', '양식', '카페,디저트', '술집', '기타'],
 };
 
 const MEETING_INFO_MOCK = {
@@ -254,5 +300,32 @@ const MEETING_INFO_MOCK = {
     endDate: '2024-10-12',
     startTime: '09:00:00',
     endTime: '15:00:00',
+  },
+};
+
+const PERMISSION_MOCK = {
+  status: 200,
+  message: '권한 조회 성공',
+  data: {
+    isHost: true,
+  },
+};
+
+const JOIN_MEETING_MOCK = {
+  status: 200,
+  message: '모임 참여 성공',
+  data: null,
+};
+
+const CONFIRMED_INFO_MOCK = {
+  status: 200,
+  message: '모임 확정 날짜, 확정 음식 조회 성공',
+  data: {
+    confirmedDateTime: '2022-10-28T03:00:00Z',
+    confirmedFood: {
+      foodId: 1001,
+      category: '한식',
+      name: '불고기',
+    },
   },
 };
