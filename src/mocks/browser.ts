@@ -2,7 +2,6 @@ import { setupWorker } from 'msw';
 
 import { calendarMockHandler } from '@/api/mock/calendar.mock';
 import { foodMockHandler } from '@/api/mock/food.mock'
-import { handlers } from '@/api/mock/handler';
 import { meetingMockHandler } from '@/api/mock/meeting.mock';
 import { userMockhandler } from '@/api/mock/user.mock';
 
@@ -11,5 +10,4 @@ export const worker = setupWorker(
   ...meetingMockHandler,
   ...calendarMockHandler,
   ...foodMockHandler,
-  ...handlers,
 );
