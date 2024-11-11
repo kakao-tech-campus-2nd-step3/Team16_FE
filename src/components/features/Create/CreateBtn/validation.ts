@@ -1,21 +1,11 @@
+import dayjs from 'dayjs';
+
 import type { CreateMeetingRequest } from '@/types';
 
 export const validateCreateForm = (
   values: CreateMeetingRequest,
 ): { errorMessage?: string; isValid: boolean } => {
   const { baseLocation, durationTime, endDate, endTime, startDate, startTime, title } = values;
-
-  const [startHour, startMinute] = startTime.split(':').map(Number);
-  const [endHour, endMinute] = endTime.split(':').map(Number);
-
-  const timeDifferenceInHours = endHour - startHour + (endMinute - startMinute) / 60;
-
-  if (durationTime > timeDifferenceInHours) {
-    return {
-      errorMessage: '소요 시간은 시간 범위보다 작게 설정해주세요.',
-      isValid: false,
-    };
-  }
 
   if (!title || title.trim() === '') {
     return {
@@ -38,7 +28,7 @@ export const validateCreateForm = (
     };
   }
 
-  if (startDate > endDate) {
+  if (dayjs(startDate).isAfter(dayjs(endDate))) {
     return {
       errorMessage: '종료일은 시작일보다 이후여야 합니다.',
       isValid: false,
@@ -59,9 +49,22 @@ export const validateCreateForm = (
     };
   }
 
-  if (startTime >= endTime) {
+  if (dayjs(`1970-01-01T${startTime}`).isAfter(dayjs(`1970-01-01T${endTime}`))) {
     return {
       errorMessage: '종료 시간은 시작 시간보다 이후여야 합니다.',
+      isValid: false,
+    };
+  }
+
+  const timeDifferenceInHours = dayjs(`1970-01-01T${endTime}`).diff(
+    dayjs(`1970-01-01T${startTime}`),
+    'hour',
+    true,
+  );
+
+  if (durationTime > timeDifferenceInHours) {
+    return {
+      errorMessage: '소요 시간은 시간 범위 내로 설정해주세요.',
       isValid: false,
     };
   }

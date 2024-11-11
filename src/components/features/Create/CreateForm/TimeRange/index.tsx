@@ -2,6 +2,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import '../custom-datepicker.css';
 
 import styled from '@emotion/styled';
+import dayjs from 'dayjs';
 import React, { useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import { useFormContext } from 'react-hook-form';
@@ -9,46 +10,42 @@ import { useFormContext } from 'react-hook-form';
 import type { CreateMeetingRequest } from '@/types';
 
 export const TimeRange: React.FC = () => {
-  const { setValue, getValues, watch } = useFormContext<CreateMeetingRequest>();
+  const { setValue, watch } = useFormContext<CreateMeetingRequest>();
+
+  const startTime = watch('startTime');
+  const endTime = watch('endTime');
 
   useEffect(() => {
-    if (!getValues('startTime')) setValue('startTime', '09:00:00');
-    if (!getValues('endTime')) setValue('endTime', '18:00:00');
-  }, [setValue, getValues]);
+    if (!startTime) setValue('startTime', '09:00:00');
+    if (!endTime) setValue('endTime', '18:00:00');
+  }, [setValue, startTime, endTime]);
 
-  const startTime = watch('startTime') || '09:00:00';
-  const endTime = watch('endTime') || '18:00:00';
+  const selectedStartTime = dayjs(`1970-01-01T${startTime}`).toDate();
+  const selectedEndTime = dayjs(`1970-01-01T${endTime}`).toDate();
 
-  const selectedStartTime = new Date(`1970-01-01T${startTime}`);
-  const selectedEndTime = new Date(`1970-01-01T${endTime}`);
-
-  const handleStartTimeChange = (date: Date | null) => {
+  const handleTimeChange = (date: Date | null, type: 'start' | 'end') => {
     if (date) {
-      const selectedTime = date.toTimeString().slice(0, 8);
+      const selectedTime = dayjs(date).format('HH:mm:ss');
 
-      if (endTime && selectedTime >= endTime) {
-        const endDate = new Date(date);
-        endDate.setHours(endDate.getHours() + 1);
-        const newEndTime = endDate.toTimeString().slice(0, 8);
-        setValue('endTime', newEndTime);
+      if (type === 'start') {
+        if (
+          endTime &&
+          dayjs(`1970-01-01T${selectedTime}`).isAfter(dayjs(`1970-01-01T${endTime}`))
+        ) {
+          const newEndTime = dayjs(date).add(1, 'hour').format('HH:mm:ss');
+          setValue('endTime', newEndTime);
+        }
+        setValue('startTime', selectedTime);
+      } else {
+        if (
+          startTime &&
+          dayjs(`1970-01-01T${selectedTime}`).isBefore(dayjs(`1970-01-01T${startTime}`))
+        ) {
+          const newStartTime = dayjs(date).subtract(1, 'hour').format('HH:mm:ss');
+          setValue('startTime', newStartTime);
+        }
+        setValue('endTime', selectedTime);
       }
-
-      setValue('startTime', selectedTime);
-    }
-  };
-
-  const handleEndTimeChange = (date: Date | null) => {
-    if (date) {
-      const selectedTime = date.toTimeString().slice(0, 8);
-
-      if (startTime && selectedTime <= startTime) {
-        const startDate = new Date(date);
-        startDate.setHours(startDate.getHours() - 1);
-        const newStartTime = startDate.toTimeString().slice(0, 8);
-        setValue('startTime', newStartTime);
-      }
-
-      setValue('endTime', selectedTime);
     }
   };
 
@@ -58,10 +55,9 @@ export const TimeRange: React.FC = () => {
       <TimeRangeContainer>
         <DatePicker
           selected={selectedStartTime}
-          onChange={handleStartTimeChange}
+          onChange={(date) => handleTimeChange(date, 'start')}
           showTimeSelect
           showTimeSelectOnly
-          showTimeCaption={false}
           timeIntervals={30}
           dateFormat="HH:mm"
           timeFormat="HH:mm"
@@ -69,10 +65,9 @@ export const TimeRange: React.FC = () => {
         <TimeSeparator>~</TimeSeparator>
         <DatePicker
           selected={selectedEndTime}
-          onChange={handleEndTimeChange}
+          onChange={(date) => handleTimeChange(date, 'end')}
           showTimeSelect
           showTimeSelectOnly
-          showTimeCaption={false}
           timeIntervals={30}
           dateFormat="HH:mm"
           timeFormat="HH:mm"
