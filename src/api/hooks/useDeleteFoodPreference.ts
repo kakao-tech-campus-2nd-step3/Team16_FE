@@ -1,22 +1,32 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
-import { fetchWithToken } from '../instance';
+import { baseURL, fetchWithToken } from '../instance';
 
-export const useDeleteFoodPreference = (type: 'preferred' | 'disliked') => {
-  const queryClient = useQueryClient();
-  const queryKey = [type === 'preferred' ? 'preferredFoods' : 'dislikedFoods'];
+export const getDeletePreferenceFoodPath = () => `${baseURL}/preferences`;
+export const getDeleteNonPreferenceFoodPath = () => `${baseURL}/non-preferences`;
 
-  const deleteFood = useMutation({
-    mutationFn: async (foodId: number) => {
-      const response = await fetchWithToken.delete(`/api/${type === 'preferred' ? 'preferences' : 'non-preferences'}`, {
-        data: { foodId },
-      });
-      return response.data;
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey });
-    },
+const deletePreferenceFood = async (foodId: number) => {
+  const response = await fetchWithToken.delete(getDeletePreferenceFoodPath(), {
+    data: { foodId },
   });
+  return response.data;
+};
 
-  return deleteFood;
+const deleteNonPreferenceFood = async (foodId: number) => {
+  const response = await fetchWithToken.delete(getDeleteNonPreferenceFoodPath(), {
+    data: { foodId },
+  });
+  return response.data;
+};
+
+export const useDeletePreferenceFood = () => {
+  return useMutation({
+    mutationFn: deletePreferenceFood,
+  });
+};
+
+export const useDeleteNonPreferenceFood = () => {
+  return useMutation({
+    mutationFn: deleteNonPreferenceFood,
+  });
 };
