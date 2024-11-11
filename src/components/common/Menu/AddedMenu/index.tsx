@@ -3,12 +3,12 @@ import React from 'react';
 
 import { colors } from '@/styles/variants';
 
-type DefaultMenuProps = {
+type AddedMenuProps = {
   menuName: string;
   onDelete: () => void;
 };
 
-export const AddedMenu: React.FC<DefaultMenuProps> = ({ menuName, onDelete }) => {
+export const AddedMenu: React.FC<AddedMenuProps> = ({ menuName, onDelete }) => {
   return (
     <MenuContainer>
       <MenuText>{menuName}</MenuText>
