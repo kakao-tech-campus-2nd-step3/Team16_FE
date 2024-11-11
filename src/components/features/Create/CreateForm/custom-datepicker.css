@@ -1,11 +1,5 @@
 @import '@/styles/variants.css';
 
-:root {
-  --black: #2f2f2f;
-  --green: var(--primary-color);
-  --lightgreen: var(--primary-color-half);
-}
-
 .react-datepicker__input-container input {
   width: 100%;
   flex: 1;
@@ -42,7 +36,7 @@
 }
 
 .react-datepicker__current-month {
-  color: var(--black);
+  color: #2f2f2f;
   font-size: 16px;
 }
 
@@ -55,20 +49,46 @@
 .react-datepicker__day--keyboard-selected:not([aria-disabled='true']):hover,
 .react-datepicker__day--in-selecting-range:not([aria-disabled='true']):hover,
 .react-datepicker__day--in-range:not([aria-disabled='true']):hover {
-  background-color: var(--green);
+  background-color: var(--primary-color);
 }
 
 .react-datepicker__day--in-range,
 .react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range) {
-  background-color: var(--lightgreen);
+  background-color: var(--primary-color-half);
 }
 
 .react-datepicker__day--keyboard-selected {
-  background-color: var(--green);
+  background-color: var(--primary-color);
   color: white;
 }
 
 .react-datepicker__day--selected:not([aria-disabled='true']):hover {
-  background-color: darken(var(--green), 5%);
+  background-color: var(--primary-color-hover);
+  color: white;
+}
+
+.react-datepicker__time-container
+  .react-datepicker__time
+  .react-datepicker__time-box
+  ul.react-datepicker__time-list
+  li.react-datepicker__time-list-item--selected {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.react-datepicker__time-container
+  .react-datepicker__time
+  .react-datepicker__time-box
+  ul.react-datepicker__time-list
+  li:hover {
+  background-color: var(--primary-color-half);
+}
+
+.react-datepicker__time-container
+  .react-datepicker__time
+  .react-datepicker__time-box
+  ul.react-datepicker__time-list
+  li.react-datepicker__time-list-item--selected:hover {
+  background-color: var(--primary-color-hover);
   color: white;
 }

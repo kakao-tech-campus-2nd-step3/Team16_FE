@@ -37,6 +37,7 @@ const FormSelect = styled.select`
   width: 100%;
   padding: 10px;
   font-size: 0.9rem;
+  font-family: 'Pretendard', sans-serif;
   border: 1px solid lightgray;
   border-radius: 7px;
   color: darkgray;

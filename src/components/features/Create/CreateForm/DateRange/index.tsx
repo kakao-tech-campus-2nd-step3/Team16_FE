@@ -1,5 +1,5 @@
 import 'react-datepicker/dist/react-datepicker.css';
-import './custom-datepicker.css';
+import '../custom-datepicker.css';
 
 import styled from '@emotion/styled';
 import React from 'react';
