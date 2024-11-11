@@ -1,10 +1,9 @@
-// FoodSelector/index.ts
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
 
 import { useGetCategory } from '@/api/hooks/useGetCategory';
 import { useGetFoodsByCategory } from '@/api/hooks/useGetFood';
-import { DefaultMenu } from '@/components/common/Menu/DefaultMenu';
+import SelectableMenu from '@/components/common/Menu/SelectableMenu';
 import { colors } from '@/styles/variants';
 import type { Food } from '@/types';
 
@@ -40,43 +39,65 @@ export const CategoryDropdownMenu: React.FC<Props> = ({ onFoodSelect, onClose })
   };
 
   return (
-    <Container>
-      <DropdownContainer>
-        <CategoryDropdown onChange={handleCategoryChange} value={selectedCategory || ''}>
-          <option value="" disabled>
-            카테고리 선택
-          </option>
-          {categories?.map((category) => (
-            <option key={category} value={category}>
-              {category}
+    <ModalBackdrop onClick={onClose}>
+      <ModalContent onClick={(e) => e.stopPropagation()}>
+        <DropdownContainer>
+          <CategoryDropdown onChange={handleCategoryChange} value={selectedCategory || ''}>
+            <option value="" disabled>
+              카테고리 선택
             </option>
+            {categories?.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </CategoryDropdown>
+          <CloseButton onClick={onClose}>닫기</CloseButton>
+        </DropdownContainer>
+
+        <FoodList>
+          {foodsByCategory?.map((food) => (
+            <SelectableMenu
+              key={food.food_id}
+              menuName={food.name}
+              isSelected={selectedFoods.some((selected) => selected.food_id === food.food_id)}
+              onClick={() => handleFoodClick(food)}
+            />
           ))}
-        </CategoryDropdown>
-        <CloseButton onClick={onClose}>닫기</CloseButton>
-      </DropdownContainer>
+        </FoodList>
 
-      <FoodList>
-        {foodsByCategory?.map((food) => (
-          <StyledFoodItem
-            key={food.food_id}
-            onClick={() => handleFoodClick(food)}
-            isSelected={selectedFoods.some((selected) => selected.food_id === food.food_id)}
-          >
-            <DefaultMenu menuName={food.name} />
-          </StyledFoodItem>
-        ))}
-      </FoodList>
-
-      <ConfirmButton onClick={handleConfirmSelection}>선택 완료</ConfirmButton>
-    </Container>
+        <ButtonContainer>
+          <ConfirmButton onClick={handleConfirmSelection}>선택 완료</ConfirmButton>
+        </ButtonContainer>
+      </ModalContent>
+    </ModalBackdrop>
   );
 };
 
-const Container = styled.div`
+// 모달 스타일 컴포넌트
+
+const ModalBackdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+`;
+
+const ModalContent = styled.div`
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
 `;
 
 const DropdownContainer = styled.div`
@@ -111,22 +132,13 @@ const FoodList = styled.div`
   overflow: auto;
 `;
 
-const StyledFoodItem = styled.div<{ isSelected: boolean }>`
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 5px;
-  background-color: ${(props) => (props.isSelected ? `${colors.primary}20` : 'white')}; 
-  color: ${colors.primary}; 
-  border: 1px solid ${colors.primary}; 
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: ${colors.primary_half}; 
-  }
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
 `;
 
 const ConfirmButton = styled.button`
-  margin-top: 10px;
   background-color: ${colors.primary};
   color: white;
   padding: 8px 16px;
