@@ -84,3 +84,7 @@ export interface PersonalEvent {
   time_zone: string;
   all_day: boolean;
 }
+
+export interface PersonalResponse {
+  meeting_personal_times: PersonalEvent[];
+}

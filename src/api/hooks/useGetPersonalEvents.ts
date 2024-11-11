@@ -1,15 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 
-import type { PersonalEvent } from '@/types';
+import type { PersonalResponse } from '@/types';
 
 import { baseURL, fetchWithToken } from '../instance';
 
 export const getPersonalPath = ({ meetingId }: { meetingId: string }) =>
   `${baseURL}/meeting/${meetingId}/personal-event`;
 
-export const getPersonalEvents = async (meetingId: string): Promise<PersonalEvent[]> => {
+export const getPersonalEvents = async (meetingId: string): Promise<PersonalResponse> => {
   const response = await fetchWithToken.get(getPersonalPath({ meetingId }));
-  return response.data.meeting_personal_times;
+  return response.data;
 };
 
 export const useGetPersonalEvents = (meetingId: string) => {
