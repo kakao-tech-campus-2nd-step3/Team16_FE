@@ -11,8 +11,9 @@ export const getNonPreferenceFoods = async () => {
 
 export const useGetNonPreferenceFoods = () => {
   return useQuery({
-    queryKey: ['nonPreferenceFoods'],
+    queryKey: ['preferenceFoods'],
     queryFn: getNonPreferenceFoods,
-    staleTime: 1000 * 60 * 60 * 24, 
+    gcTime: 1000 * 60 * 60 * 24 * 365,
+    staleTime: 1000 * 60 * 60 * 24 * 365,
   });
 };

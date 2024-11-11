@@ -13,6 +13,7 @@ export const useGetPreferenceFoods = () => {
   return useQuery({
     queryKey: ['preferenceFoods'],
     queryFn: getPreferenceFoods,
-    staleTime: 1000 * 60 * 60 * 24,
+    gcTime: 1000 * 60 * 60 * 24 * 365, 
+    staleTime: 1000 * 60 * 60 * 24 * 365,
   });
 };
