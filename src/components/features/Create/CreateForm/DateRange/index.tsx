@@ -19,13 +19,33 @@ export const DateRange: React.FC = () => {
     return date.toISOString().split('T')[0];
   };
 
+  const handleStartDateChange = (date: Date | null) => {
+    const formattedDate = formatDate(date);
+    if (formattedDate) {
+      setValue('startDate', formattedDate);
+      if (endDate && new Date(formattedDate) > new Date(endDate)) {
+        setValue('endDate', formattedDate);
+      }
+    }
+  };
+
+  const handleEndDateChange = (date: Date | null) => {
+    const formattedDate = formatDate(date);
+    if (formattedDate) {
+      setValue('endDate', formattedDate);
+      if (startDate && new Date(formattedDate) < new Date(startDate)) {
+        setValue('startDate', formattedDate);
+      }
+    }
+  };
+
   return (
     <FormGroup>
       <FormLabel>날짜 범위</FormLabel>
       <DateRangeContainer>
         <DatePicker
           selected={startDate ? new Date(startDate) : undefined}
-          onChange={(date: Date | null) => setValue('startDate', formatDate(date))}
+          onChange={handleStartDateChange}
           selectsStart
           startDate={startDate ? new Date(startDate) : undefined}
           endDate={endDate ? new Date(endDate) : undefined}
@@ -36,7 +56,7 @@ export const DateRange: React.FC = () => {
         <DateSeparator>~</DateSeparator>
         <DatePicker
           selected={endDate ? new Date(endDate) : undefined}
-          onChange={(date: Date | null) => setValue('endDate', formatDate(date))}
+          onChange={handleEndDateChange}
           selectsEnd
           startDate={startDate ? new Date(startDate) : undefined}
           endDate={endDate ? new Date(endDate) : undefined}

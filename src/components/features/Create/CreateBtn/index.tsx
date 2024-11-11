@@ -24,17 +24,7 @@ export const CreateBtn: React.FC = () => {
       return;
     }
 
-    const meetingData = {
-      baseLocation: values.baseLocation,
-      title: values.title,
-      startDate: values.startDate?.split('T')[0] || '',
-      endDate: values.endDate?.split('T')[0] || '',
-      durationTime: +values.durationTime,
-      startTime: values.startTime ? `${values.startTime}:00` : '',
-      endTime: values.endTime ? `${values.endTime}:00` : '',
-    };
-
-    createMeeting(meetingData, {
+    createMeeting(values, {
       onSuccess: () => {
         alert('모임이 성공적으로 생성되었습니다!');
         navigate(RouterPath.leader);
