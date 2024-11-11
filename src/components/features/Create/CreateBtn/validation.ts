@@ -5,9 +5,28 @@ export const validateCreateForm = (
 ): { errorMessage?: string; isValid: boolean } => {
   const { baseLocation, durationTime, endDate, endTime, startDate, startTime, title } = values;
 
+  const [startHour, startMinute] = startTime.split(':').map(Number);
+  const [endHour, endMinute] = endTime.split(':').map(Number);
+
+  const timeDifferenceInHours = endHour - startHour + (endMinute - startMinute) / 60;
+
+  if (durationTime > timeDifferenceInHours) {
+    return {
+      errorMessage: '소요 시간은 시간 범위보다 작게 설정해주세요.',
+      isValid: false,
+    };
+  }
+
   if (!title || title.trim() === '') {
     return {
       errorMessage: '모임 이름을 입력해주세요.',
+      isValid: false,
+    };
+  }
+
+  if (title.length > 20) {
+    return {
+      errorMessage: '모임 이름은 20자 이내로 작성해주세요.',
       isValid: false,
     };
   }
