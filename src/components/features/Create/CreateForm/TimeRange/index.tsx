@@ -9,19 +9,23 @@ import { useFormContext } from 'react-hook-form';
 
 import type { CreateMeetingRequest } from '@/types';
 
-export const TimeRange: React.FC = () => {
-  const { setValue, watch } = useFormContext<CreateMeetingRequest>();
+const INITIAL_DATE = '1970-01-01';
+const INITIAL_START = '09:00:00';
+const INITIAL_END = '18:00:00';
 
-  const startTime = watch('startTime');
-  const endTime = watch('endTime');
+export const TimeRange: React.FC = () => {
+  const { setValue, getValues, watch } = useFormContext<CreateMeetingRequest>();
 
   useEffect(() => {
-    if (!startTime) setValue('startTime', '09:00:00');
-    if (!endTime) setValue('endTime', '18:00:00');
-  }, [setValue, startTime, endTime]);
+    if (!getValues('startTime')) setValue('startTime', INITIAL_START);
+    if (!getValues('endTime')) setValue('endTime', INITIAL_END);
+  }, [setValue, getValues]);
 
-  const selectedStartTime = dayjs(`1970-01-01T${startTime}`).toDate();
-  const selectedEndTime = dayjs(`1970-01-01T${endTime}`).toDate();
+  const startTime = watch('startTime') || INITIAL_START;
+  const endTime = watch('endTime') || INITIAL_END;
+
+  const selectedStartTime = dayjs(`${INITIAL_DATE}T${startTime}`).toDate();
+  const selectedEndTime = dayjs(`${INITIAL_DATE}T${endTime}`).toDate();
 
   const handleTimeChange = (date: Date | null, type: 'start' | 'end') => {
     if (date) {
@@ -30,7 +34,7 @@ export const TimeRange: React.FC = () => {
       if (type === 'start') {
         if (
           endTime &&
-          dayjs(`1970-01-01T${selectedTime}`).isAfter(dayjs(`1970-01-01T${endTime}`))
+          dayjs(`1970-01-01T${selectedTime}`).isAfter(dayjs(`${INITIAL_DATE}T${endTime}`))
         ) {
           const newEndTime = dayjs(date).add(1, 'hour').format('HH:mm:ss');
           setValue('endTime', newEndTime);
@@ -39,7 +43,7 @@ export const TimeRange: React.FC = () => {
       } else {
         if (
           startTime &&
-          dayjs(`1970-01-01T${selectedTime}`).isBefore(dayjs(`1970-01-01T${startTime}`))
+          dayjs(`1970-01-01T${selectedTime}`).isBefore(dayjs(`${INITIAL_DATE}T${startTime}`))
         ) {
           const newStartTime = dayjs(date).subtract(1, 'hour').format('HH:mm:ss');
           setValue('startTime', newStartTime);
