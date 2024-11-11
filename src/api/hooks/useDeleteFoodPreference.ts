@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { baseURL, fetchWithToken } from '../instance';
 
@@ -20,13 +20,23 @@ const deleteNonPreferenceFood = async (foodId: number) => {
 };
 
 export const useDeletePreferenceFood = () => {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: deletePreferenceFood,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['preferenceFoods'] });
+    },
   });
 };
 
 export const useDeleteNonPreferenceFood = () => {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: deleteNonPreferenceFood,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['nonPreferenceFoods'] });
+    },
   });
 };
