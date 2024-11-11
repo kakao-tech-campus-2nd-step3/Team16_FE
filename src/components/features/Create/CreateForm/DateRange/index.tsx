@@ -10,6 +10,7 @@ import type { CreateMeetingRequest } from '@/types';
 
 export const DateRange: React.FC = () => {
   const { setValue, watch } = useFormContext<CreateMeetingRequest>();
+
   const startDate = watch('startDate');
   const endDate = watch('endDate');
 
