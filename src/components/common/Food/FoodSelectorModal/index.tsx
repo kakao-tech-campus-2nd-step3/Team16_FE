@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 import { useGetCategory } from '@/api/hooks/useGetCategory';
 import { useGetFoodsByCategory } from '@/api/hooks/useGetFood';
-import SelectableMenu from '@/components/common/Menu/SelectableMenu';
+import { SelectableMenu } from '@/components/common/Menu/SelectableMenu';
 import { colors } from '@/styles/variants';
 import type { Food } from '@/types';
 
@@ -12,7 +12,7 @@ type Props = {
   onClose: () => void;
 };
 
-export const CategoryDropdownMenu: React.FC<Props> = ({ onFoodSelect, onClose }) => {
+export const FoodSelectorModal: React.FC<Props> = ({ onFoodSelect, onClose }) => {
   const { data: categories } = useGetCategory();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedFoods, setSelectedFoods] = useState<Food[]>([]);
@@ -74,8 +74,7 @@ export const CategoryDropdownMenu: React.FC<Props> = ({ onFoodSelect, onClose })
   );
 };
 
-// 모달 스타일 컴포넌트
-
+// 스타일 컴포넌트 정의
 const ModalBackdrop = styled.div`
   position: fixed;
   top: 0;
@@ -146,5 +145,3 @@ const ConfirmButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
 `;
-
-export default CategoryDropdownMenu;
