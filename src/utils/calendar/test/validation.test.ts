@@ -1,42 +1,9 @@
-import { defaultEventToGroupEvent } from '../converter';
-import { checkIsWithinEventRange } from '../index';
+import type { Event } from '@/service/Calendar/types';
 
-describe('Calendar', () => {
-  describe('defaultEventToGroupEvent', () => {
-    it('defaultEvent 타입의 객처 배열을 GroupEvent타입의 객체 배열로 변경한다.', () => {
-      const events = [
-        {
-          start: new Date('2023-01-01T10:00:00Z').toString(),
-          end: new Date('2023-01-01T12:00:00Z').toString(),
-        },
-        {
-          start: new Date('2023-01-02T10:00:00Z').toString(),
-          end: new Date('2023-01-02T12:00:00Z').toString(),
-        },
-      ];
+import { checkIsOverlapping, checkIsWithinEventRange } from '../validation';
 
-      const expected = [
-        {
-          start: new Date('2023-01-01T10:00:00Z').toString(),
-          end: new Date('2023-01-01T12:00:00Z').toString(),
-          backgroundColor: 'rgba(105, 132, 116, 0.7)',
-          borderColor: '698474',
-          display: 'background',
-        },
-        {
-          start: new Date('2023-01-02T10:00:00Z').toString(),
-          end: new Date('2023-01-02T12:00:00Z').toString(),
-          backgroundColor: 'rgba(105, 132, 116, 0.7)',
-          borderColor: '698474',
-          display: 'background',
-        },
-      ];
-
-      const result = defaultEventToGroupEvent(events);
-      expect(result).toEqual(expected);
-    });
-  });
-  describe('isWithinEventRange', () => {
+describe('validation', () => {
+  describe('checkIsWithinEventRange', () => {
     describe('입력받은 clickedTime 시간이 입력받은 event 내에 존재하면', () => {
       it('clickedTime 시간부터 duration까지의 시간이 입력받은 event 내에 존재하면 true를 반환한다.', () => {
         const events = [
@@ -91,6 +58,34 @@ describe('Calendar', () => {
 
       const result = checkIsWithinEventRange({ clickedTime, duration, events });
       expect(result.isValid).toBe(false);
+    });
+  });
+
+  describe('checkIsOverlapping', () => {
+    it('이벤트가 겹치는 경우 true를 반환한다.', () => {
+      const start = new Date('2024-01-01T10:00:00');
+      const end = new Date('2024-01-01T12:00:00');
+      const displayedEvents: Event[] = [
+        {
+          start: new Date('2024-01-01T11:00:00').toISOString(),
+          end: new Date('2024-01-01T13:00:00').toISOString(),
+        } as Event,
+      ];
+
+      expect(checkIsOverlapping(start, end, displayedEvents)).toBe(true);
+    });
+
+    it('이벤트가 겹치지 않는 경우 false를 반환해야 한다', () => {
+      const start = new Date('2024-01-01T10:00:00');
+      const end = new Date('2024-01-01T12:00:00');
+      const displayedEvents: Event[] = [
+        {
+          start: new Date('2024-01-01T13:00:00').toISOString(),
+          end: new Date('2024-01-01T14:00:00').toISOString(),
+        } as Event,
+      ];
+
+      expect(checkIsOverlapping(start, end, displayedEvents)).toBe(false);
     });
   });
 });
