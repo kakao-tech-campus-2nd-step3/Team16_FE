@@ -6,7 +6,7 @@ export const getNonPreferencePath = () => `${baseURL}/non-preferences`;
 
 export const getNonPreferenceFoods = async () => {
   const response = await fetchWithToken.get(getNonPreferencePath()); 
-  return response.data.data || [];
+  return response.data || [];
 };
 
 export const useGetNonPreferenceFoods = () => {

@@ -6,7 +6,7 @@ export const getPreferencePath = () => `${baseURL}/preferences`;
 
 export const getPreferenceFoods = async () => {
   const response = await fetchWithToken.get(getPreferencePath());
-  return response.data.data || [];
+  return response.data || [];
 };
 
 export const useGetPreferenceFoods = () => {
