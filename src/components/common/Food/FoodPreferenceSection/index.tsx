@@ -7,6 +7,8 @@ import { MenuCategory } from '@/components/common/Menu/MenuCategory';
 import { colors } from '@/styles/variants';
 import type { Food } from '@/types';
 
+import { Spacing } from '../../layouts/Spacing';
+
 type Props = {
   title: string;
   foods: Food[];
@@ -84,10 +86,6 @@ const SectionTitle = styled.h3`
   user-select: none;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid ${colors.gray};
-`;
-
-const Spacing = styled.div<{ height: number }>`
-  height: ${({ height }) => height}px;
 `;
 
 const IconButton = styled.button`
