@@ -20,13 +20,11 @@ export const FoodSelectorModal: React.FC<Props> = ({ selectedFoods, onFoodSelect
     enabled: !!selectedCategory,
   });
 
-  // 검색어 상태 및 핸들러
   const [searchTerm, setSearchTerm] = useState('');
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
 
-  // 검색어를 기준으로 음식 목록 필터링
   const filteredFoods = foodsByCategory?.filter((food) =>
     food.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -36,10 +34,7 @@ export const FoodSelectorModal: React.FC<Props> = ({ selectedFoods, onFoodSelect
   };
 
   const handleFoodClick = (food: Food) => {
-    const isAlreadySelected = selectedFoods.some((selected) => selected.food_id === food.food_id);
-    if (!isAlreadySelected) {
-      onFoodSelect(food); // 선택된 음식을 상위 컴포넌트로 전달
-    }
+    onFoodSelect(food);
   };
 
   return (
@@ -59,13 +54,14 @@ export const FoodSelectorModal: React.FC<Props> = ({ selectedFoods, onFoodSelect
           <CloseButton onClick={onClose}>닫기</CloseButton>
         </DropdownContainer>
 
-        {/* 검색창 추가 */}
-        <SearchInput
-          type="text"
-          placeholder="검색어를 입력하세요"
-          value={searchTerm}
-          onChange={handleSearchChange}
-        />
+        {selectedCategory && (
+          <SearchInput
+            type="text"
+            placeholder="검색어를 입력하세요"
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+        )}
 
         <FoodList>
           {filteredFoods?.map((food) => (

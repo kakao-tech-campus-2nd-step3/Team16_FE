@@ -9,7 +9,6 @@ import { getFoodsByCategoryPath } from '../hooks/useGetFood';
 import { getNonPreferencePath } from '../hooks/useGetNonPreferenceFoods';
 import { getPreferencePath } from '../hooks/useGetPreferenceFoods';
 
-
 export const foodMockHandler = [
   rest.get(getPreferencePath(), (_req, res, ctx) => {
     return res(ctx.json(PREFERENCE_FOOD_MOCK));
@@ -111,13 +110,13 @@ export const foodMockHandler = [
   }),
 ];
 
-//mock
+// mock data
 const PREFERENCE_FOOD_MOCK = {
   status: 200,
   message: '선호 음식 조회 성공',
   data: [
-    { food_id: 1, category: '한식', name: '불고기' },
-    { food_id: 2, category: '양식', name: '스테이크' },
+    { food_id: 1001, category: '한식', name: '불고기' },
+    { food_id: 2001, category: '양식', name: '스테이크' },
   ],
 };
 
@@ -125,8 +124,8 @@ const NON_PREFERENCE_FOOD_MOCK = {
   status: 200,
   message: '꺼려하는 음식 조회 성공',
   data: [
-    { food_id: 10, category: '양식', name: '햄버거' },
-    { food_id: 11, category: '중식', name: '탕수육' },
+    { food_id: 2003, category: '양식', name: '햄버거' },
+    { food_id: 3002, category: '중식', name: '탕수육' },
   ],
 };
 
