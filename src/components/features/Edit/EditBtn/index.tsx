@@ -7,7 +7,7 @@ import { Button } from '@/components/common/Button';
 import { useJoinFormContext } from '@/hooks/useJoinFormContext';
 import { RouterPath } from '@/routes/path';
 import type { JoinMeetingRequest } from '@/types';
-import { mergeTimes } from '@/utils/calendar/mergeTimes';
+import { mergeTimes } from '@/utils/calendar';
 
 type EditBtnProps = {
   meetingId: string;

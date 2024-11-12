@@ -1,4 +1,5 @@
-import { defaultEventToGroupEvent, isWithinEventRange } from '../index';
+import { defaultEventToGroupEvent } from '../converter';
+import { checkIsWithinEventRange } from '../index';
 
 describe('Calendar', () => {
   describe('defaultEventToGroupEvent', () => {
@@ -51,7 +52,7 @@ describe('Calendar', () => {
         const clickedTime = new Date('2023-01-01T10:30:00Z');
         const duration = 1;
 
-        const result = isWithinEventRange({ clickedTime, duration, events });
+        const result = checkIsWithinEventRange({ clickedTime, duration, events });
         expect(result.isValid).toBe(true);
         expect(result.event).toEqual(events[0]);
       });
@@ -70,7 +71,7 @@ describe('Calendar', () => {
         const clickedTime = new Date('2023-01-01T11:30:00Z');
         const duration = 2;
 
-        const result = isWithinEventRange({ clickedTime, duration, events });
+        const result = checkIsWithinEventRange({ clickedTime, duration, events });
         expect(result.isValid).toBe(false);
       });
     });
@@ -88,7 +89,7 @@ describe('Calendar', () => {
       const clickedTime = new Date('2023-01-01T09:00:00Z');
       const duration = 1;
 
-      const result = isWithinEventRange({ clickedTime, duration, events });
+      const result = checkIsWithinEventRange({ clickedTime, duration, events });
       expect(result.isValid).toBe(false);
     });
   });

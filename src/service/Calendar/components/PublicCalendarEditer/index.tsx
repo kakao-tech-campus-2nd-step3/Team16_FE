@@ -5,7 +5,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import { useState } from 'react';
 
 import type { GroupEvent } from '@/types';
-import { defaultEventToGroupEvent, isWithinEventRange } from '@/utils/calendar';
+import { checkIsWithinEventRange, defaultEventToGroupEvent } from '@/utils/calendar';
 
 interface CalendarEvent {
   start: string;
@@ -32,7 +32,7 @@ export const PublicCalendarEditer: React.FC<Props> = ({
   const displayedEvents = [...convertedEvents].concat(selectedEvents || []);
 
   const handleTimeSelection = (clickedTime: Date) => {
-    const { isValid, event } = isWithinEventRange({
+    const { isValid, event } = checkIsWithinEventRange({
       clickedTime,
       duration,
       events: convertedEvents,

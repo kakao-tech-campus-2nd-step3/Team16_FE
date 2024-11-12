@@ -1,4 +1,5 @@
-import type { PersonalResponse, SelectedTime } from '@/types';
+import type { Event } from '@/service/Calendar/types';
+import type { CalendarEvent, GroupEvent, PersonalResponse, SelectedTime } from '@/types';
 
 export const convertToInitialTimes = (data: PersonalResponse): SelectedTime[] => {
   return data.meeting_personal_times.flatMap((event) => {
@@ -23,3 +24,23 @@ export const convertToInitialTimes = (data: PersonalResponse): SelectedTime[] =>
     return timeSlots;
   });
 };
+
+export const convertSelectedTimesToEvents = (selectedTimes: SelectedTime[]): Event[] => {
+  return selectedTimes.map((time, index) => ({
+    id: index.toString(),
+    title: '',
+    date: time.startAt,
+    start: time.startAt,
+    end: time.endAt,
+    allDay: time.allDay,
+  }));
+};
+
+export const defaultEventToGroupEvent = (events: CalendarEvent[]): GroupEvent[] =>
+  events.map(({ start, end }) => ({
+    start,
+    end,
+    backgroundColor: 'rgba(105, 132, 116, 0.7)',
+    borderColor: '698474',
+    display: 'background',
+  }));

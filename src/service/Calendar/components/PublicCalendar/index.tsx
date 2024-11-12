@@ -3,7 +3,7 @@ import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 
 import type { CalendarEvent } from '@/types';
-import { defaultEventToGroupEvent } from '@/utils/calendar';
+import { defaultEventToGroupEvent } from '@/utils/calendar/converter';
 
 type Props = {
   events: CalendarEvent[];

@@ -8,7 +8,7 @@ import { JoinCalendar } from '@/components/features/Join/JoinCalendar';
 import { JoinFood } from '@/components/features/Join/JoinFood';
 import { JoinTitle } from '@/components/features/Join/JoinTitle';
 import { JoinFormProvider } from '@/hooks/useJoinFormContext';
-import { convertToInitialTimes } from '@/utils/calendar/convertToInitialTimes';
+import { convertToInitialTimes } from '@/utils/calendar/converter';
 
 export const EditPage: React.FC = () => {
   const { meetingId } = useParams<{ meetingId: string }>();

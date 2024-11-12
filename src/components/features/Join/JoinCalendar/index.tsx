@@ -7,9 +7,11 @@ import { WeeklyCalendar } from '@/service/Calendar';
 import type { Event } from '@/service/Calendar/types';
 import { vars } from '@/styles';
 import type { SelectedTime } from '@/types';
-import { convertSelectedTimesToEvents } from '@/utils/calendar/convertSelectedTimesToEvents';
-import { isOverlapping } from '@/utils/calendar/isOverlapping';
-import { toggleSelectedEvent } from '@/utils/calendar/toggleSelectedEvent';
+import {
+  checkIsOverlapping,
+  convertSelectedTimesToEvents,
+  toggleSelectedEvent,
+} from '@/utils/calendar';
 
 type JoinCalendarProps = {
   meetingId: string;
@@ -58,7 +60,7 @@ export const JoinCalendar: React.FC<JoinCalendarProps> = ({
     const selectedStart = new Date(start);
     const selectedEnd = new Date(end);
 
-    if (isOverlapping(selectedStart, selectedEnd, displayedEvents)) {
+    if (checkIsOverlapping(selectedStart, selectedEnd, displayedEvents)) {
       alert('공통 일정은 선택할 수 없습니다.');
       return;
     }
