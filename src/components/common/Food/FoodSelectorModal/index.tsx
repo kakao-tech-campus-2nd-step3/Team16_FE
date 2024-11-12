@@ -8,14 +8,14 @@ import { colors } from '@/styles/variants';
 import type { Food } from '@/types';
 
 type Props = {
+  selectedFoods: Food[];
   onFoodSelect: (food: Food) => void;
   onClose: () => void;
 };
 
-export const FoodSelectorModal: React.FC<Props> = ({ onFoodSelect, onClose }) => {
+export const FoodSelectorModal: React.FC<Props> = ({ selectedFoods, onFoodSelect, onClose }) => {
   const { data: categories } = useGetCategory();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedFoods, setSelectedFoods] = useState<Food[]>([]);
   const { data: foodsByCategory } = useGetFoodsByCategory(selectedCategory || undefined, {
     enabled: !!selectedCategory,
   });
@@ -26,16 +26,9 @@ export const FoodSelectorModal: React.FC<Props> = ({ onFoodSelect, onClose }) =>
 
   const handleFoodClick = (food: Food) => {
     const isAlreadySelected = selectedFoods.some((selected) => selected.food_id === food.food_id);
-    if (isAlreadySelected) {
-      setSelectedFoods(selectedFoods.filter((selected) => selected.food_id !== food.food_id));
-    } else {
-      setSelectedFoods([...selectedFoods, food]);
+    if (!isAlreadySelected) {
+      onFoodSelect(food); // 선택된 음식을 상위 컴포넌트로 전달
     }
-  };
-
-  const handleConfirmSelection = () => {
-    selectedFoods.forEach((food) => onFoodSelect(food));
-    onClose();
   };
 
   return (
@@ -67,7 +60,7 @@ export const FoodSelectorModal: React.FC<Props> = ({ onFoodSelect, onClose }) =>
         </FoodList>
 
         <ButtonContainer>
-          <ConfirmButton onClick={handleConfirmSelection}>선택 완료</ConfirmButton>
+          <ConfirmButton onClick={onClose}>선택 완료</ConfirmButton>
         </ButtonContainer>
       </ModalContent>
     </ModalBackdrop>

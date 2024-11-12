@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { FoodSelectorModal } from '@/components/common/Food/FoodSelectorModal';
 import { AddedMenu } from '@/components/common/Menu/AddedMenu';
@@ -19,23 +19,25 @@ type Props = {
 
 export const FoodPreferenceSection: React.FC<Props> = ({ title, foods, onAddFood, onDeleteFood, refetchFoods }) => {
   const [showModal, setShowModal] = useState(false);
-  const [selectedFoods, setSelectedFoods] = useState<Food[]>([]);
+  const [selectedFoods, setSelectedFoods] = useState<Food[]>(foods); // 초기 상태를 props로부터 설정
+
+  useEffect(() => {
+    setSelectedFoods(foods); // foods가 업데이트될 때마다 selectedFoods 동기화
+  }, [foods]);
 
   const handleAddFood = (food: Food) => {
-    setSelectedFoods((prevFoods) => [...prevFoods, food]);
-    onAddFood(food);
-    refetchFoods();
+    if (!selectedFoods.some((selected) => selected.food_id === food.food_id)) {
+      setSelectedFoods((prevFoods) => [...prevFoods, food]);
+      onAddFood(food);
+      refetchFoods(); // 추가 후 데이터 새로고침
+    }
   };
 
   const handleDeleteFood = (foodId: number) => {
     setSelectedFoods((prevFoods) => prevFoods.filter((food) => food.food_id !== foodId));
     onDeleteFood(foodId);
-    refetchFoods();
+    refetchFoods(); // 삭제 후 데이터 새로고침
   };
-
-  useEffect(() => {
-    refetchFoods();
-  }, [refetchFoods]);
 
   return (
     <CenteredContainer>
@@ -43,7 +45,7 @@ export const FoodPreferenceSection: React.FC<Props> = ({ title, foods, onAddFood
         <SectionTitle>{title}</SectionTitle>
         <Spacing height={20} />
 
-        <MenuCategory foods={[...foods, ...selectedFoods]}>
+        <MenuCategory foods={selectedFoods}>
           {(food) => (
             <FoodContainer key={food.food_id}>
               <AddedMenu menuName={food.name} onDelete={() => handleDeleteFood(food.food_id)} />
@@ -55,6 +57,7 @@ export const FoodPreferenceSection: React.FC<Props> = ({ title, foods, onAddFood
 
         {showModal && (
           <FoodSelectorModal
+            selectedFoods={selectedFoods}
             onFoodSelect={(food: Food) => handleAddFood(food)}
             onClose={() => setShowModal(false)}
           />
