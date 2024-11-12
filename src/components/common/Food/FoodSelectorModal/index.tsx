@@ -20,6 +20,17 @@ export const FoodSelectorModal: React.FC<Props> = ({ selectedFoods, onFoodSelect
     enabled: !!selectedCategory,
   });
 
+  // 검색어 상태 및 핸들러
+  const [searchTerm, setSearchTerm] = useState('');
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
+  // 검색어를 기준으로 음식 목록 필터링
+  const filteredFoods = foodsByCategory?.filter((food) =>
+    food.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedCategory(event.target.value);
   };
@@ -48,8 +59,16 @@ export const FoodSelectorModal: React.FC<Props> = ({ selectedFoods, onFoodSelect
           <CloseButton onClick={onClose}>닫기</CloseButton>
         </DropdownContainer>
 
+        {/* 검색창 추가 */}
+        <SearchInput
+          type="text"
+          placeholder="검색어를 입력하세요"
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+
         <FoodList>
-          {foodsByCategory?.map((food) => (
+          {filteredFoods?.map((food) => (
             <SelectableMenu
               key={food.food_id}
               menuName={food.name}
@@ -114,6 +133,17 @@ const CloseButton = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
+`;
+
+const SearchInput = styled.input`
+  padding: 8px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 90%;
+  box-sizing: border-box;
+  font-size: 1rem;
 `;
 
 const FoodList = styled.div`
