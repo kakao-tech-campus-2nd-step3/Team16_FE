@@ -1,11 +1,12 @@
 import React from 'react';
-import { KakaoLoginButton } from 'src/components/common/Button/kakaoLogin';
+
+import { baseURL } from '@/api/instance';
+import { KakaoLoginButton } from '@/components/common/Button/kakaoLogin';
 
 export const FailurePage: React.FC = () => {
   const login = () => {
-    const baseURL = process.env.REACT_APP_API_URL
-    window.location.href = `${baseURL}/login`
-  }
+    window.location.href = `${baseURL}/auth/login`;
+  };
 
   return (
     <div>

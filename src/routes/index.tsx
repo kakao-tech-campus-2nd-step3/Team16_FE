@@ -7,10 +7,10 @@ import { GroupPage } from '@/pages/Group';
 import { HomePage } from '@/pages/Home';
 import { JoinPage } from '@/pages/Join';
 import { LeaderPage } from '@/pages/Leader';
+import { LoginPage } from '@/pages/Login';
 import { FailurePage } from '@/pages/Login/FailurePage';
 import { SuccessPage } from '@/pages/Login/SuccessPage';
 import { MyPage } from '@/pages/MyPage';
-import { OnboardingPage } from '@/pages/Onboarding';
 
 import { GuestRoute } from './components/GuestRoute';
 import { HostRoute } from './components/HostRoute';
@@ -72,8 +72,8 @@ const router = createBrowserRouter([
     element: <FailurePage />,
   },
   {
-    path: RouterPath.onboarding,
-    element: <OnboardingPage />,
+    path: RouterPath.login,
+    element: <LoginPage />,
   },
 ]);
 
