@@ -1,4 +1,4 @@
-import { defaultEventToGroupEvent } from '../index';
+import { defaultEventToGroupEvent, isWithinEventRange } from '../index';
 
 describe('Calendar', () => {
   describe('defaultEventToGroupEvent', () => {
@@ -35,8 +35,61 @@ describe('Calendar', () => {
       expect(result).toEqual(expected);
     });
   });
-
   describe('isWithinEventRange', () => {
-    it('', () => {});
+    describe('입력받은 clickedTime 시간이 입력받은 event 내에 존재하면', () => {
+      it('clickedTime 시간부터 duration까지의 시간이 입력받은 event 내에 존재하면 true를 반환한다.', () => {
+        const events = [
+          {
+            start: new Date('2023-01-01T10:00:00Z').toString(),
+            end: new Date('2023-01-01T12:00:00Z').toString(),
+            backgroundColor: 'rgba(105, 132, 116, 0.7)',
+            borderColor: '698474',
+            display: 'background',
+          },
+        ];
+
+        const clickedTime = new Date('2023-01-01T10:30:00Z');
+        const duration = 1;
+
+        const result = isWithinEventRange({ clickedTime, duration, events });
+        expect(result.isValid).toBe(true);
+        expect(result.event).toEqual(events[0]);
+      });
+
+      it('clickedTime 시간부터 duration까지의 시간이 입력받은 event 범위를 벗어나면 false를 반환한다.', () => {
+        const events = [
+          {
+            start: new Date('2023-01-01T10:00:00Z').toString(),
+            end: new Date('2023-01-01T12:00:00Z').toString(),
+            backgroundColor: 'rgba(105, 132, 116, 0.7)',
+            borderColor: '698474',
+            display: 'background',
+          },
+        ];
+
+        const clickedTime = new Date('2023-01-01T11:30:00Z');
+        const duration = 2;
+
+        const result = isWithinEventRange({ clickedTime, duration, events });
+        expect(result.isValid).toBe(false);
+      });
+    });
+    it('clickedTime 시간부터 duration까지의 시간이 입력받은 event 내에 존재하지 않으면 false를 반환한다.', () => {
+      const events = [
+        {
+          start: new Date('2023-01-01T10:00:00Z').toString(),
+          end: new Date('2023-01-01T12:00:00Z').toString(),
+          backgroundColor: 'rgba(105, 132, 116, 0.7)',
+          borderColor: '698474',
+          display: 'background',
+        },
+      ];
+
+      const clickedTime = new Date('2023-01-01T09:00:00Z');
+      const duration = 1;
+
+      const result = isWithinEventRange({ clickedTime, duration, events });
+      expect(result.isValid).toBe(false);
+    });
   });
 });
