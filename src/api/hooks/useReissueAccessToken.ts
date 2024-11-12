@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { baseURL,fetchWithToken } from '@/api/instance';
 import { authLocalStorage } from '@/utils/storage';
 
-export const getReissueTokenPath = () => `${baseURL}/reissue`;
+export const getReissueTokenPath = () => `${baseURL}/auth/access-token`;
 
 // API 호출 함수
 export const reissueAccessToken = async () => {
