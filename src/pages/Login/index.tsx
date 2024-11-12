@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
-import { KakaoLoginButton } from 'src/components/common/Button/kakaoLogin';
 
 import { baseURL } from '@/api/instance';
+import { KakaoLoginButton } from '@/components/common/Button/kakaoLogin';
 
 const onboardingImages = [
   '/assets/images/onboarding/image1.svg',
