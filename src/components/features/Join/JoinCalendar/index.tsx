@@ -20,7 +20,6 @@ type JoinCalendarProps = {
 };
 
 export const JoinCalendar: React.FC<JoinCalendarProps> = ({
-  meetingId,
   startDate,
   endDate,
   startTime,
