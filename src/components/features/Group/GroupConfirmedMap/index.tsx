@@ -1,7 +1,7 @@
 import { useGetConfirmInfo } from '@/api/hooks/Meeting/useGetConfirmInfo';
 import { Spacing } from '@/components/common/layouts/Spacing';
 import { useGetMeetingId } from '@/hooks/useGetMeetingId';
-import { KakaoMapSearch } from '@/service/KakaoMap';
+import { SearchMap } from '@/service/KakaoMap/components/SearchMap';
 
 export const GroupConfirmedMap: React.FC = () => {
   const meetingId = useGetMeetingId();
@@ -24,7 +24,7 @@ export const GroupConfirmedMap: React.FC = () => {
 
   return (
     <section>
-      <KakaoMapSearch
+      <SearchMap
         keyword={name}
         baseLocation={{
           lat: latitude,

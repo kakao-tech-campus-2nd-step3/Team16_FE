@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import { usePlaceSearch } from '@/api/hooks/usePlaceSearch';
-import { CircleMap } from '@/service/KakaoMap/CircleMap';
+import { CircleMap } from '@/service/KakaoMap/components/CircleMap';
 import { useGeocoder } from '@/service/KakaoMap/hooks/useGeocoder';
 import { useGeolocation } from '@/service/KakaoMap/hooks/useGeolocation';
 import type { Coordinates } from '@/service/KakaoMap/types';

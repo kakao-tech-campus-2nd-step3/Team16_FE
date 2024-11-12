@@ -13,3 +13,9 @@ export interface MarkerProps {
   map: kakao.maps.Map;
   position: Coordinates;
 }
+
+export interface CircleMapProps {
+  containerId: string;
+  defaultPosition: Coordinates;
+  onClick?: (coordinates: Coordinates) => void;
+}

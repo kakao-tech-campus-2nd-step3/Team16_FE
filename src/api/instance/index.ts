@@ -39,7 +39,7 @@ const reissueAccessToken = async () => {
     if (response.status === 200) {
       const newAccessToken = response.headers.Authorization?.replace('Bearer ', '');
       if (newAccessToken) {
-        authLocalStorage.set(newAccessToken); 
+        authLocalStorage.set(newAccessToken);
         return newAccessToken;
       }
     }
@@ -65,7 +65,7 @@ fetchWithToken.interceptors.response.use(
     const originalRequest = error.config;
 
     if (error.response && error.response.status === 401) {
-      console.warn("401 Unauthorized: Access token expired or invalid");
+      console.warn('401 Unauthorized: Access token expired or invalid');
 
       try {
         const newAccessToken = await reissueAccessToken();
@@ -79,5 +79,16 @@ fetchWithToken.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );
+
+// kakao API 관련
+export const kakaoBaseURL = 'https://dapi.kakao.com';
+export const KAKAO_API_KEY = process.env.REACT_APP_KAKAO_API_KEY;
+
+export const kakaoAPI = initInstance({
+  baseURL: kakaoBaseURL,
+  headers: {
+    Authorization: `KakaoAK ${KAKAO_API_KEY}`,
+  },
+});

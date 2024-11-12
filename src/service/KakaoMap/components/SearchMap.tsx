@@ -28,7 +28,7 @@ type Props = {
   };
 };
 
-export const KakaoMapSearch: React.FC<Props> = ({ keyword, baseLocation = DEFAULT_CENTER }) => {
+export const SearchMap: React.FC<Props> = ({ keyword, baseLocation = DEFAULT_CENTER }) => {
   const [markers, setMarkers] = useState<Marker[]>([]);
   const [map, setMap] = useState<kakao.maps.Map>();
   const [selectedMarker, setSelectedMarker] = useState<string | null>(null);

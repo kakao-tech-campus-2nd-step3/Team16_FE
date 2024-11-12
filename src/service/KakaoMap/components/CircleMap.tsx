@@ -1,15 +1,9 @@
 import styled from '@emotion/styled';
 import React, { useEffect, useState } from 'react';
 
-import { Circle } from './components/Circle';
-import { Marker } from './components/Marker';
-import type { Coordinates } from './types';
-
-type CircleMapProps = {
-  containerId: string;
-  defaultPosition: Coordinates;
-  onClick?: (coordinates: Coordinates) => void;
-};
+import type { CircleMapProps, Coordinates } from '../types';
+import { Circle } from './Circle';
+import { Marker } from './Marker';
 
 export const CircleMap: React.FC<CircleMapProps> = ({ containerId, defaultPosition, onClick }) => {
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
