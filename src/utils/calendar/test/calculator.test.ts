@@ -1,6 +1,6 @@
 import type { SelectedTime } from '@/types';
 
-import { sortTimes } from '../calculator';
+import { mergeEndTimes, sortTimes } from '../calculator';
 
 describe('calculator', () => {
   describe('sortTimes', () => {
@@ -82,6 +82,35 @@ describe('calculator', () => {
       sortTimes(times);
 
       expect(times).toEqual(original);
+    });
+
+    describe('mergeEndTimes', () => {
+      it('현재 종료 시간과 다음 종료 시간 중 더 늦은 시간을 반환한다', () => {
+        const currentEnd = new Date('2023-12-02T11:00:00').getTime();
+        const nextEndAt = '2023-12-02T12:00:00';
+
+        const result = mergeEndTimes(currentEnd, nextEndAt);
+
+        expect(result).toBe('2023-12-02T12:00:00');
+      });
+
+      it('현재 종료 시간이 더 늦은 경우 현재 종료 시간을 반환한다', () => {
+        const currentEnd = new Date('2023-12-02T13:00:00').getTime();
+        const nextEndAt = '2023-12-02T12:00:00';
+
+        const result = mergeEndTimes(currentEnd, nextEndAt);
+
+        expect(result).toBe('2023-12-02T13:00:00');
+      });
+
+      it('동일한 시간이 입력되면 해당 시간을 반환한다', () => {
+        const currentEnd = new Date('2023-12-02T12:00:00').getTime();
+        const nextEndAt = '2023-12-02T12:00:00';
+
+        const result = mergeEndTimes(currentEnd, nextEndAt);
+
+        expect(result).toBe('2023-12-02T12:00:00');
+      });
     });
   });
 });
