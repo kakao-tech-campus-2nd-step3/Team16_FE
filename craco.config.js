@@ -21,6 +21,18 @@ module.exports = {
       },
       transformIgnorePatterns: ['/node_modules/(?!(axios|@tanstack|react-query)/)'],
       testEnvironment: 'jsdom',
+      collectCoverage: true,
+      collectCoverageFrom: [
+        'src/**/*.{js,jsx,ts,tsx}',
+        '!src/**/*.d.ts',
+        '!src/index.tsx',
+        '!src/reportWebVitals.ts',
+        '!src/setupTests.ts',
+      ],
+      coverageDirectory: 'coverage',
+      coverageReporters: ['text', 'lcov', 'clover'],
+      verbose: true,
+      testMatch: ['**/*.test.ts', '**/*.test.tsx'],
     },
   },
 };
