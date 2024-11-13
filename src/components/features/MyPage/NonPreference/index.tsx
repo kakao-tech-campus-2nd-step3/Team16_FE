@@ -1,41 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { useAddNonPreferenceFood } from '@/api/hooks/useAddNonPreferenceFood';
 import { useDeleteNonPreferenceFood } from '@/api/hooks/useDeleteNonPreference';
-import { useGetPreferenceFoods } from '@/api/hooks/useGetPreferenceFoods';
+import { useGetNonPreferenceFoods } from '@/api/hooks/useGetNonPreferenceFoods';
 import { FoodPreferenceSection } from '@/components/common/Food/FoodPreferenceSection';
 import { FoodSelectorModal } from '@/components/common/Food/FoodSelectorModal';
-import type { Food } from '@/types';
+import { useFoodPreferences } from '@/hooks/useFoodPreferences';
 
 export const NonPreferenceSection: React.FC = () => {
-  const { data: preferredFoods, isLoading, isError } = useGetPreferenceFoods();
+  const { data: nonPreferredFoods, isLoading, isError } = useGetNonPreferenceFoods();
   const addFoodNonPreference = useAddNonPreferenceFood();
   const deleteFoodNonPreference = useDeleteNonPreferenceFood();
   const [showModal, setShowModal] = useState(false);
-  const [selectedFoods, setSelectedFoods] = useState<Food[]>(preferredFoods || []);
 
-  useEffect(() => {
-    if (preferredFoods) {
-      setSelectedFoods(preferredFoods);
-    }
-  }, [preferredFoods]);
-
-  const handleFoodSelect = (food: Food) => {
-    const isAlreadySelected = selectedFoods.some((selected) => selected.food_id === food.food_id);
-
-    if (isAlreadySelected) {
-      setSelectedFoods((prevFoods) => prevFoods.filter((f) => f.food_id !== food.food_id));
-      deleteFoodNonPreference.mutate(food.food_id);
-    } else {
-      setSelectedFoods((prevFoods) => [...prevFoods, food]);
-      addFoodNonPreference.mutate(food);
-    }
-  };
-
-  const handleFoodRemove = (foodId: number) => {
-    setSelectedFoods((prevFoods) => prevFoods.filter((food) => food.food_id !== foodId));
-    deleteFoodNonPreference.mutate(foodId);
-  };
+  const { selectedFoods, handleFoodSelect, handleFoodRemove } = useFoodPreferences({
+    initialFoods: nonPreferredFoods,
+    preferences: [],
+    setPreferences: () => {},
+    onAddFood: (food) => addFoodNonPreference.mutate(food),
+    onRemoveFood: (foodId) => deleteFoodNonPreference.mutate(foodId),
+  });
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error loading preferences</p>;
