@@ -17,7 +17,13 @@ type Props = {
   refetchFoods: () => void;
 };
 
-export const FoodPreferenceSection: React.FC<Props> = ({ title, foods, onAddFood, onDeleteFood, refetchFoods }) => {
+export const FoodPreferenceSection: React.FC<Props> = ({
+  title,
+  foods,
+  onAddFood,
+  onDeleteFood,
+  refetchFoods,
+}) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedFoods, setSelectedFoods] = useState<Food[]>(foods);
 

@@ -5,7 +5,8 @@ import { useGetPersonalEvents } from '@/api/hooks/useGetPersonalEvents';
 import { Container } from '@/components/common/layouts/Container';
 import { EditBtn } from '@/components/features/Edit/EditBtn';
 import { JoinCalendar } from '@/components/features/Join/JoinCalendar';
-import { JoinFood } from '@/components/features/Join/JoinFood';
+import { JoinNonPreferences } from '@/components/features/Join/JoinNonPreferences';
+import { JoinPreferences } from '@/components/features/Join/JoinPreferences';
 import { JoinTitle } from '@/components/features/Join/JoinTitle';
 import { JoinFormProvider } from '@/hooks/useJoinFormContext';
 import { convertToInitialTimes } from '@/utils/calendar/converter';
@@ -37,7 +38,8 @@ export const EditPage: React.FC = () => {
           startTime={startTime}
           endTime={endTime}
         />
-        <JoinFood />
+        <JoinPreferences />
+        <JoinNonPreferences />
         <EditBtn meetingId={meetingId} />
       </Container>
     </JoinFormProvider>

@@ -4,7 +4,8 @@ import { useGetMeetingInfo } from '@/api/hooks/useGetMeetingInfo';
 import { Container } from '@/components/common/layouts/Container';
 import { JoinBtn } from '@/components/features/Join/JoinBtn';
 import { JoinCalendar } from '@/components/features/Join/JoinCalendar';
-import { JoinFood } from '@/components/features/Join/JoinFood';
+import { JoinNonPreferences } from '@/components/features/Join/JoinNonPreferences';
+import { JoinPreferences } from '@/components/features/Join/JoinPreferences';
 import { JoinTitle } from '@/components/features/Join/JoinTitle';
 import { JoinFormProvider } from '@/hooks/useJoinFormContext';
 
@@ -29,7 +30,8 @@ export const JoinPage: React.FC = () => {
           startTime={startTime}
           endTime={endTime}
         />
-        <JoinFood />
+        <JoinPreferences />
+        <JoinNonPreferences />
         <JoinBtn meetingId={meetingId} />
       </Container>
     </JoinFormProvider>
