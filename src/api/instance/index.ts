@@ -1,7 +1,7 @@
 import type { AxiosInstance, AxiosRequestConfig } from 'axios';
 import axios from 'axios';
 
-import { RouterPath } from '@/routes/path';
+import { authLocalStorage } from '@/utils/storage';
 
 export const baseURL = process.env.REACT_APP_BASE_URL;
 
@@ -23,13 +23,38 @@ export const fetchInstance = initInstance({
   baseURL,
 });
 
-// const token = authSessionStorage.get();
-const token = 'token';
+const getAccessToken = () => authLocalStorage.get();
 export const fetchWithToken = initInstance({
   baseURL,
   headers: {
-    Authorization: `Bearer ${token}`,
+    Authorization: `Bearer ${getAccessToken()}`,
   },
+});
+
+const reissueAccessToken = async () => {
+  try {
+    const response = await axios.get(`${baseURL}/auth/access-token`, {
+      withCredentials: true,
+    });
+    if (response.status === 200) {
+      const newAccessToken = response.headers.Authorization?.replace('Bearer ', '');
+      if (newAccessToken) {
+        authLocalStorage.set(newAccessToken); 
+        return newAccessToken;
+      }
+    }
+    throw new Error('Access token is missing in response');
+  } catch (error) {
+    throw new Error('Failed to reissue access token');
+  }
+};
+
+fetchWithToken.interceptors.request.use((config) => {
+  const token = getAccessToken();
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });
 
 fetchWithToken.interceptors.response.use(
@@ -37,19 +62,22 @@ fetchWithToken.interceptors.response.use(
     return response.data;
   },
   async function (error) {
+    const originalRequest = error.config;
+
     if (error.response && error.response.status === 401) {
       console.warn("401 Unauthorized: Access token expired or invalid");
 
       try {
-        // SuccessPage로 리다이렉트하여 토큰 재발급 시도
-        window.location.href = RouterPath.success;
+        const newAccessToken = await reissueAccessToken();
+        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+        return await fetchWithToken(originalRequest);
       } catch (refreshError) {
-        // 재발급 실패 시 백엔드 로그인 페이지로 이동
-        window.location.href =`${baseURL}/login`;
+        console.error('토큰 재발급 실패:', refreshError);
+        window.location.href = `${baseURL}/login`;
+        return Promise.reject(refreshError);
       }
-    } else {
-      // 기타 오류는 기존 방식으로 처리
-      return Promise.reject(error);
     }
+
+    return Promise.reject(error);
   }
 );
