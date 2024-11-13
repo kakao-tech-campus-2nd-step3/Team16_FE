@@ -312,6 +312,7 @@ const PERMISSION_MOCK = {
   message: '권한 조회 성공',
   data: {
     isHost: true,
+    // isHost: false,
   },
 };
 
@@ -324,6 +325,7 @@ const JOIN_MEETING_MOCK = {
 const CONFIRMED_INFO_MOCK = {
   status: 200,
   message: '모임 확정 날짜, 확정 음식 조회 성공',
+  // data: null,
   data: {
     confirmedDateTime: '2022-10-28T03:00:00Z',
     confirmedFood: {
