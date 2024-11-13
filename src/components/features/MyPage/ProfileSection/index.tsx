@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { useGetUserProfile } from '@/api/hooks/useGetUser';
+import { useGetUserProfile } from '@/api/hooks/User/useGetUser';
 import { UserProfileImage } from '@/components/common/User/UserProfileImage';
 
 export const ProfileSection: React.FC = () => {

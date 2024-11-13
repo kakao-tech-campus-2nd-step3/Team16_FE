@@ -5,7 +5,6 @@ import type { Food } from '@/types';
 
 export const getAddNonPreferenceFoodPath = () => `${baseURL}/non-preferences`;
 
-
 const addNonPreferenceFood = async (food: Food) => {
   const response = await fetchWithToken.post(getAddNonPreferenceFoodPath(), {
     foodId: food.food_id,
@@ -20,7 +19,6 @@ export const useAddNonPreferenceFood = () => {
     mutationFn: addNonPreferenceFood,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['nonPreferenceFoods'] });
-
     },
   });
 };

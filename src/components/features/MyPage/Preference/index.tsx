@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { useAddPreferenceFood } from '@/api/hooks/useAddPreferenceFood';
-import { useDeletePreferenceFood } from '@/api/hooks/useDeletePreference';
-import { useGetPreferenceFoods } from '@/api/hooks/useGetPreferenceFoods';
+import { useAddPreferenceFood } from '@/api/hooks/Food/useAddPreferenceFood';
+import { useDeletePreferenceFood } from '@/api/hooks/Food/useDeletePreference';
+import { useGetPreferenceFoods } from '@/api/hooks/Food/useGetPreferenceFoods';
 import { FoodPreferenceSection } from '@/components/common/Food/FoodPreferenceSection';
 import { FoodSelectorModal } from '@/components/common/Food/FoodSelectorModal';
 import { useFoodPreferences } from '@/hooks/useFoodPreferences';

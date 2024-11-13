@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { useGetUserProfile } from '@/api/hooks/useGetUser';
+import { useGetUserProfile } from '@/api/hooks/User/useGetUser';
 import { Logo } from '@/components/common/Icons/Logo';
 import { HeaderUserIcon } from '@/components/features/User/HeaderUserIcon';
 import { RouterPath } from '@/routes/path';
@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const Header: React.FC<Props> = ({ height }) => {
-  const navigate = useNavigate(); // useNavigate 훅을 사용하여 navigate를 선언
+  const navigate = useNavigate();
 
   useGetUserProfile();
 

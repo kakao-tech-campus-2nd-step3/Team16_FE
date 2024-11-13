@@ -1,13 +1,13 @@
 import { rest } from 'msw';
 
-import { getAddNonPreferenceFoodPath } from '../hooks/useAddNonPreferenceFood';
-import { getAddPreferenceFoodPath } from '../hooks/useAddPreferenceFood';
-import { getDeleteNonPreferenceFoodPath } from '../hooks/useDeleteNonPreference';
-import { getDeletePreferenceFoodPath } from '../hooks/useDeletePreference';
-import { getCategoryPath } from '../hooks/useGetCategory';
-import { getFoodsByCategoryPath } from '../hooks/useGetFood';
-import { getNonPreferencePath } from '../hooks/useGetNonPreferenceFoods';
-import { getPreferencePath } from '../hooks/useGetPreferenceFoods';
+import { getAddNonPreferenceFoodPath } from '../hooks/Food/useAddNonPreferenceFood';
+import { getAddPreferenceFoodPath } from '../hooks/Food/useAddPreferenceFood';
+import { getDeleteNonPreferenceFoodPath } from '../hooks/Food/useDeleteNonPreference';
+import { getDeletePreferenceFoodPath } from '../hooks/Food/useDeletePreference';
+import { getCategoryPath } from '../hooks/Food/useGetCategory';
+import { getFoodsByCategoryPath } from '../hooks/Food/useGetFood';
+import { getNonPreferencePath } from '../hooks/Food/useGetNonPreferenceFoods';
+import { getPreferencePath } from '../hooks/Food/useGetPreferenceFoods';
 
 export const foodMockHandler = [
   rest.get(getPreferencePath(), (_req, res, ctx) => {

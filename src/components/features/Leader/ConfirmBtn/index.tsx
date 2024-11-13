@@ -1,7 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 
-import { useConfirm } from '@/api/hooks/useConfirm';
-import { useGetConfirmInfo } from '@/api/hooks/useGetConfirmInfo';
+import { useConfirm } from '@/api/hooks/Meeting/useConfirm';
+import { useGetConfirmInfo } from '@/api/hooks/Meeting/useGetConfirmInfo';
 import { Button } from '@/components/common/Button';
 import { useGetMeetingId } from '@/hooks/useGetMeetingId';
 

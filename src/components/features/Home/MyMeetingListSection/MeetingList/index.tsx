@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-import type { Meeting } from '@/api/hooks/useGetMyMeetings';
+import type { Meeting } from '@/api/hooks/Meeting/useGetMyMeetings';
 import { RouterPath } from '@/routes/path';
 
 type Props = {

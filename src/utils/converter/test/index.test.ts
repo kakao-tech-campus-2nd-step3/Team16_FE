@@ -1,4 +1,4 @@
-import type { Meeting } from '@/api/hooks/useGetMyMeetings';
+import type { Meeting } from '@/api/hooks/Meeting/useGetMyMeetings';
 
 import { convertToLocaleString, convertToMeeting } from '..';
 
