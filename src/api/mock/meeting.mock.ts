@@ -327,7 +327,7 @@ const CONFIRMED_INFO_MOCK = {
   message: '모임 확정 날짜, 확정 음식 조회 성공',
   // data: null,
   data: {
-    confirmedDateTime: '2022-10-28T03:00:00Z',
+    confirmedDateTime: '2024-10-31T03:00:00Z',
     confirmedFood: {
       foodId: 1001,
       category: '한식',
