@@ -29,10 +29,8 @@ export const LeaderPage = () => {
         <Spacing height={20} />
 
         <GroupConfirmedInfo />
-        <Spacing height={20} />
 
         <GroupConfirmedMap />
-        <Spacing height={80} />
 
         <GroupParticipantsSection />
         <Spacing height={80} />

@@ -1,4 +1,5 @@
 import { useGetConfirmInfo } from '@/api/hooks/useGetConfirmInfo';
+import { Spacing } from '@/components/common/layouts/Spacing';
 import { useGetMeetingId } from '@/hooks/useGetMeetingId';
 import { KakaoMapSearch } from '@/service/KakaoMap';
 
@@ -31,6 +32,7 @@ export const GroupConfirmedMap: React.FC = () => {
           lng: longitude,
         }}
       />
+      <Spacing height={80} />
     </section>
   );
 };
