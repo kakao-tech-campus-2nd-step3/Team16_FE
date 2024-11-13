@@ -77,9 +77,3 @@ export interface JoinMeetingResponse {
   message: string;
   data: null;
 }
-
-export interface Food {
-  food_id: number;
-  category: string;
-  name: string;
-}
