@@ -1,77 +1,46 @@
 import styled from '@emotion/styled';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-import { FoodSelectorModal } from '@/components/common/Food/FoodSelectorModal';
-import { AddedMenu } from '@/components/common/Menu/AddedMenu';
 import { MenuCategory } from '@/components/common/Menu/MenuCategory';
 import { colors } from '@/styles/variants';
 import type { Food } from '@/types';
 
 import { Spacing } from '../../layouts/Spacing';
+import { AddedMenu } from '../../Menu/AddedMenu';
 
 type Props = {
   title: string;
   foods: Food[];
-  onAddFood: (food: Food) => void;
   onDeleteFood: (foodId: number) => void;
-  refetchFoods: () => void;
+  onOpenModal: () => void;
 };
 
 export const FoodPreferenceSection: React.FC<Props> = ({
   title,
   foods,
-  onAddFood,
   onDeleteFood,
-  refetchFoods,
+  onOpenModal,
 }) => {
-  const [showModal, setShowModal] = useState(false);
-  const [selectedFoods, setSelectedFoods] = useState<Food[]>(foods);
-
-  useEffect(() => {
-    setSelectedFoods(foods);
-  }, [foods]);
-
-  const handleFoodToggle = (food: Food) => {
-    const isAlreadySelected = selectedFoods.some((selected) => selected.food_id === food.food_id);
-    if (isAlreadySelected) {
-      setSelectedFoods((prevFoods) => prevFoods.filter((f) => f.food_id !== food.food_id));
-      onDeleteFood(food.food_id);
-    } else {
-      setSelectedFoods((prevFoods) => [...prevFoods, food]);
-      onAddFood(food);
-    }
-    refetchFoods();
-  };
-
   return (
     <CenteredContainer>
       <SectionContainer>
         <SectionTitle>{title}</SectionTitle>
         <Spacing height={20} />
 
-        <MenuCategory foods={selectedFoods}>
+        <MenuCategory foods={foods}>
           {(food) => (
             <FoodContainer key={food.food_id}>
-              <AddedMenu menuName={food.name} onDelete={() => handleFoodToggle(food)} />
+              <AddedMenu menuName={food.name} onDelete={() => onDeleteFood(food.food_id)} />
             </FoodContainer>
           )}
         </MenuCategory>
 
-        <IconButton onClick={() => setShowModal(true)}>+</IconButton>
-
-        {showModal && (
-          <FoodSelectorModal
-            selectedFoods={selectedFoods}
-            onFoodSelect={(food: Food) => handleFoodToggle(food)}
-            onClose={() => setShowModal(false)}
-          />
-        )}
+        <IconButton onClick={onOpenModal}>+</IconButton>
       </SectionContainer>
     </CenteredContainer>
   );
 };
 
-// 스타일 컴포넌트 정의
 const CenteredContainer = styled.div`
   display: flex;
   justify-content: center;

@@ -1,33 +1,60 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useAddNonPreferenceFood } from '@/api/hooks/useAddNonPreferenceFood';
 import { useDeleteNonPreferenceFood } from '@/api/hooks/useDeleteNonPreference';
-import { useGetNonPreferenceFoods } from '@/api/hooks/useGetNonPreferenceFoods';
+import { useGetPreferenceFoods } from '@/api/hooks/useGetPreferenceFoods';
 import { FoodPreferenceSection } from '@/components/common/Food/FoodPreferenceSection';
+import { FoodSelectorModal } from '@/components/common/Food/FoodSelectorModal';
 import type { Food } from '@/types';
 
 export const NonPreferenceSection: React.FC = () => {
-  const { data: nonPreferredFoods, isLoading, isError, refetch } = useGetNonPreferenceFoods();
-  const addNonPreferenceFood = useAddNonPreferenceFood();
-  const deleteNonPreferenceFood = useDeleteNonPreferenceFood();
-
-  const handleAddFood = (food: Food) => addNonPreferenceFood.mutate(food);
-  const handleDeleteFood = (foodId: number) => deleteNonPreferenceFood.mutate(foodId);
+  const { data: preferredFoods, isLoading, isError } = useGetPreferenceFoods();
+  const addFoodNonPreference = useAddNonPreferenceFood();
+  const deleteFoodNonPreference = useDeleteNonPreferenceFood();
+  const [showModal, setShowModal] = useState(false);
+  const [selectedFoods, setSelectedFoods] = useState<Food[]>(preferredFoods || []);
 
   useEffect(() => {
-    refetch();
-  }, [refetch]);
+    if (preferredFoods) {
+      setSelectedFoods(preferredFoods);
+    }
+  }, [preferredFoods]);
+
+  const handleFoodSelect = (food: Food) => {
+    const isAlreadySelected = selectedFoods.some((selected) => selected.food_id === food.food_id);
+
+    if (isAlreadySelected) {
+      setSelectedFoods((prevFoods) => prevFoods.filter((f) => f.food_id !== food.food_id));
+      deleteFoodNonPreference.mutate(food.food_id);
+    } else {
+      setSelectedFoods((prevFoods) => [...prevFoods, food]);
+      addFoodNonPreference.mutate(food);
+    }
+  };
+
+  const handleFoodRemove = (foodId: number) => {
+    setSelectedFoods((prevFoods) => prevFoods.filter((food) => food.food_id !== foodId));
+    deleteFoodNonPreference.mutate(foodId);
+  };
 
   if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error loading non-preferences</p>;
+  if (isError) return <p>Error loading preferences</p>;
 
   return (
-    <FoodPreferenceSection
-      title="꺼려하는 음식"
-      foods={nonPreferredFoods || []}
-      onAddFood={handleAddFood}
-      onDeleteFood={handleDeleteFood}
-      refetchFoods={refetch}
-    />
+    <>
+      <FoodPreferenceSection
+        title="꺼려하는 음식"
+        foods={selectedFoods}
+        onDeleteFood={handleFoodRemove}
+        onOpenModal={() => setShowModal(true)}
+      />
+      {showModal && (
+        <FoodSelectorModal
+          selectedFoods={selectedFoods}
+          onFoodSelect={handleFoodSelect}
+          onClose={() => setShowModal(false)}
+        />
+      )}
+    </>
   );
 };
