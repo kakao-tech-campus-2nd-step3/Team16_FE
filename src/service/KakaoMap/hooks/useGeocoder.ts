@@ -18,13 +18,18 @@ const { kakao } = window;
 
 type GeocoderStatus = 'OK' | 'ZERO_RESULT' | 'ERROR';
 
-export const useGeocoder = (coordinates: Coordinates | null): AddressInfo | null => {
+export const useGeocoder = (coordinates: Coordinates | null) => {
   const [addressInfo, setAddressInfo] = useState<AddressInfo | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
 
   useEffect(() => {
     if (!coordinates) return;
 
     const geocoder = new kakao.maps.services.Geocoder();
+
+    setIsLoading(true);
+    setIsError(false);
 
     geocoder.coord2Address(
       coordinates.lng,
@@ -39,10 +44,14 @@ export const useGeocoder = (coordinates: Coordinates | null): AddressInfo | null
             address: address,
             roadAddress: result[0].road_address ? result[0].road_address.address_name : null,
           });
+          setIsLoading(false);
+        } else {
+          setIsError(true);
+          setIsLoading(false);
         }
       },
     );
   }, [coordinates]);
 
-  return addressInfo;
+  return { addressInfo, isLoading, isError };
 };
