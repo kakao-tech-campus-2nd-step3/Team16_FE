@@ -13,9 +13,11 @@ import { ConfirmBtn } from '@/components/features/Leader/ConfirmBtn';
 import { GroupHostCalendar } from '@/components/features/Leader/GroupHostCalendar';
 import { GroupHostCollectionMenuSection } from '@/components/features/Leader/GroutHostCellectionMenuSeciton';
 import { useConfirmFormContext } from '@/hooks/useConfirmFormContext';
+import { useGetMeetingId } from '@/hooks/useGetMeetingId';
 import { vars } from '@/styles';
 
 export const LeaderPage = () => {
+  const meetingId = useGetMeetingId();
   const methods = useConfirmFormContext();
   return (
     <Wrapper>
@@ -23,7 +25,7 @@ export const LeaderPage = () => {
         <GroupTitle>
           <LinkWrapper>
             <GroupLinkBtn />
-            <Link to="/edit">입력 정보 수정하기 &rarr;</Link>
+            <Link to={`/edit${meetingId}`}>입력 정보 수정하기 &rarr;</Link>
           </LinkWrapper>
         </GroupTitle>
         <Spacing height={20} />
