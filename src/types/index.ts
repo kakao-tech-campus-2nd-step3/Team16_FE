@@ -78,6 +78,7 @@ export interface JoinMeetingResponse {
   data: null;
 }
 
+<<<<<<< HEAD
 export interface PersonalEvent {
   start_at: string;
   end_at: string;
@@ -88,3 +89,10 @@ export interface PersonalEvent {
 export interface PersonalResponse {
   meeting_personal_times: PersonalEvent[];
 }
+=======
+export interface Food {
+  food_id: number;
+  category: string;
+  name: string;
+}
+>>>>>>> 10d222f ([FEAT] MyPage의 선호/비선호 조회, 추가, 삭제 구현 (#115))
