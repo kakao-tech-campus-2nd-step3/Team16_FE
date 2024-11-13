@@ -15,8 +15,6 @@ export const createEvent = (start: string, end: string) => ({
   borderColor: '698474',
 });
 
-const DEFAULT_SELECTED_EVNETS: GroupEvent = createEvent('', '');
-
 interface CalendarEvent {
   start: string;
   end: string;
@@ -41,9 +39,7 @@ export const PublicCalendarEditer: React.FC<Props> = ({
   editable = true,
   children,
 }) => {
-  const [selectedEvents, setSelectedEvents] = useState<GroupEvent>(
-    initSelectedTime || DEFAULT_SELECTED_EVNETS,
-  );
+  const [selectedEvents, setSelectedEvents] = useState<GroupEvent | undefined>(initSelectedTime);
   const convertedEvents = defaultEventToGroupEvent(events);
   const displayedEvents = [...convertedEvents].concat(selectedEvents || []);
 
