@@ -31,19 +31,17 @@ export const foodMockHandler = [
           status: 400,
           message: '잘못된 카테고리 요청',
           data: [],
-        })
+        }),
       );
     }
 
-    const filteredFoods = FOODS_BY_CATEGORY_MOCK.data.filter(
-      (food) => food.category === category
-    );
+    const filteredFoods = FOODS_BY_CATEGORY_MOCK.data.filter((food) => food.category === category);
     return res(
       ctx.json({
         status: 200,
         message: `${category} 카테고리의 음식 조회 성공`,
         data: filteredFoods,
-      })
+      }),
     );
   }),
 
@@ -54,7 +52,7 @@ export const foodMockHandler = [
         status: 200,
         message: '선호 음식 추가 성공',
         data: { foodId: body.foodId },
-      })
+      }),
     );
   }),
 
@@ -65,7 +63,7 @@ export const foodMockHandler = [
         status: 200,
         message: '비선호 음식 추가 성공',
         data: { foodId: body.foodId },
-      })
+      }),
     );
   }),
 
@@ -77,7 +75,7 @@ export const foodMockHandler = [
           status: 400,
           message: 'Food ID is required',
           data: null,
-        })
+        }),
       );
     }
     return res(
@@ -85,7 +83,7 @@ export const foodMockHandler = [
         status: 200,
         message: '선호 음식 삭제 성공',
         data: { foodId },
-      })
+      }),
     );
   }),
 
@@ -97,7 +95,7 @@ export const foodMockHandler = [
           status: 400,
           message: 'Food ID is required',
           data: null,
-        })
+        }),
       );
     }
     return res(
@@ -105,12 +103,11 @@ export const foodMockHandler = [
         status: 200,
         message: '비선호 음식 삭제 성공',
         data: { foodId },
-      })
+      }),
     );
   }),
 ];
 
-// mock data
 const PREFERENCE_FOOD_MOCK = {
   status: 200,
   message: '선호 음식 조회 성공',

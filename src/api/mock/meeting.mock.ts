@@ -5,6 +5,8 @@ import { createMeetingPath } from '../hooks/useCreateMeeting';
 import { getCategoryPath } from '../hooks/useGetCategory';
 import { getConfirmInfoPath } from '../hooks/useGetConfirmInfo';
 import { getMeetingInfoPath } from '../hooks/useGetMeetingInfo';
+import { getMeetingNonPreferencesPath } from '../hooks/useGetMeetingNonPreferences';
+import { getMeetingPreferencesPath } from '../hooks/useGetMeetingPreferences';
 import { getMyMeetingsPath } from '../hooks/useGetMyMeetings';
 import { getparticipantPath } from '../hooks/useGetParticipant';
 import { getPermissionPath } from '../hooks/useGetPermission';
@@ -60,9 +62,13 @@ export const meetingMockHandler = [
   rest.put(getUpdatePersonalPath('1'), (_, res, ctx) => {
     return res(ctx.json(PERSONAL_MEETING_MOCK));
   }),
+  rest.get(getMeetingPreferencesPath({ meetingId: '1' }), (_, res, ctx) => {
+    return res(ctx.json(MEETING_PREFERENCES_MOCK));
+  }),
+  rest.get(getMeetingNonPreferencesPath({ meetingId: '1' }), (_, res, ctx) => {
+    return res(ctx.json(MEETING_NONPREFERENCES_MOCK));
+  }),
 ];
-
-// mocks
 
 const CREATE_MEETING_MOCK = {
   status: 200,
@@ -344,4 +350,38 @@ const PERSONAL_MEETING_MOCK = {
   status: 200,
   message: '모임별 개인 정보 수정 성공',
   data: null,
+};
+
+const MEETING_PREFERENCES_MOCK = {
+  status: 200,
+  message: '모임별 개인 선호 음식 조회 성공',
+  data: [
+    {
+      food_id: 1001,
+      category: '한식',
+      name: '불고기',
+    },
+    {
+      food_id: 5001,
+      category: '카페,디저트',
+      name: '커피',
+    },
+  ],
+};
+
+const MEETING_NONPREFERENCES_MOCK = {
+  status: 200,
+  message: '모임별 개인 비선호 음식 조회 성공',
+  data: [
+    {
+      food_id: 1003,
+      category: '한식',
+      name: '김치찌개',
+    },
+    {
+      food_id: 2007,
+      category: '양식',
+      name: '리조또',
+    },
+  ],
 };
