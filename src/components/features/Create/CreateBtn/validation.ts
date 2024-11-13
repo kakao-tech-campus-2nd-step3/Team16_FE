@@ -2,6 +2,8 @@ import dayjs from 'dayjs';
 
 import type { CreateMeetingRequest } from '@/types';
 
+const INITIAL_DATE = '1970-01-01';
+
 export const validateCreateForm = (
   values: CreateMeetingRequest,
 ): { errorMessage?: string; isValid: boolean } => {
@@ -49,15 +51,15 @@ export const validateCreateForm = (
     };
   }
 
-  if (dayjs(`1970-01-01T${startTime}`).isAfter(dayjs(`1970-01-01T${endTime}`))) {
+  if (dayjs(`${INITIAL_DATE}T${startTime}`).isAfter(dayjs(`${INITIAL_DATE}T${endTime}`))) {
     return {
       errorMessage: '종료 시간은 시작 시간보다 이후여야 합니다.',
       isValid: false,
     };
   }
 
-  const timeDifferenceInHours = dayjs(`1970-01-01T${endTime}`).diff(
-    dayjs(`1970-01-01T${startTime}`),
+  const timeDifferenceInHours = dayjs(`${INITIAL_DATE}T${endTime}`).diff(
+    dayjs(`${INITIAL_DATE}T${startTime}`),
     'hour',
     true,
   );
