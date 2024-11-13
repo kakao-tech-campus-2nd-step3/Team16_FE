@@ -4,6 +4,8 @@ import { getConfirmPath } from '../hooks/Meeting/useConfirm';
 import { createMeetingPath } from '../hooks/Meeting/useCreateMeeting';
 import { getConfirmInfoPath } from '../hooks/Meeting/useGetConfirmInfo';
 import { getMeetingInfoPath } from '../hooks/Meeting/useGetMeetingInfo';
+import { getMeetingNonPreferencesPath } from '../hooks/Meeting/useGetMeetingNonPreferences';
+import { getMeetingPreferencesPath } from '../hooks/Meeting/useGetMeetingPreferences';
 import { getMyMeetingsPath } from '../hooks/Meeting/useGetMyMeetings';
 import { getparticipantPath } from '../hooks/Meeting/useGetParticipant';
 import { getPermissionPath } from '../hooks/Meeting/useGetPermission';
@@ -55,6 +57,12 @@ export const meetingMockHandler = [
   }),
   rest.put(getUpdatePersonalPath('1'), (_, res, ctx) => {
     return res(ctx.json(PERSONAL_MEETING_MOCK));
+  }),
+  rest.get(getMeetingPreferencesPath({ meetingId: '1' }), (_, res, ctx) => {
+    return res(ctx.json(MEETING_PREFERENCES_MOCK));
+  }),
+  rest.get(getMeetingNonPreferencesPath({ meetingId: '1' }), (_, res, ctx) => {
+    return res(ctx.json(MEETING_NONPREFERENCES_MOCK));
   }),
 ];
 

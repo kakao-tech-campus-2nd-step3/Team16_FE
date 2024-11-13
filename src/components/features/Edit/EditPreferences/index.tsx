@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useGetMeetingPreferences } from '@/api/hooks/useGetMeetingPreferences';
+import { useGetMeetingPreferences } from '@/api/hooks/Meeting/useGetMeetingPreferences';
 import { FoodPreferenceSection } from '@/components/common/Food/FoodPreferenceSection';
 import { FoodSelectorModal } from '@/components/common/Food/FoodSelectorModal';
 import { useFoodPreferences } from '@/hooks/useFoodPreferences';
