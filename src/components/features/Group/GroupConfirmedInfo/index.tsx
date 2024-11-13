@@ -2,9 +2,11 @@ import styled from '@emotion/styled';
 
 import { useGetConfirmInfo } from '@/api/hooks/useGetConfirmInfo';
 import { Spacing } from '@/components/common/layouts/Spacing';
+import { useGetMeetingId } from '@/hooks/useGetMeetingId';
 
 export const GroupConfirmedInfo: React.FC = () => {
-  const { data: confirmedInfo, status } = useGetConfirmInfo({ meetingId: '1' });
+  const meetingId = useGetMeetingId();
+  const { data: confirmedInfo, status } = useGetConfirmInfo({ meetingId });
 
   if (status === 'pending') return <p>Loading...</p>;
 
