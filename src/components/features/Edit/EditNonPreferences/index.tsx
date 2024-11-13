@@ -11,7 +11,7 @@ type EditPreferencesProps = {
 };
 
 export const EditNonPreferences: React.FC<EditPreferencesProps> = ({ meetingId }) => {
-  const { data, status } = useGetMeetingNonPreferences(meetingId);
+  const { data, status } = useGetMeetingNonPreferences({ meetingId });
   const { meetingData, setNonPreferences } = useJoinFormContext();
   const [showModal, setShowModal] = useState(false);
 

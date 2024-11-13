@@ -1,18 +1,18 @@
 import { rest } from 'msw';
 
-import { getConfirmPath } from '../hooks/Meeting/useConfirm';
-import { createMeetingPath } from '../hooks/Meeting/useCreateMeeting';
-import { getConfirmInfoPath } from '../hooks/Meeting/useGetConfirmInfo';
-import { getMeetingInfoPath } from '../hooks/Meeting/useGetMeetingInfo';
-import { getMeetingNonPreferencesPath } from '../hooks/Meeting/useGetMeetingNonPreferences';
-import { getMeetingPreferencesPath } from '../hooks/Meeting/useGetMeetingPreferences';
-import { getMyMeetingsPath } from '../hooks/Meeting/useGetMyMeetings';
-import { getparticipantPath } from '../hooks/Meeting/useGetParticipant';
-import { getPermissionPath } from '../hooks/Meeting/useGetPermission';
-import { getRecommendMenuPath } from '../hooks/Meeting/useGetRecommandMenu';
-import { joinMeetingPath } from '../hooks/Meeting/useJoinMeeting';
-import { getLeaveGroupPath } from '../hooks/Meeting/useLeaveGroup';
-import { getUpdatePersonalPath } from '../hooks/Meeting/useUpdatePersonal';
+import { getConfirmPath } from '@/api/hooks/Meeting/useConfirm';
+import { createMeetingPath } from '@/api/hooks/Meeting/useCreateMeeting';
+import { getConfirmInfoPath } from '@/api/hooks/Meeting/useGetConfirmInfo';
+import { getMeetingInfoPath } from '@/api/hooks/Meeting/useGetMeetingInfo';
+import { getMeetingNonPreferencesPath } from '@/api/hooks/Meeting/useGetMeetingNonPreferences';
+import { getMeetingPreferencesPath } from '@/api/hooks/Meeting/useGetMeetingPreferences';
+import { getMyMeetingsPath } from '@/api/hooks/Meeting/useGetMyMeetings';
+import { getparticipantPath } from '@/api/hooks/Meeting/useGetParticipant';
+import { getPermissionPath } from '@/api/hooks/Meeting/useGetPermission';
+import { getRecommendMenuPath } from '@/api/hooks/Meeting/useGetRecommandMenu';
+import { joinMeetingPath } from '@/api/hooks/Meeting/useJoinMeeting';
+import { getLeaveGroupPath } from '@/api/hooks/Meeting/useLeaveGroup';
+import { getUpdatePersonalPath } from '@/api/hooks/Meeting/useUpdatePersonal';
 
 export const meetingMockHandler = [
   rest.get(getMyMeetingsPath(), (_, res, ctx) => {

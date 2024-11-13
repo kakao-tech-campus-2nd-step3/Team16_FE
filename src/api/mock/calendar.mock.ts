@@ -1,8 +1,8 @@
 import { rest } from 'msw';
 
-import { getGroupCalendarPath } from '../hooks/Calendar/useGetGroupCalendar';
-import { getMyEventPath } from '../hooks/Calendar/useGetMyEvents';
-import { getPersonalPath } from '../hooks/Calendar/useGetPersonalEvents';
+import { getGroupCalendarPath } from '@/api/hooks/Calendar/useGetGroupCalendar';
+import { getMyEventPath } from '@/api/hooks/Calendar/useGetMyEvents';
+import { getPersonalPath } from '@/api/hooks/Calendar/useGetPersonalEvents';
 
 export const calendarMockHandler = [
   rest.get(getMyEventPath(), (_, res, ctx) => {
