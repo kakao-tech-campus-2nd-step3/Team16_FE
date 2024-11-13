@@ -15,10 +15,10 @@ export interface Meeting {
     longitude: number;
   };
   title: string;
-  confirmedDateTime: string;
+  confirmedDateTime?: string | null;
   confirmedFood: {
     food_id: number;
-    category: string; //TODO: 강타입으로 변경
+    category: string;
     name: string;
   };
 }
