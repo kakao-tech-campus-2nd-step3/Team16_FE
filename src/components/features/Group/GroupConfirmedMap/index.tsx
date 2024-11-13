@@ -5,7 +5,6 @@ import { KakaoMapSearch } from '@/service/KakaoMap';
 
 export const GroupConfirmedMap: React.FC = () => {
   const meetingId = useGetMeetingId();
-
   const { data, status } = useGetConfirmInfo({ meetingId });
 
   if (status === 'pending') {
