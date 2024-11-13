@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { useAddNonPreferenceFood } from '@/api/hooks/useAddNonPreferenceFood';
 import { useDeleteNonPreferenceFood } from '@/api/hooks/useDeleteNonPreference';
@@ -8,21 +8,21 @@ import { FoodSelectorModal } from '@/components/common/Food/FoodSelectorModal';
 import { useFoodPreferences } from '@/hooks/useFoodPreferences';
 
 export const NonPreferenceSection: React.FC = () => {
-  const { data: nonPreferredFoods, isLoading, isError } = useGetNonPreferenceFoods();
+  const { data, status } = useGetNonPreferenceFoods();
   const addFoodNonPreference = useAddNonPreferenceFood();
   const deleteFoodNonPreference = useDeleteNonPreferenceFood();
   const [showModal, setShowModal] = useState(false);
 
   const { selectedFoods, handleFoodSelect, handleFoodRemove } = useFoodPreferences({
-    initialFoods: nonPreferredFoods,
+    initialFoods: data,
     preferences: [],
     setPreferences: () => {},
     onAddFood: (food) => addFoodNonPreference.mutate(food),
     onRemoveFood: (foodId) => deleteFoodNonPreference.mutate(foodId),
   });
 
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error loading preferences</p>;
+  if (status === 'pending') return <p>Loading...</p>;
+  if (status === 'error') return <p>Error loading nonPreferences</p>;
 
   return (
     <>

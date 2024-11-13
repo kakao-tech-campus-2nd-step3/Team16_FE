@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { useGetNonPreferenceFoods } from '@/api/hooks/useGetNonPreferenceFoods';
 import { FoodPreferenceSection } from '@/components/common/Food/FoodPreferenceSection';
@@ -7,18 +7,18 @@ import { useFoodPreferences } from '@/hooks/useFoodPreferences';
 import { useJoinFormContext } from '@/hooks/useJoinFormContext';
 
 export const JoinNonPreferences: React.FC = () => {
-  const { data: nonPreferenceFoods, isLoading, isError } = useGetNonPreferenceFoods();
+  const { data, status } = useGetNonPreferenceFoods();
   const { meetingData, setNonPreferences } = useJoinFormContext();
   const [showModal, setShowModal] = useState(false);
 
   const { selectedFoods, handleFoodSelect, handleFoodRemove } = useFoodPreferences({
-    initialFoods: nonPreferenceFoods,
+    initialFoods: data,
     preferences: meetingData.preferences,
     setPreferences: setNonPreferences,
   });
 
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error loading preferences</p>;
+  if (status === 'pending') return <p>Loading...</p>;
+  if (status === 'error') return <p>Error loading nonPreferences</p>;
 
   return (
     <>
