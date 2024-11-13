@@ -76,12 +76,72 @@ describe('convertToMeeting', () => {
     expect(result.confirmedMeetings).toHaveLength(2);
     expect(result.nonConfirmedMeetings).toHaveLength(2);
     expect(result.confirmedMeetings).toEqual([
-      { id: 1, confirmedDateTime: '2023-10-01T10:00:00Z' },
-      { id: 3, confirmedDateTime: '2023-10-02T12:00:00Z' },
+      {
+        baseLocation: {
+          address: 'Seoul',
+          latitude: 37.5665,
+          locationId: 1,
+          longitude: 126.978,
+        },
+        confirmedDateTime: '2023-10-01T10:00:00Z',
+        confirmedFood: {
+          category: 'Korean',
+          food_id: 1,
+          name: '비빔밥',
+        },
+        meetingId: 1,
+        title: '철수모임',
+      },
+      {
+        baseLocation: {
+          address: 'Incheon',
+          latitude: 37.4563,
+          locationId: 3,
+          longitude: 126.7052,
+        },
+        confirmedDateTime: '2023-10-02T12:00:00Z',
+        confirmedFood: {
+          category: '중식',
+          food_id: 3,
+          name: '자장면',
+        },
+        meetingId: 3,
+        title: '민수모임',
+      },
     ]);
     expect(result.nonConfirmedMeetings).toEqual([
-      { id: 2, confirmedDateTime: null },
-      { id: 4, confirmedDateTime: null },
+      {
+        baseLocation: {
+          address: 'Busan',
+          latitude: 35.1796,
+          locationId: 2,
+          longitude: 129.0756,
+        },
+        confirmedDateTime: null,
+        confirmedFood: {
+          category: '일식',
+          food_id: 2,
+          name: '초밥',
+        },
+        meetingId: 2,
+        title: '영희모임',
+      },
+      {
+        baseLocation: {
+          address: 'Daegu',
+          latitude: 35.8714,
+          locationId: 4,
+          longitude: 128.6014,
+        },
+        confirmedDateTime: null,
+        confirmedFood: {
+          category: '양식',
+          food_id: 4,
+          name: '파스타',
+        },
+        meetingId: 4,
+        title: '영수모임',
+      },
     ]);
   });
 });
@@ -91,7 +151,7 @@ describe('convertToLocaleString', () => {
     const date = '2023-10-01T10:00:00Z';
     const result = convertToLocaleString(date);
 
-    expect(result).toBe('2023년 10월 1일 일요일 오전 7:00');
+    expect(result).toBe('2023년 10월 1일 일요일 오후 7:00');
   });
 
   it('should handle invalid date string gracefully', () => {
