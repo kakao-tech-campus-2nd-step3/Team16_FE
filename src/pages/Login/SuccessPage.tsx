@@ -12,13 +12,16 @@ export const SuccessPage = () => {
     refetch();
   }, [refetch]);
 
-  useEffect(() => {
-    if (status === 'success') {
-      navigate(RouterPath.home);
-    } else if (status === 'error' && error) {
-      console.error('토큰을 가져오던 중 에러 발생', error);
-    }
-  }, [status, error, navigate]);
+  if (status === 'pending') {
+    return null;
+  }
+
+  if (status === 'success') navigate(RouterPath.home);
+
+  if (status === 'error' && error) {
+    console.error('토큰을 가져오는데 실패했습니다.', error);
+    navigate(RouterPath.login);
+  }
 
   return null;
 };
