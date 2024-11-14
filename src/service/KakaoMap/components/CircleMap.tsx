@@ -8,7 +8,7 @@ import { Circle } from './Circle';
 import { Marker } from './Marker';
 
 export const CircleMap: React.FC<CircleMapProps> = ({ containerId, defaultPosition, onClick }) => {
-  const [coordinates, setCoordinates] = useState<Coordinates | null>(defaultPosition);
+  const [coordinates, setCoordinates] = useState<Coordinates>(defaultPosition);
   const mapRef = useRef<kakao.maps.Map | null>(null);
 
   useEffect(() => {
@@ -21,8 +21,6 @@ export const CircleMap: React.FC<CircleMapProps> = ({ containerId, defaultPositi
     };
 
     mapRef.current = new kakao.maps.Map(container, options);
-
-    setCoordinates(defaultPosition);
 
     kakao.maps.event.addListener(
       mapRef.current,
