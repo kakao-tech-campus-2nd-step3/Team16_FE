@@ -6,15 +6,12 @@ import { RouterPath } from '@/routes/path';
 
 type Props = {
   meetings: Meeting[];
-  title: string;
   showFoodName?: boolean;
 };
 
-export const MeetingList: React.FC<Props> = ({ meetings, title, showFoodName = false }) => {
+export const MeetingList: React.FC<Props> = ({ meetings, showFoodName = false }) => {
   return (
     <>
-      <MeetingsTitle>{title}</MeetingsTitle>
-      <hr />
       {meetings.map(({ confirmedDateTime, confirmedFood, meetingId, title: meetingTitle }) => (
         <Link to={`${RouterPath.group}/${meetingId}`} key={meetingId}>
           <MeetingItem>
@@ -29,12 +26,6 @@ export const MeetingList: React.FC<Props> = ({ meetings, title, showFoodName = f
     </>
   );
 };
-
-const MeetingsTitle = styled.h3`
-  font-size: 1.3rem;
-  font-weight: 500;
-  user-select: none;
-`;
 
 const MeetingItem = styled.li`
   display: grid;

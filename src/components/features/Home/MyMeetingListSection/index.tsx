@@ -26,13 +26,14 @@ export const MyMeetingList = () => {
         </Link>
       </Container>
       <Spacing height={36} />
-      {nonConfirmedMeetings.length && (
-        <MeetingList title="확정 대기중인 모임" meetings={nonConfirmedMeetings} />
-      )}
+      <MeetingsTitle>확정 대기중인 모임</MeetingsTitle>
+      <hr />
+
+      {!!nonConfirmedMeetings.length && <MeetingList meetings={nonConfirmedMeetings} />}
       <Spacing height={52} />
-      {confirmedMeetings.length && (
-        <MeetingList title="확정된 모임" meetings={confirmedMeetings} showFoodName />
-      )}
+      <MeetingsTitle>확정된 모임</MeetingsTitle>
+      <hr />
+      {!!confirmedMeetings.length && <MeetingList meetings={confirmedMeetings} showFoodName />}
     </Wrapper>
   );
 };
@@ -50,5 +51,11 @@ const MakeMeetingBtn = styled.span`
   font-weight: 600;
   color: #747474;
   text-decoration: underline;
+  user-select: none;
+`;
+
+const MeetingsTitle = styled.h3`
+  font-size: 1.3rem;
+  font-weight: 500;
   user-select: none;
 `;
