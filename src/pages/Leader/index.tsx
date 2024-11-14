@@ -25,7 +25,7 @@ export const LeaderPage = () => {
         <GroupTitle>
           <LinkWrapper>
             <GroupLinkBtn />
-            <Link to={`/edit${meetingId}`}>입력 정보 수정하기 &rarr;</Link>
+            <Link to={`/edit/${meetingId}`}>입력 정보 수정하기 &rarr;</Link>
           </LinkWrapper>
         </GroupTitle>
         <Spacing height={20} />

@@ -10,15 +10,17 @@ import { GroupLeaveBtn } from '@/components/features/Group/GroupLeaveBtn';
 import { GroupLinkBtn } from '@/components/features/Group/GroupLinkBtn';
 import { GroupParticipantsSection } from '@/components/features/Group/GroupParticipantsSection';
 import { GroupTitle } from '@/components/features/Group/GroupTitle';
+import { useGetMeetingId } from '@/hooks/useGetMeetingId';
 import { vars } from '@/styles';
 
 export const GroupPage = () => {
+  const meetingId = useGetMeetingId();
   return (
     <Wrapper>
       <GroupTitle>
         <LinkWrapper>
           <GroupLinkBtn />
-          <Link to="/edit">입력 정보 수정하기 &rarr;</Link>
+          <Link to={`/edit/${meetingId}`}>입력 정보 수정하기 &rarr;</Link>
         </LinkWrapper>
       </GroupTitle>
       <Spacing height={20} />
