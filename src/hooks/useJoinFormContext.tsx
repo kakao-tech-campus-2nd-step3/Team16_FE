@@ -1,16 +1,16 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
-import type { SelectedTime } from '@/types';
+import type { PersonalEvent } from '@/types';
 
 interface MeetingData {
-  times: SelectedTime[];
+  times: PersonalEvent[];
   preferences: number[];
   nonPreferences: number[];
 }
 
 interface JoinFormContextType {
   meetingData: MeetingData;
-  setTimes: (times: SelectedTime[]) => void;
+  setTimes: (times: PersonalEvent[]) => void;
   setPreferences: (preferences: number[]) => void;
   setNonPreferences: (nonPreferences: number[]) => void;
 }
@@ -31,7 +31,7 @@ export const JoinFormProvider: React.FC<{
     }
   }, [initialData]);
 
-  const setTimes = (times: SelectedTime[]) => {
+  const setTimes = (times: PersonalEvent[]) => {
     setData((prevData) => ({
       ...prevData,
       times,

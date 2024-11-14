@@ -1,20 +1,20 @@
-import type { SelectedTime } from '@/types';
+import type { PersonalEvent } from '@/types';
 
-export const mergeTimes = (times: SelectedTime[]): SelectedTime[] => {
+export const mergeTimes = (times: PersonalEvent[]): PersonalEvent[] => {
   if (times.length === 0) return [];
   const sortedTimes = [...times].sort(
-    (a, b) => new Date(a.startAt).getTime() - new Date(b.startAt).getTime(),
+    (a, b) => new Date(a.start_at).getTime() - new Date(b.start_at).getTime(),
   );
-  const mergedTimes: SelectedTime[] = [];
+  const mergedTimes: PersonalEvent[] = [];
   let current = sortedTimes[0];
 
   for (let i = 1; i < sortedTimes.length; i++) {
     const next = sortedTimes[i];
-    const currentEnd = new Date(current.endAt).getTime();
-    const nextStart = new Date(next.startAt).getTime();
+    const currentEnd = new Date(current.end_at).getTime();
+    const nextStart = new Date(next.start_at).getTime();
 
     if (nextStart <= currentEnd) {
-      current.endAt = new Date(Math.max(currentEnd, new Date(next.endAt).getTime()))
+      current.end_at = new Date(Math.max(currentEnd, new Date(next.end_at).getTime()))
         .toLocaleString('sv-SE', { timeZone: 'Asia/Seoul' })
         .replace(' ', 'T');
     } else {

@@ -63,10 +63,10 @@ describe('converter', () => {
     it('선택된 시간을 이벤트 형식으로 변환해야 한다', () => {
       const selectedTimes = [
         {
-          startAt: '2024-01-01T09:00:00',
-          endAt: '2024-01-01T09:30:00',
-          timeZone: 'Asia/Seoul',
-          allDay: false,
+          start_at: '2024-01-01T09:00:00',
+          end_at: '2024-01-01T09:30:00',
+          time_zone: 'Asia/Seoul',
+          all_day: false,
         },
       ];
 
@@ -87,16 +87,16 @@ describe('converter', () => {
     it('여러 개의 시간을 변환할 수 있어야 한다', () => {
       const selectedTimes = [
         {
-          startAt: '2024-01-01T09:00:00',
-          endAt: '2024-01-01T09:30:00',
-          timeZone: 'Asia/Seoul',
-          allDay: false,
+          start_at: '2024-01-01T09:00:00',
+          end_at: '2024-01-01T09:30:00',
+          time_zone: 'Asia/Seoul',
+          all_day: false,
         },
         {
-          startAt: '2024-01-01T10:00:00',
-          endAt: '2024-01-01T10:30:00',
-          timeZone: 'Asia/Seoul',
-          allDay: false,
+          start_at: '2024-01-01T10:00:00',
+          end_at: '2024-01-01T10:30:00',
+          time_zone: 'Asia/Seoul',
+          all_day: false,
         },
       ];
 

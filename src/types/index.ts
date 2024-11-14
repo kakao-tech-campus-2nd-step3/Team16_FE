@@ -37,17 +37,10 @@ export interface GroupEvent {
   display: string;
 }
 
-export interface SelectedTime {
-  startAt: string;
-  endAt: string;
-  timeZone: string;
-  allDay: boolean;
-}
-
 export interface JoinMeetingRequest {
   preferences: number[];
   nonPreferences: number[];
-  times: SelectedTime[];
+  times: PersonalEvent[];
 }
 
 export interface JoinMeetingResponse {

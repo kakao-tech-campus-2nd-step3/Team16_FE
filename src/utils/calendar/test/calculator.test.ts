@@ -1,5 +1,5 @@
 import type { Event } from '@/service/Calendar/types';
-import type { SelectedTime } from '@/types';
+import type { PersonalEvent } from '@/types';
 
 import { mergeEndTimes, mergeTimes, sortTimes, toggleSelectedEvent } from '../calculator';
 
@@ -8,22 +8,22 @@ describe('calculator', () => {
     it('시작 시간을 기준으로 오름차순으로 정렬한다.', () => {
       const times = [
         {
-          startAt: '2023-12-02T10:00:00',
-          endAt: '2023-12-02T11:00:00',
-          allDay: false,
-          timeZone: 'Asia/Seoul',
+          start_at: '2023-12-02T10:00:00',
+          end_at: '2023-12-02T11:00:00',
+          all_day: false,
+          time_zone: 'Asia/Seoul',
         },
         {
-          startAt: '2023-12-02T09:00:00',
-          endAt: '2023-12-02T10:00:00',
-          allDay: false,
-          timeZone: 'Asia/Seoul',
+          start_at: '2023-12-02T09:00:00',
+          end_at: '2023-12-02T10:00:00',
+          all_day: false,
+          time_zone: 'Asia/Seoul',
         },
         {
-          startAt: '2023-12-02T11:00:00',
-          endAt: '2023-12-02T12:00:00',
-          allDay: false,
-          timeZone: 'Asia/Seoul',
+          start_at: '2023-12-02T11:00:00',
+          end_at: '2023-12-02T12:00:00',
+          all_day: false,
+          time_zone: 'Asia/Seoul',
         },
       ];
 
@@ -31,28 +31,28 @@ describe('calculator', () => {
 
       expect(result).toEqual([
         {
-          allDay: false,
-          endAt: '2023-12-02T10:00:00',
-          startAt: '2023-12-02T09:00:00',
-          timeZone: 'Asia/Seoul',
+          all_day: false,
+          end_at: '2023-12-02T10:00:00',
+          start_at: '2023-12-02T09:00:00',
+          time_zone: 'Asia/Seoul',
         },
         {
-          allDay: false,
-          endAt: '2023-12-02T11:00:00',
-          startAt: '2023-12-02T10:00:00',
-          timeZone: 'Asia/Seoul',
+          all_day: false,
+          end_zt: '2023-12-02T11:00:00',
+          start_zt: '2023-12-02T10:00:00',
+          time_zone: 'Asia/Seoul',
         },
         {
-          allDay: false,
-          endAt: '2023-12-02T12:00:00',
-          startAt: '2023-12-02T11:00:00',
-          timeZone: 'Asia/Seoul',
+          all_day: false,
+          end_at: '2023-12-02T12:00:00',
+          start_at: '2023-12-02T11:00:00',
+          time_zone: 'Asia/Seoul',
         },
       ]);
     });
 
     it('빈배열을 전달받으면 빈 배열을 반환한다.', () => {
-      const times: SelectedTime[] = [];
+      const times: PersonalEvent[] = [];
       const result = sortTimes(times);
       expect(result).toEqual([]);
     });
@@ -60,22 +60,22 @@ describe('calculator', () => {
     it('원본 배열을 수정하지 않는다.', () => {
       const times = [
         {
-          startAt: '2023-12-02T10:00:00',
-          endAt: '2023-12-02T11:00:00',
-          allDay: false,
-          timeZone: 'Asia/Seoul',
+          start_at: '2023-12-02T10:00:00',
+          end_at: '2023-12-02T11:00:00',
+          all_day: false,
+          time_zone: 'Asia/Seoul',
         },
         {
-          startAt: '2023-12-02T09:00:00',
-          endAt: '2023-12-02T10:00:00',
-          allDay: false,
-          timeZone: 'Asia/Seoul',
+          start_at: '2023-12-02T09:00:00',
+          end_at: '2023-12-02T10:00:00',
+          all_day: false,
+          time_zone: 'Asia/Seoul',
         },
         {
-          startAt: '2023-12-02T11:00:00',
-          endAt: '2023-12-02T12:00:00',
-          allDay: false,
-          timeZone: 'Asia/Seoul',
+          start_at: '2023-12-02T11:00:00',
+          end_at: '2023-12-02T12:00:00',
+          all_day: false,
+          time_zone: 'Asia/Seoul',
         },
       ];
       const original = [...times];
@@ -116,7 +116,7 @@ describe('calculator', () => {
   });
   describe('mergeTimes', () => {
     it('빈 배열이 입력되면 빈 배열을 반환한다', () => {
-      const times: SelectedTime[] = [];
+      const times: PersonalEvent[] = [];
       const result = mergeTimes(times);
       expect(result).toEqual([]);
     });
@@ -124,16 +124,16 @@ describe('calculator', () => {
     it('겹치는 시간이 없는 경우 원래 배열을 반환한다', () => {
       const times = [
         {
-          startAt: '2023-12-02T09:00:00',
-          endAt: '2023-12-02T10:00:00',
-          allDay: false,
-          timeZone: 'Asia/Seoul',
+          start_at: '2023-12-02T09:00:00',
+          end_at: '2023-12-02T10:00:00',
+          all_day: false,
+          time_zone: 'Asia/Seoul',
         },
         {
-          startAt: '2023-12-02T11:00:00',
-          endAt: '2023-12-02T12:00:00',
-          allDay: false,
-          timeZone: 'Asia/Seoul',
+          start_at: '2023-12-02T11:00:00',
+          end_at: '2023-12-02T12:00:00',
+          all_day: false,
+          time_zone: 'Asia/Seoul',
         },
       ];
 
@@ -144,26 +144,26 @@ describe('calculator', () => {
     it('겹치는 시간이 있는 경우 병합한다', () => {
       const times = [
         {
-          startAt: '2023-12-02T09:00:00',
-          endAt: '2023-12-02T11:00:00',
-          allDay: false,
-          timeZone: 'Asia/Seoul',
+          start_at: '2023-12-02T09:00:00',
+          end_at: '2023-12-02T11:00:00',
+          all_day: false,
+          time_zone: 'Asia/Seoul',
         },
         {
-          startAt: '2023-12-02T10:00:00',
-          endAt: '2023-12-02T12:00:00',
-          allDay: false,
-          timeZone: 'Asia/Seoul',
+          start_at: '2023-12-02T10:00:00',
+          end_at: '2023-12-02T12:00:00',
+          all_day: false,
+          time_zone: 'Asia/Seoul',
         },
       ];
 
       const result = mergeTimes(times);
       expect(result).toEqual([
         {
-          startAt: '2023-12-02T09:00:00',
-          endAt: '2023-12-02T12:00:00',
-          allDay: false,
-          timeZone: 'Asia/Seoul',
+          start_at: '2023-12-02T09:00:00',
+          end_at: '2023-12-02T12:00:00',
+          all_day: false,
+          time_zone: 'Asia/Seoul',
         },
       ]);
     });
@@ -171,32 +171,32 @@ describe('calculator', () => {
     it('여러 구간이 겹치는 경우 모두 병합한다', () => {
       const times = [
         {
-          startAt: '2023-12-02T09:00:00',
-          endAt: '2023-12-02T11:00:00',
-          allDay: false,
-          timeZone: 'Asia/Seoul',
+          start_at: '2023-12-02T09:00:00',
+          end_at: '2023-12-02T11:00:00',
+          all_day: false,
+          time_zone: 'Asia/Seoul',
         },
         {
-          startAt: '2023-12-02T10:00:00',
-          endAt: '2023-12-02T12:00:00',
-          allDay: false,
-          timeZone: 'Asia/Seoul',
+          start_at: '2023-12-02T10:00:00',
+          end_at: '2023-12-02T12:00:00',
+          all_day: false,
+          time_zone: 'Asia/Seoul',
         },
         {
-          startAt: '2023-12-02T11:30:00',
-          endAt: '2023-12-02T13:00:00',
-          allDay: false,
-          timeZone: 'Asia/Seoul',
+          start_at: '2023-12-02T11:30:00',
+          end_at: '2023-12-02T13:00:00',
+          all_day: false,
+          time_zone: 'Asia/Seoul',
         },
       ];
 
       const result = mergeTimes(times);
       expect(result).toEqual([
         {
-          startAt: '2023-12-02T09:00:00',
-          endAt: '2023-12-02T13:00:00',
-          allDay: false,
-          timeZone: 'Asia/Seoul',
+          start_at: '2023-12-02T09:00:00',
+          end_at: '2023-12-02T13:00:00',
+          all_day: false,
+          time_zone: 'Asia/Seoul',
         },
       ]);
     });

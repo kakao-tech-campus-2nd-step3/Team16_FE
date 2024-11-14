@@ -6,7 +6,7 @@ import { useJoinFormContext } from '@/hooks/useJoinFormContext';
 import { WeeklyCalendar } from '@/service/Calendar';
 import type { Event } from '@/service/Calendar/types';
 import { vars } from '@/styles';
-import type { SelectedTime } from '@/types';
+import type { PersonalEvent } from '@/types';
 import { getCurrentDateStrings } from '@/utils/calculator';
 import {
   checkIsOverlapping,
@@ -74,11 +74,11 @@ export const JoinCalendar: React.FC<JoinCalendarProps> = ({
 
     setSelectedEvents(updatedEvents);
 
-    const newTimes: SelectedTime[] = updatedEvents.map((event) => ({
-      startAt: event.start,
-      endAt: event.end,
-      timeZone: 'Asia/Seoul',
-      allDay: false,
+    const newTimes: PersonalEvent[] = updatedEvents.map((event) => ({
+      start_at: event.start,
+      end_at: event.end,
+      time_zone: 'Asia/Seoul',
+      all_day: false,
     }));
 
     setTimes(newTimes);
