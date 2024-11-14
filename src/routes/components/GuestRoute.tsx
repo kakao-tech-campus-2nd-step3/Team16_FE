@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 
-import { useGetPermission } from '@/api/hooks/useGetPermission';
+import { useGetPermission } from '@/api/hooks/Meeting/useGetPermission';
 import { useGetMeetingId } from '@/hooks/useGetMeetingId';
 
 import { RouterPath } from '../path';

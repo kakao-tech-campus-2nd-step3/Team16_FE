@@ -1,9 +1,12 @@
 import styled from '@emotion/styled';
 
 import { useGetConfirmInfo } from '@/api/hooks/Meeting/useGetConfirmInfo';
+import { Spacing } from '@/components/common/layouts/Spacing';
+import { useGetMeetingId } from '@/hooks/useGetMeetingId';
 
 export const GroupConfirmedInfo: React.FC = () => {
-  const { data: confirmedInfo, status } = useGetConfirmInfo({ meetingId: '1' });
+  const meetingId = useGetMeetingId();
+  const { data: confirmedInfo, status } = useGetConfirmInfo({ meetingId });
 
   if (status === 'pending') return <p>Loading...</p>;
 
@@ -16,9 +19,12 @@ export const GroupConfirmedInfo: React.FC = () => {
   const displayDateTime = `${new Date(confirmedDateTime).toLocaleString()} 에 만나요!`;
 
   return (
-    <ConformInfoSection>
-      <p>{displayDateTime}</p>
-    </ConformInfoSection>
+    <>
+      <ConformInfoSection>
+        <p>{displayDateTime}</p>
+      </ConformInfoSection>
+      <Spacing height={20} />
+    </>
   );
 };
 

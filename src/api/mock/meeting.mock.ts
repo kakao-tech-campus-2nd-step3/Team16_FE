@@ -308,6 +308,7 @@ const PERMISSION_MOCK = {
   message: '권한 조회 성공',
   data: {
     isHost: true,
+    // isHost: false,
   },
 };
 
@@ -320,20 +321,21 @@ const JOIN_MEETING_MOCK = {
 const CONFIRMED_INFO_MOCK = {
   status: 200,
   message: '모임 확정 날짜, 확정 음식 조회 성공',
-  data: {
-    confirmedDateTime: '2022-10-28T03:00:00Z',
-    confirmedFood: {
-      foodId: 1001,
-      category: '한식',
-      name: '고기',
-    },
-    baseLocation: {
-      locationId: 18577297,
-      address: '전남대학교',
-      latitude: 35.1755091,
-      longitude: 126.9071166,
-    },
-  },
+  data: null,
+  // data: {
+  //   confirmedDateTime: '2024-10-31T03:00:00Z',
+  //   confirmedFood: {
+  //     foodId: 1001,
+  //     category: '한식',
+  //     name: '삼겹살',
+  //   },
+  //   baseLocation: {
+  //     locationId: 18577297,
+  //     address: '전남대학교',
+  //     latitude: 35.1755091,
+  //     longitude: 126.9071166,
+  //   },
+  // },
 };
 
 const PERSONAL_MEETING_MOCK = {

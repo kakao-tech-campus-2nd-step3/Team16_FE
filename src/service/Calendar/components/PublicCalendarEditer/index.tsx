@@ -7,6 +7,14 @@ import { useState } from 'react';
 import type { GroupEvent } from '@/types';
 import { checkIsWithinEventRange, defaultEventToGroupEvent } from '@/utils/calendar';
 
+export const createEvent = (start: string, end: string) => ({
+  start,
+  end,
+  display: 'background',
+  backgroundColor: 'green',
+  borderColor: '698474',
+});
+
 interface CalendarEvent {
   start: string;
   end: string;
@@ -17,6 +25,8 @@ type Props = {
   availableStart: string;
   availableEnd: string;
   duration: number;
+  initSelectedTime?: GroupEvent;
+  editable?: boolean;
   children?: (props: { selectedEvents?: GroupEvent }) => JSX.Element;
 };
 
@@ -25,9 +35,11 @@ export const PublicCalendarEditer: React.FC<Props> = ({
   availableEnd,
   availableStart,
   duration,
+  initSelectedTime,
+  editable = true,
   children,
 }) => {
-  const [selectedEvents, setSelectedEvents] = useState<GroupEvent>();
+  const [selectedEvents, setSelectedEvents] = useState<GroupEvent | undefined>(initSelectedTime);
   const convertedEvents = defaultEventToGroupEvent(events);
   const displayedEvents = [...convertedEvents].concat(selectedEvents || []);
 
@@ -52,13 +64,7 @@ export const PublicCalendarEditer: React.FC<Props> = ({
     const eventEnd = new Date(event.end);
     const finalEnd = end > eventEnd ? eventEnd : end;
 
-    setSelectedEvents({
-      start: clickedTime.toISOString(),
-      end: finalEnd.toISOString(),
-      backgroundColor: 'green',
-      borderColor: '698474',
-      display: 'background',
-    });
+    if (editable) setSelectedEvents(createEvent(clickedTime.toISOString(), finalEnd.toISOString()));
   };
 
   const onDateClickHandler = (info: DateClickArg) => {

@@ -1,10 +1,10 @@
 import { useGetConfirmInfo } from '@/api/hooks/Meeting/useGetConfirmInfo';
+import { Spacing } from '@/components/common/layouts/Spacing';
 import { useGetMeetingId } from '@/hooks/useGetMeetingId';
 import { KakaoMapSearch } from '@/service/KakaoMap';
 
 export const GroupConfirmedMap: React.FC = () => {
   const meetingId = useGetMeetingId();
-
   const { data, status } = useGetConfirmInfo({ meetingId });
 
   if (status === 'pending') {
@@ -31,6 +31,7 @@ export const GroupConfirmedMap: React.FC = () => {
           lng: longitude,
         }}
       />
+      <Spacing height={80} />
     </section>
   );
 };

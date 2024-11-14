@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-import { useGetCategory } from '@/api/hooks/useGetCategory';
-import { useGetFoodsByCategory } from '@/api/hooks/useGetFood';
+import { useGetCategory } from '@/api/hooks/Food/useGetCategory';
+import { useGetFoodsByCategory } from '@/api/hooks/Food/useGetFood';
 import { SelectableMenu } from '@/components/common/Menu/SelectableMenu';
 import { colors } from '@/styles/variants';
 import type { Food } from '@/types';
