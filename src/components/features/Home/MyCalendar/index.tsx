@@ -1,9 +1,11 @@
 import { useGetMyEvent } from '@/api/hooks/Calendar/useGetMyEvents';
 import { DefaultCalendar } from '@/service/Calendar';
 import type { Event } from '@/service/Calendar/types';
+import { getCurrentDateStrings } from '@/utils/calculator';
 
 export const MyCalendar = () => {
-  const { data, status } = useGetMyEvent();
+  const duration = getCurrentDateStrings(new Date().toISOString());
+  const { data, status } = useGetMyEvent(duration);
 
   if (status === 'error') {
     return <div>Error</div>;
