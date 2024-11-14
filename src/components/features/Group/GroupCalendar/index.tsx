@@ -1,4 +1,4 @@
-import { useGetGroupCalendar } from '@/api/hooks/useGetGroupCalendar';
+import { useGetGroupCalendar } from '@/api/hooks/Calendar/useGetGroupCalendar';
 import { useGetMeetingId } from '@/hooks/useGetMeetingId';
 import { PublicCalendar } from '@/service/Calendar';
 

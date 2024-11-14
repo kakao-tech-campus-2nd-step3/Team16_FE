@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import type { ConfirmMeetingRequest } from '@/api/hooks/useConfirm';
+import type { ConfirmMeetingRequest } from '@/api/hooks/Meeting/useConfirm';
 import { Spacing } from '@/components/common/layouts/Spacing';
 import { colors } from '@/styles/variants';
 import type { GroupEvent } from '@/types';

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { useGetConfirmInfo } from '@/api/hooks/useGetConfirmInfo';
+import { useGetConfirmInfo } from '@/api/hooks/Meeting/useGetConfirmInfo';
 import { Spacing } from '@/components/common/layouts/Spacing';
 import { useGetMeetingId } from '@/hooks/useGetMeetingId';
 
@@ -12,7 +12,7 @@ export const GroupConfirmedInfo: React.FC = () => {
 
   if (status === 'error') return <p>error</p>;
 
-  if (!confirmedInfo) return null; // 확정되지 않은 경우
+  if (!confirmedInfo) return null;
 
   const { confirmedDateTime } = confirmedInfo;
 

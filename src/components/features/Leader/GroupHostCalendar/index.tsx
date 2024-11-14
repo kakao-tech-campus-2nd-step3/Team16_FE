@@ -1,5 +1,5 @@
-import { useGetConfirmInfo } from '@/api/hooks/useGetConfirmInfo';
-import { useGetGroupCalendar } from '@/api/hooks/useGetGroupCalendar';
+import { useGetGroupCalendar } from '@/api/hooks/Calendar/useGetGroupCalendar';
+import { useGetConfirmInfo } from '@/api/hooks/Meeting/useGetConfirmInfo';
 import { useGetMeetingId } from '@/hooks/useGetMeetingId';
 import {
   createEvent,

@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetMeetingInfo } from '@/api/hooks/useGetMeetingInfo';
-import { useGetPersonalEvents } from '@/api/hooks/useGetPersonalEvents';
+import { useGetPersonalEvents } from '@/api/hooks/Calendar/useGetPersonalEvents';
+import { useGetMeetingInfo } from '@/api/hooks/Meeting/useGetMeetingInfo';
 import { Container } from '@/components/common/layouts/Container';
 import { EditBtn } from '@/components/features/Edit/EditBtn';
 import { EditNonPreferences } from '@/components/features/Edit/EditNonPreferences';

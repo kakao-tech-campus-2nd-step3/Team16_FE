@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-import { useGetMyMeeting } from '@/api/hooks/useGetMyMeetings';
+import { useGetMyMeeting } from '@/api/hooks/Meeting/useGetMyMeetings';
 import { Container } from '@/components/common/layouts/Container';
 import { Spacing } from '@/components/common/layouts/Spacing';
 import { RouterPath } from '@/routes/path';

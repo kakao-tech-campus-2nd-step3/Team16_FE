@@ -1,4 +1,4 @@
-import { useGetConfirmInfo } from '@/api/hooks/useGetConfirmInfo';
+import { useGetConfirmInfo } from '@/api/hooks/Meeting/useGetConfirmInfo';
 import { Spacing } from '@/components/common/layouts/Spacing';
 import { useGetMeetingId } from '@/hooks/useGetMeetingId';
 import { KakaoMapSearch } from '@/service/KakaoMap';

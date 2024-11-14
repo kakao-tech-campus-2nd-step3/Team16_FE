@@ -1,8 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { baseURL, fetchWithToken } from '../instance/index';
+import { baseURL, fetchWithToken } from '@/api/instance';
 
-//TODO: path만 따로 관리
 export const getUserProfilePath = () => `${baseURL}/members`;
 
 interface UserProfile {

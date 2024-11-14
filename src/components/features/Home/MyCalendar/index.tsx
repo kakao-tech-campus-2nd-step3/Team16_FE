@@ -1,4 +1,4 @@
-import { useGetMyEvent } from '@/api/hooks/useGetMyEvents';
+import { useGetMyEvent } from '@/api/hooks/Calendar/useGetMyEvents';
 import { DefaultCalendar } from '@/service/Calendar';
 import type { Event } from '@/service/Calendar/types';
 

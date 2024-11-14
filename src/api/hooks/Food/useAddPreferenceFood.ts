@@ -19,7 +19,6 @@ export const useAddPreferenceFood = () => {
     mutationFn: addPreferenceFood,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['preferenceFoods'] });
-
     },
   });
 };

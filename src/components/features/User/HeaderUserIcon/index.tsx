@@ -1,4 +1,4 @@
-import { useGetUserProfile } from '@/api/hooks/useGetUser';
+import { useGetUserProfile } from '@/api/hooks/User/useGetUser';
 import { UserProfileImage } from '@/components/common/User/UserProfileImage';
 
 const DEFAULT_PROFILE_IMAGE = '/images/default_profile_image.png';

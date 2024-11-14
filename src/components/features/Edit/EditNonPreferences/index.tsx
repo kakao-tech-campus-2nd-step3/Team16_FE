@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useGetMeetingNonPreferences } from '@/api/hooks/useGetMeetingNonPreferences';
+import { useGetMeetingNonPreferences } from '@/api/hooks/Meeting/useGetMeetingNonPreferences';
 import { FoodPreferenceSection } from '@/components/common/Food/FoodPreferenceSection';
 import { FoodSelectorModal } from '@/components/common/Food/FoodSelectorModal';
 import { useFoodPreferences } from '@/hooks/useFoodPreferences';
@@ -11,7 +11,7 @@ type EditPreferencesProps = {
 };
 
 export const EditNonPreferences: React.FC<EditPreferencesProps> = ({ meetingId }) => {
-  const { data, status } = useGetMeetingNonPreferences(meetingId);
+  const { data, status } = useGetMeetingNonPreferences({ meetingId });
   const { meetingData, setNonPreferences } = useJoinFormContext();
   const [showModal, setShowModal] = useState(false);
 

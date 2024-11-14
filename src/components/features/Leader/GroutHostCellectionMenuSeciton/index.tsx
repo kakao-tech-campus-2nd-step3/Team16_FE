@@ -2,9 +2,9 @@ import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import type { ConfirmMeetingRequest } from '@/api/hooks/useConfirm';
-import { useGetConfirmInfo } from '@/api/hooks/useGetConfirmInfo';
-import { useGetRecommendMenu } from '@/api/hooks/useGetRecommandMenu';
+import type { ConfirmMeetingRequest } from '@/api/hooks/Meeting/useConfirm';
+import { useGetConfirmInfo } from '@/api/hooks/Meeting/useGetConfirmInfo';
+import { useGetRecommendMenu } from '@/api/hooks/Meeting/useGetRecommandMenu';
 import { Spacing } from '@/components/common/layouts/Spacing';
 import { DefaultMenu } from '@/components/common/Menu/DefaultMenu';
 import { MenuCategory } from '@/components/common/Menu/MenuCategory';

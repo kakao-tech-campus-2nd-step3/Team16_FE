@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { useLeaveGroup } from '@/api/hooks/useLeaveGroup';
+import { useLeaveGroup } from '@/api/hooks/Meeting/useLeaveGroup';
 import { Button } from '@/components/common/Button';
 import { useGetMeetingId } from '@/hooks/useGetMeetingId';
 import { RouterPath } from '@/routes/path';

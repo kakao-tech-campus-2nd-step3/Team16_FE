@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetMeetingInfo } from '@/api/hooks/useGetMeetingInfo';
+import { useGetMeetingInfo } from '@/api/hooks/Meeting/useGetMeetingInfo';
 import { Container } from '@/components/common/layouts/Container';
 import { JoinBtn } from '@/components/features/Join/JoinBtn';
 import { JoinCalendar } from '@/components/features/Join/JoinCalendar';

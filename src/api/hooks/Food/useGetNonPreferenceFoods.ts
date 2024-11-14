@@ -2,10 +2,10 @@ import { useQuery } from '@tanstack/react-query';
 
 import { baseURL, fetchWithToken } from '@/api/instance';
 
-export const getNonPreferencePath = () => `${baseURL}/non-preferences`; 
+export const getNonPreferencePath = () => `${baseURL}/non-preferences`;
 
 export const getNonPreferenceFoods = async () => {
-  const response = await fetchWithToken.get(getNonPreferencePath()); 
+  const response = await fetchWithToken.get(getNonPreferencePath());
   return response.data || [];
 };
 
