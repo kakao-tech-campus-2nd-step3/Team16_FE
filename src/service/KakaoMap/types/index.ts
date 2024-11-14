@@ -9,7 +9,6 @@ export interface AddressInfo {
 }
 
 export interface PlaceInfo {
-  location_id: number;
   name: string;
   address: string;
   latitude: number;

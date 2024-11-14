@@ -23,9 +23,8 @@ export const CreateMap: React.FC = () => {
     if (userLocation) {
       setSelectedCoordinates(userLocation);
       setValue('baseLocation', {
-        location_id: data?.location_id || 0,
-        name: data?.name || '',
-        address: data?.address || '',
+        name: data?.name || '이름',
+        address: data?.address || '주소',
         latitude: userLocation.lat,
         longitude: userLocation.lng,
       });
