@@ -3,6 +3,19 @@ export interface Coordinates {
   lng: number;
 }
 
+export interface AddressInfo {
+  address: string;
+  roadAddress: string | null;
+}
+
+export interface PlaceInfo {
+  location_id: number;
+  name: string;
+  address: string;
+  latitude: number;
+  longitude: number;
+}
+
 export interface CircleProps {
   map: kakao.maps.Map;
   position: Coordinates;

@@ -1,24 +1,7 @@
-export interface AddressInfo {
-  address: string;
-  roadAddress: string | null;
-}
-
-export interface PlaceInfo {
-  location_id: string;
-  name: string;
-  address: string;
-  latitude: number;
-  longitude: number;
-}
+import type { PlaceInfo } from '@/service/KakaoMap/types';
 
 export interface CreateMeetingRequest {
-  baseLocation: {
-    location_id: number;
-    name: string;
-    address: string;
-    latitude: number;
-    longitude: number;
-  };
+  baseLocation: PlaceInfo;
   title: string;
   startDate: string | undefined;
   endDate: string | undefined;

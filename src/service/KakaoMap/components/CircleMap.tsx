@@ -1,40 +1,45 @@
 import styled from '@emotion/styled';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import type { CircleMapProps, Coordinates } from '../types';
 import { Circle } from './Circle';
 import { Marker } from './Marker';
 
 export const CircleMap: React.FC<CircleMapProps> = ({ containerId, defaultPosition, onClick }) => {
-  const [map, setMap] = useState<kakao.maps.Map | null>(null);
-  const [coordinates, setCoordinates] = useState<Coordinates | null>(null);
+  const [coordinates, setCoordinates] = useState<Coordinates | null>(defaultPosition);
+  const mapRef = useRef<kakao.maps.Map | null>(null);
 
   useEffect(() => {
-    if (!defaultPosition) return;
-
     const container = document.getElementById(containerId);
-    if (!container) return;
+    if (!container || mapRef.current) return;
 
     const options: kakao.maps.MapOptions = {
       center: new kakao.maps.LatLng(defaultPosition.lat, defaultPosition.lng),
       level: 4,
     };
-    const createdMap = new kakao.maps.Map(container, options);
-    setMap(createdMap);
 
-    kakao.maps.event.addListener(createdMap, 'click', (mouseEvent: kakao.maps.event.MouseEvent) => {
-      const latlng = mouseEvent.latLng;
-      setCoordinates({ lat: latlng.getLat(), lng: latlng.getLng() });
-      if (onClick) onClick({ lat: latlng.getLat(), lng: latlng.getLng() });
-    });
+    mapRef.current = new kakao.maps.Map(container, options);
+
+    setCoordinates(defaultPosition);
+
+    kakao.maps.event.addListener(
+      mapRef.current,
+      'click',
+      (mouseEvent: kakao.maps.event.MouseEvent) => {
+        const latlng = mouseEvent.latLng;
+        const newCoordinates = { lat: latlng.getLat(), lng: latlng.getLng() };
+        setCoordinates(newCoordinates);
+        if (onClick) onClick(newCoordinates);
+      },
+    );
   }, [containerId, defaultPosition, onClick]);
 
   return (
     <MapContainer id={containerId}>
-      {map && coordinates && (
+      {mapRef.current && coordinates && (
         <>
-          <Marker map={map} position={coordinates} />
-          <Circle map={map} position={coordinates} radius={500} />
+          <Marker map={mapRef.current} position={coordinates} />
+          <Circle map={mapRef.current} position={coordinates} radius={500} />
         </>
       )}
     </MapContainer>

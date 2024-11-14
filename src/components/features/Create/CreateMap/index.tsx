@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import { usePlaceSearch } from '@/service/KakaoMap/api/usePlaceSearch';
@@ -8,77 +8,42 @@ import { useGeocoder } from '@/service/KakaoMap/hooks/useGeocoder';
 import { useGeolocation } from '@/service/KakaoMap/hooks/useGeolocation';
 import type { Coordinates } from '@/service/KakaoMap/types';
 import { breakpoints } from '@/styles/variants';
-import type { CreateMeetingRequest, PlaceInfo } from '@/types';
+import type { CreateMeetingRequest } from '@/types';
 
 export const CreateMap: React.FC = () => {
   const { setValue } = useFormContext<CreateMeetingRequest>();
 
-  const {
-    location: userLocation,
-    isLoading: isGeolocationLoading,
-    isError: geolocationError,
-  } = useGeolocation();
+  const userLocation = useGeolocation();
+  const [selectedCoordinates, setSelectedCoordinates] = useState<Coordinates | null>(userLocation);
 
-  const {
-    addressInfo: addressInfo,
-    isLoading: isGeocoding,
-    isError: geocoderError,
-  } = useGeocoder(userLocation);
-
-  const {
-    data: rawPlaceInfo,
-    isLoading: isPlaceLoading,
-    isError: placeSearchError,
-  } = usePlaceSearch(addressInfo?.address || null);
-
-  const placeInfo: PlaceInfo | null = useMemo(() => {
-    return rawPlaceInfo
-      ? {
-          location_id: rawPlaceInfo.location_id || '0',
-          name: rawPlaceInfo.name || '',
-          address: rawPlaceInfo.address || '',
-          latitude: rawPlaceInfo.latitude || 0,
-          longitude: rawPlaceInfo.longitude || 0,
-        }
-      : null;
-  }, [rawPlaceInfo]);
+  const addressInfo = useGeocoder(selectedCoordinates);
+  const { data } = usePlaceSearch(addressInfo?.address || null);
 
   useEffect(() => {
-    if (userLocation && placeInfo) {
+    if (userLocation) {
+      setSelectedCoordinates(userLocation);
       setValue('baseLocation', {
-        location_id: placeInfo.location_id ? +placeInfo.location_id : 0,
-        name: placeInfo.name,
-        address: placeInfo.address,
+        location_id: data?.location_id || 0,
+        name: data?.name || '',
+        address: data?.address || '',
         latitude: userLocation.lat,
         longitude: userLocation.lng,
       });
     }
-  }, [userLocation, setValue, placeInfo]);
+  }, [userLocation, setValue, data]);
 
   const handleMapClick = (coordinates: Coordinates) => {
-    if (placeInfo) {
-      setValue('baseLocation', {
-        location_id: placeInfo.location_id ? +placeInfo.location_id : 0,
-        name: placeInfo.name,
-        address: placeInfo.address,
-        latitude: coordinates.lat,
-        longitude: coordinates.lng,
-      });
-    }
+    setSelectedCoordinates(coordinates);
   };
-
-  if (isGeolocationLoading || isGeocoding || isPlaceLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (geolocationError || geocoderError || placeSearchError) {
-    return <div>Error: Unable to load map data.</div>;
-  }
 
   return (
     <MapContainer>
-      {userLocation && (
-        <CircleMap containerId="map" defaultPosition={userLocation} onClick={handleMapClick} />
+      {selectedCoordinates && (
+        <CircleMap
+          containerId="map"
+          defaultPosition={selectedCoordinates}
+          onClick={handleMapClick}
+        />
       )}
     </MapContainer>
   );
