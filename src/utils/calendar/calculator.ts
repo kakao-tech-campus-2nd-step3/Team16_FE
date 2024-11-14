@@ -51,6 +51,7 @@ export const mergeEndTimes = (currentEnd: number, nextEndAt: string): string => 
 
 export const mergeTimes = (times: PersonalEvent[]): PersonalEvent[] => {
   if (times.length === 0) return [];
+
   const sortedTimes = sortTimes(times);
   const mergedTimes: PersonalEvent[] = [];
   let current = sortedTimes[0];
@@ -63,12 +64,20 @@ export const mergeTimes = (times: PersonalEvent[]): PersonalEvent[] => {
     if (nextStart <= currentEnd) {
       current.end_at = mergeEndTimes(currentEnd, next.end_at);
     } else {
-      mergedTimes.push(current);
+      mergedTimes.push({
+        ...current,
+        start_at: new Date(current.start_at).toISOString(),
+        end_at: new Date(current.end_at).toISOString(),
+      });
       current = next;
     }
   }
 
-  mergedTimes.push(current);
+  mergedTimes.push({
+    ...current,
+    start_at: new Date(current.start_at).toISOString(),
+    end_at: new Date(current.end_at).toISOString(),
+  });
 
   return mergedTimes;
 };

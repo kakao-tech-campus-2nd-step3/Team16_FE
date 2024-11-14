@@ -97,14 +97,14 @@ const PERSONAL_EVENTS_MOCK = {
   data: {
     meeting_personal_times: [
       {
-        start_at: '2024-10-08T09:00:00',
-        end_at: '2024-10-08T12:00:00',
+        start_at: '2024-10-08T09:00:00Z',
+        end_at: '2024-10-08T12:00:00Z',
         time_zone: 'Asia/Seoul',
         all_day: false,
       },
       {
-        start_at: '2024-10-10T09:00:00',
-        end_at: '2024-10-10T15:00:00',
+        start_at: '2024-10-10T09:00:00Z',
+        end_at: '2024-10-10T15:00:00Z',
         time_zone: 'Asia/Seoul',
         all_day: false,
       },
