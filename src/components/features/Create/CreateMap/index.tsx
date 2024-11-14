@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useEffect, useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { usePlaceSearch } from '@/api/hooks/usePlaceSearch';
+import { usePlaceSearch } from '@/service/KakaoMap/api/usePlaceSearch';
 import { CircleMap } from '@/service/KakaoMap/components/CircleMap';
 import { useGeocoder } from '@/service/KakaoMap/hooks/useGeocoder';
 import { useGeolocation } from '@/service/KakaoMap/hooks/useGeolocation';

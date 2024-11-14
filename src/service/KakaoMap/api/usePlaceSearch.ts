@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { kakaoAPI, kakaoBaseURL } from '../instance';
+import { kakaoAPI, kakaoBaseURL } from '@/api/instance';
 
 export const getPlaceSearchPath = ({ keyword }: { keyword: string }) =>
   `${kakaoBaseURL}/v2/local/search/keyword.json?query=${keyword}`;
