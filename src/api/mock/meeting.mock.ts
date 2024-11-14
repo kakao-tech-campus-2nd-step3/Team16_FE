@@ -69,9 +69,7 @@ export const meetingMockHandler = [
 const CREATE_MEETING_MOCK = {
   status: 200,
   message: '모임 생성 성공',
-  data: {
-    meetingId: 1,
-  },
+  data: 1,
 };
 
 const MY_MEETING_MOCK = {
