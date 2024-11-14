@@ -20,10 +20,11 @@ export const reissueAccessToken = async () => {
   }
 };
 
-export const useReissueAccessToken = () => {
+export const useReissueAccessToken = (enabled = true) => {
   return useQuery({
     queryKey: ['reissueToken'],
     queryFn: reissueAccessToken,
-    enabled: false,
+    enabled, 
+    retry: false,
   });
 };
