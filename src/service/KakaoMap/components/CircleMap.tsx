@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
+import { breakpoints } from '@/styles/variants';
 
 import type { CircleMapProps, Coordinates } from '../types';
 import { Circle } from './Circle';
@@ -47,6 +49,12 @@ export const CircleMap: React.FC<CircleMapProps> = ({ containerId, defaultPositi
 };
 
 const MapContainer = styled.div`
+  flex: 2;
+  display: flex;
+  min-height: 400px;
   width: 100%;
-  height: 100%;
+
+  @media (max-width: ${breakpoints.md}) {
+    min-height: 300px;
+  }
 `;

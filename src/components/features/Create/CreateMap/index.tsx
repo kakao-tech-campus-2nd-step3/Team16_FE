@@ -17,7 +17,7 @@ export const CreateMap: React.FC = () => {
   const [selectedCoordinates, setSelectedCoordinates] = useState<Coordinates | null>(userLocation);
 
   const addressInfo = useGeocoder(selectedCoordinates);
-  const { data } = usePlaceSearch(addressInfo?.address || null);
+  const { data, status } = usePlaceSearch(addressInfo?.address || null);
 
   useEffect(() => {
     if (userLocation) {
@@ -35,8 +35,11 @@ export const CreateMap: React.FC = () => {
     setSelectedCoordinates(coordinates);
   };
 
+  if (status === 'pending') return <MapContainer>loading...</MapContainer>;
+  if (status === 'error') return <MapContainer>error</MapContainer>;
+
   return (
-    <MapContainer>
+    <>
       {selectedCoordinates && (
         <CircleMap
           containerId="map"
@@ -44,7 +47,7 @@ export const CreateMap: React.FC = () => {
           onClick={handleMapClick}
         />
       )}
-    </MapContainer>
+    </>
   );
 };
 
