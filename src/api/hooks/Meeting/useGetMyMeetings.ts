@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { baseURL, fetchWithToken } from '@/api/instance';
 import { convertToMeeting } from '@/utils/converter';
 
-export const getMyMeetingsPath = () => `${baseURL}/meetings`;
+export const getMyMeetingsPath = () => `${baseURL}/meeting`;
 
 export interface Meeting {
   meetingId: number;
