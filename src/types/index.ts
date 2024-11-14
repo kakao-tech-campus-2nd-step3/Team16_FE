@@ -13,7 +13,9 @@ export interface CreateMeetingRequest {
 export interface CreateMeetingResponse {
   status: number;
   message: string;
-  data: null;
+  data: {
+    meetingId: number;
+  };
 }
 
 export interface MeetingInfo {

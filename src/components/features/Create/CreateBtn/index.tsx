@@ -25,9 +25,10 @@ export const CreateBtn: React.FC = () => {
     }
 
     createMeeting(values, {
-      onSuccess: () => {
+      onSuccess: (response) => {
+        const meetingId = response.data.meetingId;
         alert('모임이 성공적으로 생성되었습니다!');
-        navigate(RouterPath.leader);
+        navigate(`${RouterPath.leader}/${meetingId}`);
       },
       onError: () => {
         alert('모임 생성 중 오류가 발생했습니다.');
