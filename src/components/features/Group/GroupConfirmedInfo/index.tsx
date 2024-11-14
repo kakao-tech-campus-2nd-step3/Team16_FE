@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { useGetConfirmInfo } from '@/api/hooks/useGetConfirmInfo';
+import { useGetConfirmInfo } from '@/api/hooks/Meeting/useGetConfirmInfo';
 
 export const GroupConfirmedInfo: React.FC = () => {
   const { data: confirmedInfo, status } = useGetConfirmInfo({ meetingId: '1' });
@@ -9,7 +9,7 @@ export const GroupConfirmedInfo: React.FC = () => {
 
   if (status === 'error') return <p>error</p>;
 
-  if (!confirmedInfo) return null; // 확정되지 않은 경우
+  if (!confirmedInfo) return null;
 
   const { confirmedDateTime } = confirmedInfo;
 

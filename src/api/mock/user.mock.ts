@@ -1,6 +1,6 @@
 import { rest } from 'msw';
 
-import { getUserProfilePath } from '../hooks/useGetUser';
+import { getUserProfilePath } from '@/api/hooks/User/useGetUser';
 
 export const userMockhandler = [
   rest.get(getUserProfilePath(), (_, res, ctx) => {

@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useUpdatePersonal } from '@/api/hooks/useUpdatePersonal';
+import { useUpdatePersonal } from '@/api/hooks/Meeting/useUpdatePersonal';
 import { Button } from '@/components/common/Button';
 import { useJoinFormContext } from '@/hooks/useJoinFormContext';
 import { RouterPath } from '@/routes/path';

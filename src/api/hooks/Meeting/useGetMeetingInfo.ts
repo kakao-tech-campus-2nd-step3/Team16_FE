@@ -1,8 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
+import { baseURL, fetchWithToken } from '@/api/instance';
 import type { MeetingInfo } from '@/types';
-
-import { baseURL, fetchWithToken } from '../instance';
 
 export const getMeetingInfoPath = ({ meetingId }: { meetingId: string }) =>
   `${baseURL}/meeting/${meetingId}`;

@@ -1,8 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 
+import { baseURL, fetchWithToken } from '@/api/instance';
 import type { CreateMeetingRequest, CreateMeetingResponse } from '@/types';
-
-import { baseURL, fetchWithToken } from '../instance';
 
 export const createMeetingPath = () => `${baseURL}/meeting/`;
 

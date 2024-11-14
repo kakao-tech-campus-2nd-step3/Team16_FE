@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { useGetRecommendMenu } from '@/api/hooks/useGetRecommandMenu';
+import { useGetRecommendMenu } from '@/api/hooks/Meeting/useGetRecommandMenu';
 import { Spacing } from '@/components/common/layouts/Spacing';
 import { DefaultMenu } from '@/components/common/Menu/DefaultMenu';
 import { MenuCategory } from '@/components/common/Menu/MenuCategory';

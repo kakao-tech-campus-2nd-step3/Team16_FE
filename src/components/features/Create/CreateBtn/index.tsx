@@ -3,7 +3,7 @@ import React from 'react';
 import { type FieldErrors, useFormContext } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { useCreateMeeting } from '@/api/hooks/useCreateMeeting';
+import { useCreateMeeting } from '@/api/hooks/Meeting/useCreateMeeting';
 import { Button } from '@/components/common/Button';
 import { RouterPath } from '@/routes/path';
 import type { CreateMeetingRequest } from '@/types';

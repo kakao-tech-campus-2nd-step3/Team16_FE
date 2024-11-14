@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useGetNonPreferenceFoods } from '@/api/hooks/useGetNonPreferenceFoods';
+import { useGetNonPreferenceFoods } from '@/api/hooks/Food/useGetNonPreferenceFoods';
 import { FoodPreferenceSection } from '@/components/common/Food/FoodPreferenceSection';
 import { FoodSelectorModal } from '@/components/common/Food/FoodSelectorModal';
 import { useFoodPreferences } from '@/hooks/useFoodPreferences';

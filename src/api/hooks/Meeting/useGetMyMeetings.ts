@@ -1,8 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
+import { baseURL, fetchWithToken } from '@/api/instance';
 import { convertToMeeting } from '@/utils/converter';
-
-import { baseURL, fetchWithToken } from '../instance/index';
 
 export const getMyMeetingsPath = () => `${baseURL}/meetings`;
 

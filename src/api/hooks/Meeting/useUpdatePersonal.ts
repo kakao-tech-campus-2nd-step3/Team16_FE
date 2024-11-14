@@ -1,10 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
 
+import { baseURL, fetchWithToken } from '@/api/instance';
 import type { JoinMeetingRequest, JoinMeetingResponse } from '@/types';
 
-import { fetchWithToken } from '../instance';
-
-export const getUpdatePersonalPath = (meetingId: string) => `/meeting/${meetingId}/personal`;
+export const getUpdatePersonalPath = (meetingId: string) =>
+  `${baseURL}/meeting/${meetingId}/personal`;
 
 export const updatePersonal = async (
   meetingId: string,

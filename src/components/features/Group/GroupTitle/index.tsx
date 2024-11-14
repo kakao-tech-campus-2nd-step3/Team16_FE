@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { useGetMeetingInfo } from '@/api/hooks/useGetMeetingInfo';
+import { useGetMeetingInfo } from '@/api/hooks/Meeting/useGetMeetingInfo';
 import { useGetMeetingId } from '@/hooks/useGetMeetingId';
 
 type Props = {

@@ -1,8 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
+import { baseURL, fetchWithToken } from '@/api/instance';
 import type { PersonalResponse } from '@/types';
-
-import { baseURL, fetchWithToken } from '../instance';
 
 export const getPersonalPath = ({ meetingId }: { meetingId: string }) =>
   `${baseURL}/meeting/${meetingId}/personal-event`;

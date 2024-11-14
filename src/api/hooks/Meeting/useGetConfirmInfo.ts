@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { baseURL, fetchWithToken } from '../instance';
+import { baseURL, fetchWithToken } from '@/api/instance';
 
 interface ConfirmInfo {
   confirmedDateTime: 'string';

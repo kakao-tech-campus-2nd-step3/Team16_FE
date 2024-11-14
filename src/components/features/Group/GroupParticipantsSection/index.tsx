@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { useGetParticipant } from '@/api/hooks/useGetParticipant';
+import { useGetParticipant } from '@/api/hooks/Meeting/useGetParticipant';
 import { Participant } from '@/components/common/User/Participant';
 import { useGetMeetingId } from '@/hooks/useGetMeetingId';
 

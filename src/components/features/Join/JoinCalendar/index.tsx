@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 
-import { useGetMyEvent } from '@/api/hooks/useGetMyEvents';
+import { useGetMyEvent } from '@/api/hooks/Calendar/useGetMyEvents';
 import { useJoinFormContext } from '@/hooks/useJoinFormContext';
 import { WeeklyCalendar } from '@/service/Calendar';
 import type { Event } from '@/service/Calendar/types';
