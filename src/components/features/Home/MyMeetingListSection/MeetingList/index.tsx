@@ -19,7 +19,16 @@ export const MeetingList: React.FC<Props> = ({ meetings, showFoodName = false })
             {showFoodName && confirmedFood && (
               <MeetingConfirmFood>{confirmedFood.name}</MeetingConfirmFood>
             )}
-            <MeetingConfirmDateTime>{confirmedDateTime}</MeetingConfirmDateTime>
+            <MeetingConfirmDateTime>
+              {confirmedDateTime &&
+                new Date(confirmedDateTime).toLocaleDateString('ko-KR', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                })}
+            </MeetingConfirmDateTime>
           </MeetingItem>
         </Link>
       ))}
