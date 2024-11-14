@@ -9,7 +9,7 @@ export const getCurrentDateStrings = (baseDate: string) => {
   };
 
   return {
-    from: formatDate(plus15Days),
-    to: formatDate(minus14Days),
+    from: formatDate(minus14Days),
+    to: formatDate(plus15Days),
   };
 };
