@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { baseURL, fetchWithToken } from '@/api/instance';
 
 export const getparticipantPath = ({ meetingId }: { meetingId: string }) =>
-  `${baseURL}/meeting/${meetingId}/pariticpant`;
+  `${baseURL}/meeting/${meetingId}/participant`;
 
 interface Participant {
   member_id: number;
