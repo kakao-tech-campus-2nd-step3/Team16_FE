@@ -7,7 +7,7 @@ type UseFoodPreferencesOptions = {
   preferences: number[];
   setPreferences: (ids: number[]) => void;
   onAddFood?: (food: Food) => void;
-  onRemoveFood?: (foodId: number) => void;
+  onRemoveFood?: (food_id: number) => void;
 };
 
 export const useFoodPreferences = ({
@@ -43,10 +43,10 @@ export const useFoodPreferences = ({
     }
   };
 
-  const handleFoodRemove = (foodId: number) => {
-    setSelectedFoods((prevFoods) => prevFoods.filter((food) => food.food_id !== foodId));
-    setPreferences(preferences.filter((id) => id !== foodId));
-    if (onRemoveFood) onRemoveFood(foodId);
+  const handleFoodRemove = (food_id: number) => {
+    setSelectedFoods((prevFoods) => prevFoods.filter((food) => food.food_id !== food_id));
+    setPreferences(preferences.filter((id) => id !== food_id));
+    if (onRemoveFood) onRemoveFood(food_id);
   };
 
   return {
