@@ -10,7 +10,7 @@ import { AddedMenu } from '../../Menu/AddedMenu';
 type Props = {
   title: string;
   foods: Food[];
-  onDeleteFood: (food_id: number) => void;
+  onDeleteFood: (foodId: number) => void;
   onOpenModal: () => void;
 };
 
@@ -28,8 +28,8 @@ export const FoodPreferenceSection: React.FC<Props> = ({
 
         <MenuCategory foods={foods}>
           {(food) => (
-            <FoodContainer key={food.food_id}>
-              <AddedMenu menuName={food.name} onDelete={() => onDeleteFood(food.food_id)} />
+            <FoodContainer key={food.foodId}>
+              <AddedMenu menuName={food.name} onDelete={() => onDeleteFood(food.foodId)} />
             </FoodContainer>
           )}
         </MenuCategory>

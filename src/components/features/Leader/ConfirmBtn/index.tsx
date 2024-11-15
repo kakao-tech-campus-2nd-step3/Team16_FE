@@ -35,12 +35,10 @@ export const ConfirmBtn: React.FC = () => {
     );
   };
 
+  const isConfirmed = data?.confirmedDateTime || data?.confirmedFood;
+
   return (
-    <Button
-      theme="green"
-      onClick={onClick}
-      disabled={!data || !data.baseLocation || !data.confirmedFood}
-    >
+    <Button theme="green" onClick={onClick} disabled={!!isConfirmed}>
       확정하기
     </Button>
   );

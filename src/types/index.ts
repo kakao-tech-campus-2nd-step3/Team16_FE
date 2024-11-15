@@ -61,7 +61,7 @@ export interface PersonalResponse {
 }
 
 export interface Food {
-  food_id: number;
+  foodId: number;
   category: string;
   name: string;
 }

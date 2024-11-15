@@ -17,8 +17,8 @@ export const PreferenceSection: React.FC = () => {
     initialFoods: data,
     preferences: [],
     setPreferences: () => {},
-    onAddFood: (food_id) => addFoodPreference.mutate(food_id),
-    onRemoveFood: (food_id) => deleteFoodPreference.mutate(food_id),
+    onAddFood: (foodId) => addFoodPreference.mutate(foodId),
+    onRemoveFood: (foodId) => deleteFoodPreference.mutate(foodId),
   });
 
   if (status === 'pending') return <p>Loading...</p>;

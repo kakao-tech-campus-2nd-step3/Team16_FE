@@ -16,7 +16,7 @@ export interface Meeting {
   title: string;
   confirmedDateTime?: string | null;
   confirmedFood: {
-    food_id: number;
+    foodId: number;
     category: string;
     name: string;
   };

@@ -9,7 +9,7 @@ import type { Food } from '@/types';
 
 type Props = {
   selectedFoods: Food[];
-  onFoodSelect: (food_id: Food) => void;
+  onFoodSelect: (foodId: Food) => void;
   onClose: () => void;
 };
 
@@ -33,8 +33,8 @@ export const FoodSelectorModal: React.FC<Props> = ({ selectedFoods, onFoodSelect
     setSelectedCategory(event.target.value);
   };
 
-  const handleFoodClick = (food_id: Food) => {
-    onFoodSelect(food_id);
+  const handleFoodClick = (foodId: Food) => {
+    onFoodSelect(foodId);
   };
 
   return (
@@ -66,9 +66,9 @@ export const FoodSelectorModal: React.FC<Props> = ({ selectedFoods, onFoodSelect
         <FoodList>
           {filteredFoods?.map((food) => (
             <SelectableMenu
-              key={food.food_id}
+              key={food.foodId}
               menuName={food.name}
-              isSelected={selectedFoods.some((selected) => selected.food_id === food.food_id)}
+              isSelected={selectedFoods.some((selected) => selected.foodId === food.foodId)}
               onClick={() => handleFoodClick(food)}
             />
           ))}

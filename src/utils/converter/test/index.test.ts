@@ -16,7 +16,7 @@ describe('convertToMeeting', () => {
           longitude: 126.978,
         },
         confirmedFood: {
-          food_id: 1,
+          foodId: 1,
           category: 'Korean',
           name: '비빔밥',
         },
@@ -32,7 +32,7 @@ describe('convertToMeeting', () => {
           longitude: 129.0756,
         },
         confirmedFood: {
-          food_id: 2,
+          foodId: 2,
           category: '일식',
           name: '초밥',
         },
@@ -48,7 +48,7 @@ describe('convertToMeeting', () => {
           longitude: 126.7052,
         },
         confirmedFood: {
-          food_id: 3,
+          foodId: 3,
           category: '중식',
           name: '자장면',
         },
@@ -64,7 +64,7 @@ describe('convertToMeeting', () => {
           longitude: 128.6014,
         },
         confirmedFood: {
-          food_id: 4,
+          foodId: 4,
           category: '양식',
           name: '파스타',
         },
@@ -86,7 +86,7 @@ describe('convertToMeeting', () => {
         confirmedDateTime: '2023-10-01T10:00:00Z',
         confirmedFood: {
           category: 'Korean',
-          food_id: 1,
+          foodId: 1,
           name: '비빔밥',
         },
         meetingId: 1,
@@ -102,7 +102,7 @@ describe('convertToMeeting', () => {
         confirmedDateTime: '2023-10-02T12:00:00Z',
         confirmedFood: {
           category: '중식',
-          food_id: 3,
+          foodId: 3,
           name: '자장면',
         },
         meetingId: 3,
@@ -120,7 +120,7 @@ describe('convertToMeeting', () => {
         confirmedDateTime: null,
         confirmedFood: {
           category: '일식',
-          food_id: 2,
+          foodId: 2,
           name: '초밥',
         },
         meetingId: 2,
@@ -136,7 +136,7 @@ describe('convertToMeeting', () => {
         confirmedDateTime: null,
         confirmedFood: {
           category: '양식',
-          food_id: 4,
+          foodId: 4,
           name: '파스타',
         },
         meetingId: 4,

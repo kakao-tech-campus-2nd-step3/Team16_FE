@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { baseURL, fetchWithToken } from '@/api/instance';
 
 export interface Food {
-  food_id: number;
+  foodId: number;
   category: string;
   name: string;
 }
