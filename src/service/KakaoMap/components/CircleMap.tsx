@@ -12,6 +12,11 @@ export const CircleMap: React.FC<CircleMapProps> = ({ containerId, defaultPositi
   const mapRef = useRef<kakao.maps.Map | null>(null);
 
   useEffect(() => {
+    if (!window.kakao) {
+      console.error('카카오 지도 API가 로드되지 않았습니다.');
+      return;
+    }
+
     const container = document.getElementById(containerId);
     if (!container || mapRef.current) return;
 
