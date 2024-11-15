@@ -13,7 +13,7 @@ interface ConfirmParams {
 }
 
 export const getConfirmPath = ({ meetingId }: { meetingId: string }) =>
-  `${baseURL}/meeting/${meetingId}/useConfirm.ts`;
+  `${baseURL}/meeting/${meetingId}/useConfirm`;
 
 export const getConfirm = async ({ meetingId, confirmRequest }: ConfirmParams) => {
   const response = await fetchWithToken.post(getConfirmPath({ meetingId }), confirmRequest);
