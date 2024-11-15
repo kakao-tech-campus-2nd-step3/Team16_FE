@@ -12,8 +12,8 @@ describe('converter', () => {
       const mockData: PersonalResponse = {
         meetingPersonalTimes: [
           {
-            start_at: '2024-01-01T09:00:00Z',
-            end_at: '2024-01-01T10:00:00Z',
+            start_at: '2024-01-01T09:00:00',
+            end_at: '2024-01-01T10:00:00',
             time_zone: 'Asia/Seoul',
             all_day: false,
           },
@@ -24,16 +24,16 @@ describe('converter', () => {
 
       expect(result).toHaveLength(2);
       expect(result[0]).toEqual({
-        startAt: '2024-01-01T09:00:00',
-        endAt: '2024-01-01T09:30:00',
-        timeZone: 'Asia/Seoul',
-        allDay: false,
+        start_at: '2024-01-01T09:00:00',
+        end_at: '2024-01-01T09:30:00',
+        time_zone: 'Asia/Seoul',
+        all_day: false,
       });
       expect(result[1]).toEqual({
-        startAt: '2024-01-01T09:30:00',
-        endAt: '2024-01-01T10:00:00',
-        timeZone: 'Asia/Seoul',
-        allDay: false,
+        start_at: '2024-01-01T09:30:00',
+        end_at: '2024-01-01T10:00:00',
+        time_zone: 'Asia/Seoul',
+        all_day: false,
       });
     });
 

@@ -38,8 +38,8 @@ describe('calculator', () => {
         },
         {
           all_day: false,
-          end_zt: '2023-12-02T11:00:00',
-          start_zt: '2023-12-02T10:00:00',
+          end_at: '2023-12-02T11:00:00',
+          start_at: '2023-12-02T10:00:00',
           time_zone: 'Asia/Seoul',
         },
         {
@@ -124,14 +124,14 @@ describe('calculator', () => {
     it('겹치는 시간이 없는 경우 원래 배열을 반환한다', () => {
       const times = [
         {
-          start_at: '2023-12-02T09:00:00',
-          end_at: '2023-12-02T10:00:00',
+          start_at: '2023-12-02T09:00:00Z',
+          end_at: '2023-12-02T10:00:00Z',
           all_day: false,
           time_zone: 'Asia/Seoul',
         },
         {
-          start_at: '2023-12-02T11:00:00',
-          end_at: '2023-12-02T12:00:00',
+          start_at: '2023-12-02T11:00:00Z',
+          end_at: '2023-12-02T12:00:00Z',
           all_day: false,
           time_zone: 'Asia/Seoul',
         },
@@ -160,8 +160,8 @@ describe('calculator', () => {
       const result = mergeTimes(times);
       expect(result).toEqual([
         {
-          start_at: '2023-12-02T09:00:00',
-          end_at: '2023-12-02T12:00:00',
+          start_at: '2023-12-02T09:00:00Z',
+          end_at: '2023-12-02T12:00:00Z',
           all_day: false,
           time_zone: 'Asia/Seoul',
         },
@@ -193,8 +193,8 @@ describe('calculator', () => {
       const result = mergeTimes(times);
       expect(result).toEqual([
         {
-          start_at: '2023-12-02T09:00:00',
-          end_at: '2023-12-02T13:00:00',
+          start_at: '2023-12-02T09:00:00Z',
+          end_at: '2023-12-02T13:00:00Z',
           all_day: false,
           time_zone: 'Asia/Seoul',
         },
