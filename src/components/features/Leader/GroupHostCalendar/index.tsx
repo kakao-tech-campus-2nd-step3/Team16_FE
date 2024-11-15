@@ -18,7 +18,7 @@ export const GroupHostCalendar: React.FC = () => {
 
   const { startDate, endDate, availableTime, durationTime } = data;
 
-  const isAlreadyConfirmed = !confirmedInfo;
+  const isAlreadyConfirmed = !confirmedInfo.baseLocation || !confirmedInfo.confirmedFood;
 
   if (isAlreadyConfirmed) {
     return (

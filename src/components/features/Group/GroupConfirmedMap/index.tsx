@@ -15,7 +15,7 @@ export const GroupConfirmedMap: React.FC = () => {
     return <div>error</div>;
   }
 
-  if (!data) return null;
+  if (!data.baseLocation || !data.confirmedFood) return null;
 
   const {
     baseLocation: { latitude, longitude },

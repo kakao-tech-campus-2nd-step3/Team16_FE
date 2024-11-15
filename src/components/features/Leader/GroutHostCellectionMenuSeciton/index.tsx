@@ -31,7 +31,7 @@ export const GroupHostCollectionMenuSection: React.FC = () => {
     return <div>Loading...</div>;
   if (confirmStatus === 'error' || recommendMenuStatus === 'error') return <div>Error</div>;
 
-  const displayMenuName = confirmedInfo?.confirmedFood.name || selectedMenuName;
+  const displayMenuName = confirmedInfo?.confirmedFood?.name || selectedMenuName;
 
   return (
     <section>

@@ -36,7 +36,11 @@ export const ConfirmBtn: React.FC = () => {
   };
 
   return (
-    <Button theme="green" onClick={onClick} disabled={Boolean(data)}>
+    <Button
+      theme="green"
+      onClick={onClick}
+      disabled={!data || !data.baseLocation || !data.confirmedFood}
+    >
       확정하기
     </Button>
   );

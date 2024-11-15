@@ -8,20 +8,20 @@ interface ConfirmInfo {
     foodId: number;
     category: string;
     name: string;
-  };
+  } | null;
   baseLocation: {
     locationId: number;
     address: string;
     latitude: number;
     longitude: number;
-  };
+  } | null;
 }
 
 export const getConfirmInfoPath = ({ meetingId }: { meetingId: string }) =>
   `${baseURL}/meeting/${meetingId}/confirmed-info`;
 
 export const getConfirmInfo = async ({ meetingId }: { meetingId: string }) => {
-  const response = await fetchWithToken.get<ConfirmInfo | null>(getConfirmInfoPath({ meetingId }));
+  const response = await fetchWithToken.get<ConfirmInfo>(getConfirmInfoPath({ meetingId }));
   return response.data;
 };
 

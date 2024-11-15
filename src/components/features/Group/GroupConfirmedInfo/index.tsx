@@ -12,7 +12,7 @@ export const GroupConfirmedInfo: React.FC = () => {
 
   if (status === 'error') return <p>error</p>;
 
-  if (!confirmedInfo) return null;
+  if (!confirmedInfo.confirmedDateTime) return null;
 
   const { confirmedDateTime } = confirmedInfo;
 
