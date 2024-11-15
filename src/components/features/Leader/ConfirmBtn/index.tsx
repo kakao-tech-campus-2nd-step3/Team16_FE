@@ -10,7 +10,7 @@ export const ConfirmBtn: React.FC = () => {
   const { watch } = useFormContext();
   const { confirmDateTime, confirmFoodId } = watch();
 
-  const { refetch, data } = useGetConfirmInfo({ meetingId });
+  const { refetch } = useGetConfirmInfo({ meetingId });
   const { mutate } = useConfirm();
 
   const onClick = () => {
@@ -35,10 +35,8 @@ export const ConfirmBtn: React.FC = () => {
     );
   };
 
-  const isConfirmed = data?.confirmedDateTime || data?.confirmedFood;
-
   return (
-    <Button theme="green" onClick={onClick} disabled={!!isConfirmed}>
+    <Button theme="green" onClick={onClick}>
       확정하기
     </Button>
   );
