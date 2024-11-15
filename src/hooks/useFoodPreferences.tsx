@@ -33,7 +33,8 @@ export const useFoodPreferences = ({
     const isAlreadySelected = selectedFoods.some((selected) => selected.foodId === food.foodId);
 
     if (isAlreadySelected) {
-      setSelectedFoods((prevFoods) => prevFoods.filter((f) => f.foodId !== food.foodId));
+      // 이미 선택 되어있다면
+      setSelectedFoods((prevFoods) => prevFoods.filter((f) => f.foodId !== food.foodId)); //제거
       setPreferences(preferences.filter((id) => id !== food.foodId));
       if (onRemoveFood) onRemoveFood(food.foodId);
     } else {
@@ -50,7 +51,7 @@ export const useFoodPreferences = ({
   };
 
   return {
-    selectedFoods,
+    selectedFoods: initialFoods || selectedFoods,
     handleFoodSelect,
     handleFoodRemove,
   };
