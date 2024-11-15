@@ -17,7 +17,7 @@ export const NonPreferenceSection: React.FC = () => {
     initialFoods: data,
     preferences: [],
     setPreferences: () => {},
-    onAddFood: (food) => addFoodNonPreference.mutate(food),
+    onAddFood: (food_id) => addFoodNonPreference.mutate(food_id),
     onRemoveFood: (food_id) => deleteFoodNonPreference.mutate(food_id),
   });
 
