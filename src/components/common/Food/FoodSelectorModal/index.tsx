@@ -101,9 +101,11 @@ const ModalContent = styled.div`
   border-radius: 10px;
   max-width: 500px;
   width: 100%;
+  max-height: 80vh; /* 모달의 최대 높이를 제한 */
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
+  overflow: hidden; /* 내부 콘텐츠 오버플로우를 숨김 */
 `;
 
 const DropdownContainer = styled.div`
@@ -146,7 +148,9 @@ const FoodList = styled.div`
   flex-wrap: wrap;
   gap: 10px;
   max-width: 100%;
-  overflow: auto;
+  overflow-y: auto; /* 세로 스크롤 활성화 */
+  max-height: 150px; /* 리스트의 최대 높이를 줄임 */
+  padding-right: 10px; /* 스크롤 바와 간격 유지 */
 `;
 
 const ButtonContainer = styled.div`
