@@ -65,3 +65,9 @@ export interface Food {
   category: string;
   name: string;
 }
+
+export interface Food {
+  food_id: number;
+  category: string;
+  name: string;
+}
