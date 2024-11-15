@@ -64,20 +64,16 @@ export const mergeTimes = (times: PersonalEvent[]): PersonalEvent[] => {
     if (nextStart <= currentEnd) {
       current.end_at = mergeEndTimes(currentEnd, next.end_at);
     } else {
-      mergedTimes.push({
-        ...current,
-        start_at: new Date(current.start_at).toISOString(),
-        end_at: new Date(current.end_at).toISOString(),
-      });
+      mergedTimes.push(current);
       current = next;
     }
   }
 
-  mergedTimes.push({
-    ...current,
-    start_at: new Date(current.start_at).toISOString(),
-    end_at: new Date(current.end_at).toISOString(),
-  });
+  mergedTimes.push(current);
 
-  return mergedTimes;
+  return mergedTimes.map((event) => ({
+    ...event,
+    start_at: event.start_at.endsWith('Z') ? event.start_at : `${event.start_at}Z`,
+    end_at: event.end_at.endsWith('Z') ? event.end_at : `${event.end_at}Z`,
+  }));
 };
