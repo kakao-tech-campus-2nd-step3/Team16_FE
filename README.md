@@ -258,6 +258,8 @@ Team16_FE
    - 해결 : Context API를 도입해 전역으로 관리해 상태 동기화를 일관성 있게 유지하였습니다. FormContext로 공통 로직을 추출하였고, 백엔드와 선택적으로 소통이 가능한 공통 컴포넌트를 만들어 재사용성을 높였습니다.
 
 ## 📝 테스트 결과 보고서 / 시나리오 명세서 <a id="테스트-결과-보고서--시나리오-명세서"></a>
+📑 [테스트 시나리오 명세서](https://quickest-asterisk-75d.notion.site/Babting-07efc94e53b0466abf07d68b33c824bc)<br>
+📈 [테스트 결과 보고서](https://quickest-asterisk-75d.notion.site/Babting-5306e5c7b98943368a2db58bbad65247)
 
 #### [목차로 이동하기](#목차)
 
