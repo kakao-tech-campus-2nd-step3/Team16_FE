@@ -10,7 +10,7 @@ import { AddedMenu } from '../../Menu/AddedMenu';
 type Props = {
   title: string;
   foods: Food[];
-  onDeleteFood: (foodId: number) => void;
+  onDeleteFood: (food_id: number) => void;
   onOpenModal: () => void;
 };
 

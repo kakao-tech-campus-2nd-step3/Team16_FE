@@ -18,7 +18,7 @@ export const NonPreferenceSection: React.FC = () => {
     preferences: [],
     setPreferences: () => {},
     onAddFood: (food) => addFoodNonPreference.mutate(food),
-    onRemoveFood: (foodId) => deleteFoodNonPreference.mutate(foodId),
+    onRemoveFood: (food_id) => deleteFoodNonPreference.mutate(food_id),
   });
 
   if (status === 'pending') return <p>Loading...</p>;

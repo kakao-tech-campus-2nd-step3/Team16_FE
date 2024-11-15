@@ -4,9 +4,9 @@ import { baseURL, fetchWithToken } from '@/api/instance';
 
 export const getDeletePreferenceFoodPath = () => `${baseURL}/preferences`;
 
-const deletePreferenceFood = async (foodId: number) => {
+const deletePreferenceFood = async (food_id: number) => {
   const response = await fetchWithToken.delete(getDeletePreferenceFoodPath(), {
-    data: { foodId },
+    data: { food_id },
   });
   return response.data;
 };

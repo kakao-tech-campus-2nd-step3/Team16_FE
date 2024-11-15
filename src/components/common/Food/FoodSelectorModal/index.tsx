@@ -9,7 +9,7 @@ import type { Food } from '@/types';
 
 type Props = {
   selectedFoods: Food[];
-  onFoodSelect: (food: Food) => void;
+  onFoodSelect: (food_id: Food) => void;
   onClose: () => void;
 };
 
@@ -33,8 +33,8 @@ export const FoodSelectorModal: React.FC<Props> = ({ selectedFoods, onFoodSelect
     setSelectedCategory(event.target.value);
   };
 
-  const handleFoodClick = (food: Food) => {
-    onFoodSelect(food);
+  const handleFoodClick = (food_id: Food) => {
+    onFoodSelect(food_id);
   };
 
   return (
