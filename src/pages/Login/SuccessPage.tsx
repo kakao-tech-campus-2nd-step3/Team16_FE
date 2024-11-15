@@ -5,10 +5,12 @@ import { useReissueAccessToken } from '@/api/hooks/useReissueAccessToken';
 import { RouterPath } from '@/routes/path';
 
 export const SuccessPage = () => {
+  console.log('SuccessPage.tsx의 SuccessPage 컴포넌트 실행');
   const navigate = useNavigate();
   const { refetch, status, error } = useReissueAccessToken();
 
   useEffect(() => {
+    console.log('SuccessPage.tsx의 SuccessPage 컴포넌트의 useEffect 실행');
     refetch();
   }, [refetch]);
 
