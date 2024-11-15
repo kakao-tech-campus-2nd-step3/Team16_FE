@@ -57,7 +57,7 @@ export interface PersonalEvent {
 }
 
 export interface PersonalResponse {
-  meeting_personal_times: PersonalEvent[];
+  meetingPersonalTimes: PersonalEvent[];
 }
 
 export interface Food {

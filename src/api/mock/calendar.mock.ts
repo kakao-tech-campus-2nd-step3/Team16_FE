@@ -95,7 +95,7 @@ const PERSONAL_EVENTS_MOCK = {
   status: 200,
   message: '모임별 개인 시간표 조회 성공',
   data: {
-    meeting_personal_times: [
+    meetingPersonalTimes: [
       {
         start_at: '2024-10-08T09:00:00Z',
         end_at: '2024-10-08T12:00:00Z',

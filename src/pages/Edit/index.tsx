@@ -15,6 +15,7 @@ export const EditPage: React.FC = () => {
   const { meetingId } = useParams<{ meetingId: string }>();
   const { data: meetingInfo, status: meetingStatus } = useGetMeetingInfo(meetingId || '');
   const { data: personalEvents, status: personalStatus } = useGetPersonalEvents(meetingId || '');
+  console.log('personalEvents: ', personalEvents);
 
   if (!meetingId || meetingStatus === 'pending' || personalStatus === 'pending') {
     return <div>Loading...</div>;
@@ -22,6 +23,7 @@ export const EditPage: React.FC = () => {
   if (meetingStatus === 'error' || personalStatus === 'error') return <div>Error</div>;
 
   const initialSelectedTimes = convertToInitialTimes(personalEvents);
+  console.log('initialSelectedTimes: ', initialSelectedTimes);
 
   const { title, startDate, endDate, startTime, endTime } = meetingInfo;
 
