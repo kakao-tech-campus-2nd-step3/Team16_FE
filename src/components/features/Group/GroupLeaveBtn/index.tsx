@@ -12,6 +12,14 @@ export const GroupLeaveBtn: React.FC = () => {
   const { mutate: leaveGroup } = useLeaveGroup();
 
   const onClickHandler = () => {
+    const confirm = window.confirm(
+      '밥팅을 나가시겠습니까? \n나가시면 작성하신 모든 정보가 삭제됩니다.',
+    );
+
+    if (!confirm) {
+      return;
+    }
+
     leaveGroup(
       { meetingId },
       {

@@ -23,7 +23,6 @@ export const GroupHostCollectionMenuSection: React.FC = () => {
   useEffect(() => {
     if (selectedMenuName) {
       const selectedMenuId = foods?.find((food) => food.name === selectedMenuName)?.foodId;
-      alert(selectedMenuId);
       if (selectedMenuId) setValue('confirmFoodId', selectedMenuId);
     }
   }, [selectedMenuName, foods, setValue]);
