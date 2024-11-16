@@ -1,6 +1,14 @@
 # Team16_FE
 
 <div align="center">
+*테스트 계정*
+
+email : babting.be@gmail.com
+
+password : qkqxld1!
+</div>
+
+<div align="center">
 <h1>[Babting] 프로젝트 소개</h1>
 </div>
 
